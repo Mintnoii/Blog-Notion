@@ -1,9 +1,10 @@
 
 export interface SiteConfig {
   rootNotionPageId: string
-  // rootNotionSpaceId?: string
+  rootNotionSpaceId?: string
 
   name: string
+  domain: string
   author: string
   description?: string
 	bio?: string

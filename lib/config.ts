@@ -2,6 +2,7 @@
 // 从 Notion URL 或路径名后缀中提取 Notion 页面 ID，默认返回一个 UUID(带破折号)
 import { parsePageId } from 'notion-utils'
 import rawSiteConfig from '../site.config'
+import {Site} from '../types'
 import { SiteConfig } from '../types/site-config'
 
 
@@ -33,4 +34,24 @@ export const rootNotionPageId: string = parsePageId(
 
 if (!rootNotionPageId) {
   throw new Error('[🚧 配置错误] 无效的 "rootNotionPageId"')
+}
+// if you want to restrict pages to a single notion workspace (optional)
+export const rootNotionSpaceId: string | null = parsePageId(
+  getSiteConfig('rootNotionSpaceId', null),
+  { uuid: true }
+)
+
+// 网站基本配置信息
+export const name: string = getSiteConfig('name')
+export const author: string = getSiteConfig('author')
+export const domain: string = getSiteConfig('domain')
+export const description: string = getSiteConfig('description', 'Notion Blog')
+// export const language: string = getSiteConfig('language', 'en')
+
+export const site: Site = {
+  name,
+  domain,
+  rootNotionPageId,
+  // rootNotionSpaceId,
+  description
 }
