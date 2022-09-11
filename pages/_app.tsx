@@ -18,12 +18,12 @@ import 'react-notion-x/src/styles.css'
 import 'prismjs/themes/prism-tomorrow.min.css'
 // TODO 可以自己调整配色
 // import 'styles/prism.css'
+// 引入 WindiCss
+import 'windi.css'
 
 import * as React from 'react'
-// import * as Fathom from 'fathom-client'
 import type { AppProps } from 'next/app'
-import { useRouter } from 'next/router'
-// import posthog from 'posthog-js'
+
 
 export default function App({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />

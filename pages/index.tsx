@@ -3,26 +3,28 @@ import { ExtendedRecordMap } from 'notion-types'
 import * as notion from '../lib/notion'
 import { NotionPage } from '../components/NotionPage'
 import * as config from '../lib/config'
+import { resolveNotionPage } from '../lib/page'
 
-// 首页
 export const getStaticProps = async () => {
-	console.log(config.rootNotionPageId,'config.rootNotionPageId')
-  const recordMap = await notion.getPage(config.rootNotionPageId)
+  try {
+    const props = await resolveNotionPage(config.domain)
 
-  return {
-    props: {
-      recordMap
-    },
-    revalidate: 10
+    return { props, revalidate: 10 }
+  } catch (err) {
+    console.error('page error', config.domain, err)
+    throw err
   }
 }
+// Notion Blog 首页
+export default function NotionHomePage(props) {
+	// props 包括 site recordMap pageId
+  return(
 
-export default function HomePage({ recordMap }: { recordMap: ExtendedRecordMap }) {
-  return (
-    <NotionPage
-      recordMap={recordMap}
-    />
-  )
+		<div className='bg-red-400'>
+			<main>
+			 <NotionPage {...props} />
+		</main>
+		</div>
+	)
 }
-
 

@@ -6,13 +6,10 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 
 import { NotionRenderer } from 'react-notion-x'
-import { ExtendedRecordMap } from 'notion-types'
 import { getPageTitle } from 'notion-utils'
+import * as types from '../types'
 
-// -----------------------------------------------------------------------------
-// dynamic imports for optional components
-// -----------------------------------------------------------------------------
-
+import { Page404 } from './Page404'
 const Code = dynamic(() =>
   import('react-notion-x/build/third-party/code').then(async (m) => {
     // 默认支持 js、ts、css, 其他的手动添加 也可以改成一个配置项
@@ -37,7 +34,6 @@ const Code = dynamic(() =>
     return m.Code
   })
 )
-
 const Collection = dynamic(() =>
   import('react-notion-x/build/third-party/collection').then(
     (m) => m.Collection
@@ -59,18 +55,27 @@ const Modal = dynamic(
   }
 )
 
-export const NotionPage = ({
+/**
+ * Notion 页面组件
+ * site 
+ * recordMap 内容
+ * error 错误信息
+ * pageId 页面 id
+ */
+export const NotionPage: React.FC<types.PageProps> = ({
+  site,
   recordMap,
-  previewImagesEnabled,
-  rootPageId,
-  rootDomain,
-}: {
-  recordMap: ExtendedRecordMap
-  previewImagesEnabled?: boolean
-  rootPageId?: string
-  rootDomain?: string
+  error,
+  pageId
 }) => {
   const router = useRouter()
+	const keys = Object.keys(recordMap?.block || {})
+  const block = recordMap?.block?.[keys[0]]?.value
+	console.log(error,site, block);
+	if (error || !site || !block) {
+    return <Page404 site={site} pageId={pageId} error={error} />
+		
+  }
 
   // if (router.isFallback) {
   //   return <Loading />
@@ -97,9 +102,9 @@ export const NotionPage = ({
         recordMap={recordMap}
         fullPage={true}
         darkMode={false}
-        rootDomain={rootDomain}
-        rootPageId={rootPageId}
-        previewImages={previewImagesEnabled}
+        rootDomain={site.domain}
+        rootPageId={site.rootNotionPageId}
+        // previewImages={previewImagesEnabled}
         components={{
           nextImage: Image,
           nextLink: Link,

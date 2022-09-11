@@ -31,12 +31,14 @@ export async function resolveNotionPage(domain: string, rawPageId?: string) {
   let pageId: string
   let recordMap: ExtendedRecordMap
 
+	console.log('解析页面内容')
   if (rawPageId && rawPageId !== 'index') {
     pageId = parsePageId(rawPageId)
     if (pageId) {
       recordMap = await getPage(pageId)
     }  else {
       //  GG 🤔
+			console.log('id 不匹配跳转 404 ')
       return {
         error: {
           message: `Not found "${rawPageId}"`,
