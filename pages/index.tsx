@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { ExtendedRecordMap } from 'notion-types'
-import * as notion from '../lib/notion'
-import { NotionPage } from '../components/NotionPage'
-import * as config from '../lib/config'
-import { resolveNotionPage } from '../lib/page'
+import * as notion from 'lib/notion'
+import { NotionPage } from 'components/NotionPage'
+import * as config from 'lib/config'
+import { resolveNotionPage } from 'lib/page'
 
 export const getStaticProps = async () => {
   try {
@@ -19,8 +19,7 @@ export const getStaticProps = async () => {
 export default function NotionHomePage(props) {
 	// props 包括 site recordMap pageId
   return(
-
-		<div className='bg-red-400'>
+		<div>
 			<main>
 			 <NotionPage {...props} />
 		</main>

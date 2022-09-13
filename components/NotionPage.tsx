@@ -101,7 +101,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
       <NotionRenderer
         recordMap={recordMap}
         fullPage={true}
-        darkMode={false}
+        darkMode={true}
         rootDomain={site.domain}
         rootPageId={site.rootNotionPageId}
         // previewImages={previewImagesEnabled}
