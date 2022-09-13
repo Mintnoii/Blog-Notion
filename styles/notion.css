@@ -1,0 +1,22 @@
+/* 顶部导航条 */
+.notion-header {
+	@apply bg-transparent h-54px;
+	/* background: hsla(0,0%,100%,.8); */
+	-webkit-backdrop-filter: saturate(180%) blur(16px);
+	backdrop-filter: saturate(180%) blur(16px);
+}
+.notion-nav-header{
+	@apply mx-auto my-0 max-w-1080px;
+}
+
+/* 页面封面图 */
+.notion-page-cover-wrapper,
+.notion-page-cover-wrapper span,
+.notion-page-cover-wrapper img {
+  max-width: 1200px;
+  border-radius: 24px;
+}
+
+.notion-page-cover-wrapper {
+  box-shadow: 2px 2px 8px 4px rgba(15, 15, 15, 0.1);
+}

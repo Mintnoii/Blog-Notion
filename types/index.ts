@@ -3,7 +3,6 @@ import { ExtendedRecordMap, PageMap } from 'notion-types'
 import { ParsedUrlQuery } from 'querystring'
 export * from 'notion-types'
 
-export type NavigationStyle = 'default' | 'custom'
 
 export interface Site {
   name: string
@@ -45,3 +44,6 @@ export interface PageProps {
 export interface Params extends ParsedUrlQuery {
   pageId: string
 }
+
+// 样式设置
+export type NavStyle = 'default' | 'custom'

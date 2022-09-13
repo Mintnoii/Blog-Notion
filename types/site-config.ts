@@ -1,4 +1,4 @@
-
+import * as types from './index'
 export interface SiteConfig {
   rootNotionPageId: string
   rootNotionSpaceId?: string
@@ -11,6 +11,8 @@ export interface SiteConfig {
 	link?: string
 	keywords?: Array<string>
 
+	// 样式设置
+	navStyle?: types.NavStyle
 }
 
 

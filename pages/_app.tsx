@@ -1,7 +1,7 @@
 // global styles shared across the entire site
 // import 'styles/global.css'
 
-// react-notion-x 的css样式文件
+// react-notion-x 的 css 样式文件，必须！
 import 'react-notion-x/src/styles.css'
 
 // used for rendering equations (optional)
@@ -11,8 +11,8 @@ import 'react-notion-x/src/styles.css'
 // this might be better for dark mode
 // import 'prismjs/themes/prism-okaidia.css'
 
-// global style overrides for notion
-// import 'styles/notion.css'
+// 覆盖 notion 的全局样式 重命名会失效
+import 'styles/notion.css'
 
 // 代码块高亮样式
 import 'prismjs/themes/prism-tomorrow.min.css'

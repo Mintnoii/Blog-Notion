@@ -10,6 +10,7 @@ import { getPageTitle } from 'notion-utils'
 import * as types from '../types'
 
 import { Page404 } from './Page404'
+import {PageHeader} from './PageHeader'
 const Code = dynamic(() =>
   import('react-notion-x/build/third-party/code').then(async (m) => {
     // 默认支持 js、ts、css, 其他的手动添加 也可以改成一个配置项
@@ -113,6 +114,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
           Equation,
           // Pdf,
           Modal,
+					Header: PageHeader
         }}
       />
     </>
