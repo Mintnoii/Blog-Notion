@@ -2,6 +2,7 @@ import * as React from 'react'
 import cs from 'classnames'
 // import { IoSunnyOutline } from '@react-icons/all-files/io5/IoSunnyOutline'
 // import { IoMoonSharp } from '@react-icons/all-files/io5/IoMoonSharp'
+import {BsFillMoonStarsFill} from 'react-icons/bs'
 import { Header, Breadcrumbs, Search, useNotionContext } from 'react-notion-x'
 import * as types from 'notion-types'
 // import { useDarkMode } from 'lib/use-dark-mode'
@@ -25,7 +26,7 @@ import { navStyle } from 'lib/config'
 //       className={cs('breadcrumb', 'button', !hasMounted)}
 //       onClick={onToggleTheme}
 //     >
-//       {hasMounted && isDarkMode ? <IoMoonSharp /> : <IoSunnyOutline />}
+//       {hasMounted && isDarkMode ? <BsFillMoonStarsFill /> : <IoSunnyOutline />}
 //     </div>
 //   )
 // }
@@ -44,7 +45,9 @@ export const PageHeader: React.FC<{
         <Breadcrumbs block={block} rootOnly={true} />
 
         <div className='notion-nav-header-rhs breadcrumbs'>
-					test
+					<button>搜索</button>
+					<button>归档</button>
+					<button>标签</button>
           {/* {navigationLinks
             ?.map((link, index) => {
               if (!link.pageId && !link.url) {
