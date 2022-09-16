@@ -13,5 +13,6 @@ export default siteConfig({
 	keywords: ['Mintnoii','notion','blog','博客'], // 网站关键词
 
 	// 样式设置
-	navStyle: 'custom'
+	navStyle: 'custom',
+	themeMode: 'dark'
 })

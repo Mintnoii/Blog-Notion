@@ -13,6 +13,7 @@ export interface SiteConfig {
 
 	// 样式设置
 	navStyle?: types.NavStyle
+	themeMode?: 'light'|'dark'
 }
 
 

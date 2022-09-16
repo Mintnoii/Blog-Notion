@@ -7,10 +7,12 @@ import { useRouter } from 'next/router'
 
 import { NotionRenderer } from 'react-notion-x'
 import { getPageTitle } from 'notion-utils'
-import * as types from '../types'
-
+import * as types from 'types'
 import { Page404 } from './Page404'
-import {PageHeader} from './PageHeader'
+import { PageHeader } from './PageHeader'
+import { themeModeState } from '@/model'
+import { useRecoilValue } from 'recoil'
+
 const Code = dynamic(() =>
   import('react-notion-x/build/third-party/code').then(async (m) => {
     // 默认支持 js、ts、css, 其他的手动添加 也可以改成一个配置项
@@ -30,7 +32,7 @@ const Code = dynamic(() =>
       import('prismjs/components/prism-jsx.js'),
       import('prismjs/components/prism-tsx.js'),
       import('prismjs/components/prism-wasm.js'),
-      import('prismjs/components/prism-yaml.js')
+      import('prismjs/components/prism-yaml.js'),
     ])
     return m.Code
   })
@@ -58,7 +60,7 @@ const Modal = dynamic(
 
 /**
  * Notion 页面组件
- * site 
+ * site
  * recordMap 内容
  * error 错误信息
  * pageId 页面 id
@@ -67,15 +69,16 @@ export const NotionPage: React.FC<types.PageProps> = ({
   site,
   recordMap,
   error,
-  pageId
+  pageId,
 }) => {
   const router = useRouter()
-	const keys = Object.keys(recordMap?.block || {})
+  const keys = Object.keys(recordMap?.block || {})
   const block = recordMap?.block?.[keys[0]]?.value
-	console.log(error,site, block);
-	if (error || !site || !block) {
+  const isDarkMode = useRecoilValue(themeModeState)
+
+  console.log(error, site, block)
+  if (error || !site || !block) {
     return <Page404 site={site} pageId={pageId} error={error} />
-		
   }
 
   // if (router.isFallback) {
@@ -87,9 +90,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
   }
 
   const title = getPageTitle(recordMap)
-  console.log(title, recordMap)
-
-
+  // console.log(title, recordMap)
 
   return (
     <>
@@ -102,7 +103,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
       <NotionRenderer
         recordMap={recordMap}
         fullPage={true}
-        darkMode={true}
+        darkMode={isDarkMode}
         rootDomain={site.domain}
         rootPageId={site.rootNotionPageId}
         // previewImages={previewImagesEnabled}
@@ -114,7 +115,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
           Equation,
           // Pdf,
           Modal,
-					Header: PageHeader
+          Header: PageHeader,
         }}
       />
     </>

@@ -1,35 +1,27 @@
 import * as React from 'react'
 import cs from 'classnames'
-// import { IoSunnyOutline } from '@react-icons/all-files/io5/IoSunnyOutline'
-// import { IoMoonSharp } from '@react-icons/all-files/io5/IoMoonSharp'
-import {BsFillMoonStarsFill} from 'react-icons/bs'
+import { IoSunnyOutline } from 'react-icons/io5'
+import { IoMdMoon } from 'react-icons/io'
 import { Header, Breadcrumbs, Search, useNotionContext } from 'react-notion-x'
 import * as types from 'notion-types'
-// import { useDarkMode } from 'lib/use-dark-mode'
 // import { navigationStyle, navigationLinks, isSearchEnabled } from 'lib/config'
 import { navStyle } from 'lib/config'
-
-// const ToggleThemeButton = () => {
-//   const [hasMounted, setHasMounted] = React.useState(false)
-//   const { isDarkMode, toggleDarkMode } = useDarkMode()
-
-//   React.useEffect(() => {
-//     setHasMounted(true)
-//   }, [])
-
-//   const onToggleTheme = React.useCallback(() => {
-//     toggleDarkMode()
-//   }, [toggleDarkMode])
-
-//   return (
-//     <div
-//       className={cs('breadcrumb', 'button', !hasMounted)}
-//       onClick={onToggleTheme}
-//     >
-//       {hasMounted && isDarkMode ? <BsFillMoonStarsFill /> : <IoSunnyOutline />}
-//     </div>
-//   )
-// }
+import { themeModeState } from '@/model'
+import { useRecoilState } from 'recoil'
+const ToggleThemeButton = () => {
+  const [isDarkMode, toggleDarkMode] = useRecoilState(themeModeState)
+  return (
+    <div
+      className="breadcrumb button"
+      onClick={() => {
+        toggleDarkMode(!isDarkMode)
+        console.log(isDarkMode, '===')
+      }}
+    >
+      {isDarkMode ? <IoMdMoon /> : <IoSunnyOutline />}
+    </div>
+  )
+}
 
 export const PageHeader: React.FC<{
   block: types.CollectionViewPageBlock | types.PageBlock
@@ -38,16 +30,15 @@ export const PageHeader: React.FC<{
   if (navStyle === 'default') {
     return <Header block={block} />
   }
-
   return (
-    <header className='notion-header'>
-      <div className='notion-nav-header'>
+    <header className="notion-header">
+      <div className="notion-nav-header">
         <Breadcrumbs block={block} rootOnly={true} />
 
-        <div className='notion-nav-header-rhs breadcrumbs'>
-					<button>搜索</button>
-					<button>归档</button>
-					<button>标签</button>
+        <div className="notion-nav-header-rhs breadcrumbs">
+          <button>搜索</button>
+          <button>归档</button>
+          <button>标签</button>
           {/* {navigationLinks
             ?.map((link, index) => {
               if (!link.pageId && !link.url) {
@@ -78,7 +69,7 @@ export const PageHeader: React.FC<{
             })
             .filter(Boolean)} */}
 
-          {/* <ToggleThemeButton /> */}
+          <ToggleThemeButton />
 
           {/* {isSearchEnabled && <Search block={block} title={null} />} */}
         </div>

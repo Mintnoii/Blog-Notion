@@ -4,7 +4,7 @@ import { parsePageId } from 'notion-utils'
 import rawSiteConfig from 'site.config'
 import {Site, NavStyle} from 'types'
 import { SiteConfig } from 'types/site-config'
-
+import {useState} from 'react'
 
 // 环境变量可以覆盖 site.config.ts
 let siteConfigOverrides: SiteConfig
@@ -58,3 +58,4 @@ export const site: Site = {
 
 // 网站样式设置
 export const navStyle: NavStyle = getSiteConfig('navStyle','default')
+export const themeMode = getSiteConfig('themeMode','dark')
