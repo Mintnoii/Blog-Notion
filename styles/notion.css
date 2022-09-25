@@ -1,3 +1,9 @@
+.notion {
+	/* 页面内容宽度，默认 720px */
+  --notion-max-width: 780px;
+  --notion-header-height: 54px;
+}
+
 /* 顶部导航条 */
 .notion-header {
 	@apply bg-transparent h-54px;
@@ -19,4 +25,7 @@
 
 .notion-page-cover-wrapper {
   box-shadow: 2px 2px 8px 4px rgba(15, 15, 15, 0.1);
+}
+.notion-page-has-cover {
+	padding-top: 90px;
 }

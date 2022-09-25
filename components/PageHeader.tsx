@@ -36,9 +36,9 @@ export const PageHeader: React.FC<{
         <Breadcrumbs block={block} rootOnly={true} />
 
         <div className="notion-nav-header-rhs breadcrumbs">
-          <button>搜索</button>
+          {/* <button>搜索</button>
           <button>归档</button>
-          <button>标签</button>
+          <button>标签</button> */}
           {/* {navigationLinks
             ?.map((link, index) => {
               if (!link.pageId && !link.url) {

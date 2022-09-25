@@ -9,6 +9,7 @@ import { NotionRenderer } from 'react-notion-x'
 import { getPageTitle } from 'notion-utils'
 import * as types from 'types'
 import { Page404 } from './Page404'
+import { Loading } from './Loading'
 import { PageHeader } from './PageHeader'
 import { themeModeState } from '@/model'
 import { useRecoilValue } from 'recoil'
@@ -75,15 +76,13 @@ export const NotionPage: React.FC<types.PageProps> = ({
   const keys = Object.keys(recordMap?.block || {})
   const block = recordMap?.block?.[keys[0]]?.value
   const isDarkMode = useRecoilValue(themeModeState)
+	if (router.isFallback) {
+    return <Loading />
+  }
 
-  console.log(error, site, block)
   if (error || !site || !block) {
     return <Page404 site={site} pageId={pageId} error={error} />
   }
-
-  // if (router.isFallback) {
-  //   return <Loading />
-  // }
 
   if (!recordMap) {
     return null

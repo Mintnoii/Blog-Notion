@@ -25,9 +25,10 @@ export async function getStaticPaths() {
         pageId
       }
     })),
-    // paths: [],
     fallback: true
   }
+	console.log(staticPaths.paths)
+
   return staticPaths
 }
 
