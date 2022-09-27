@@ -3,7 +3,9 @@
   --notion-max-width: 780px;
   --notion-header-height: 54px;
 }
-
+.dark-mode{
+	--fg-color-1: #666;
+}
 /* 顶部导航条 */
 .notion-header {
 	@apply bg-transparent h-54px;
@@ -28,4 +30,9 @@
 }
 .notion-page-has-cover {
 	padding-top: 90px;
+}
+
+/* galleryCard 封面图样式 */
+.notion-collection-card-cover {
+	border-bottom: none;
 }
