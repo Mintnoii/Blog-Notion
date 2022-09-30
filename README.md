@@ -10,3 +10,5 @@ npm run dev
 # or
 yarn dev
 ```
+
+- https://github1s.com/transitive-bullshit/nextjs-notion-starter-kit/blob/transitive-bullshit

@@ -1,9 +1,4 @@
-import {
-  atom,
-  selector,
-  useRecoilState,
-	useRecoilValue
-} from 'recoil';
+import { atom } from 'recoil';
 import {themeMode} from '@/lib/config'
 const themeModeState = atom({
 	key: 'themeMode',
