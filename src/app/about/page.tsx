@@ -1,19 +1,13 @@
 // import Image from 'next/image'
 import { GetStaticProps } from 'next'
 import {getDatabase, getPage } from '@/lib/notion'
+import { GetPageResponse, PageObjectResponse, PartialPageObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 
 async function getData() {
-  const res = await getPage(process.env.NOTION_ABOUT_PAGE_ID || '')
+  const res = await getPage(process.env.NOTION_ABOUT_PAGE_ID || '') as PageObjectResponse
  console.log('res', res)
-}
-export const getStaticProps: GetStaticProps = async () => {
-  const data = await getDatabase('')
-  console.log('data', data)
-  return {
-    props:{
-      data
-    }
-  }
+   console.log(res.properties.title)
+
 }
 
 
