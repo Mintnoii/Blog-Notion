@@ -9,6 +9,11 @@ async function getData() {
  console.log('getDatabase', res)
  return res as any
 }
+// async function getPageData() {
+//   const res = await getPage('fa134157f87b4a30be5712e13c1428df')
+//  console.log('res', res)
+//   return res
+// }
  export default async function PostsPage() {
  const results = await getData()
   return <section>
@@ -22,12 +27,11 @@ async function getData() {
          results?.map((result:any,index:any) => {
          return (
            <div  key={index}>
-
+            <Image src={result.cover?.external?.url} width={300} height={200} alt="Picture of the author" />
             {
-             JSON.stringify(result.properties)
+             JSON.stringify(result)
              }
            {/* <Link href={`/posts/${result.id}`}>
-             <Image src={result.cover?.external?.url} width={300} height={200} alt="Picture of the author" />
            </Link> */}
            {/* <div >
              <Link href={`/posts/${result.id}`}>
