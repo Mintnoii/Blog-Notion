@@ -1,8 +1,6 @@
 import Image from 'next/image'
 import { GetStaticProps } from 'next'
 import {getDatabase, getPage } from '@/lib/notion'
-import '@/styles/global.css'
-
 
 async function getData() {
   const res = await getDatabase('2b33b4bab64d4aeb9ee8f62aabe1ae5d')

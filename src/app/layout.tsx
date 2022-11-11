@@ -1,6 +1,5 @@
 import './globals.css'
 import type { Metadata } from 'next'
-// import { Inter } from 'next/font/google'
 import Navbar from '@/components/Navbar'
 import { Providers } from '@/app/providers'
 // import Footer from '~/components/ui/Footer'
@@ -8,7 +7,6 @@ import { Providers } from '@/app/providers'
 // import DropMenu from './DropMenu'
 // import CommandPalette from '~/components/features/command-palette/CommandPalette'
 // import { navigation } from '~/data/nav'
-// const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Mintnoii\'s Site',
@@ -23,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>
+      <body className="bg-white text-black dark:bg-black dark:text-white">
         <Providers>
           <div className="flex flex-col min-h-screen items-center">
           <Navbar />
