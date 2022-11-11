@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { motion, AnimateSharedLayout } from 'framer-motion'
+// import { motion, AnimateSharedLayout } from 'framer-motion'
 import ThemeSwitch from '@/features/ThemeSwitch'
 
 // import CommandPalette from '~/components/features/command-palette/CommandPalette'
