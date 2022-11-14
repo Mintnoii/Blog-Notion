@@ -1,11 +1,12 @@
 import Image from 'next/image'
-import {equals, getPage } from '@/lib/notion'
+import {getPosts, getPage } from '@/lib/notion'
 import '@/styles/global.css'
 import Link from 'next/link'
+import { ArticleList } from '@/components/blog/ArticleList'
 
 
 async function getData() {
-  const res = await equals('2b33b4bab64d4aeb9ee8f62aabe1ae5d')
+  const res = await getPosts('2b33b4bab64d4aeb9ee8f62aabe1ae5d')
  console.log('getDatabase', res)
  return res as any
 }
@@ -16,6 +17,9 @@ async function getData() {
 // }
  export default async function PostsPage() {
  const results = await getData()
+const test = [{
+  title: '从东大三扥扥'
+}]
   return <section>
      <header>
        <h1>Latest posts</h1>
@@ -27,10 +31,11 @@ async function getData() {
          results?.map((result:any,index:any) => {
          return (
            <div  key={index}>
-            <Image src={result.cover?.external?.url} width={300} height={200} alt="Picture of the author" />
+            {/* <Image src={result.cover?.external?.url} width={300} height={200} alt="Picture of the author" /> */}
             {
              JSON.stringify(result)
              }
+              <ArticleList articles={test} />
            {/* <Link href={`/posts/${result.id}`}>
            </Link> */}
            {/* <div >
@@ -42,9 +47,5 @@ async function getData() {
          })
        }
      </main>
-
-     <footer>
-       <p>Blog application</p>
-     </footer>
   </section>
 }
