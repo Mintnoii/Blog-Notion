@@ -1,9 +1,7 @@
-export type Article = {
-  title: string
-  // tags?: any
-  // name: string
-  // coverImage: string
-  // summary: string
-  // publishedDate?: any
-  // lastUpdatedDate?: any
+export interface IArticle {
+  id: string
+  name: string
+  cover_image: string
+  last_edited_time?: string
+  tags?: any[]
 }

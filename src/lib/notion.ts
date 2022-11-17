@@ -1,5 +1,8 @@
 import { Client } from '@notionhq/client'
 import * as R from 'remeda'
+import {getFormatDate} from '@/utils'
+import { IArticle } from '@/lib/types'
+
 import { PageObjectResponse, PartialDatabaseObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 // import { QueryDatabaseResponse } from '@notionhq/client/build/src/api-endpoints'
 // console.log(process.env.NOTION_TOKEN,'====', process.env.NOTION_DATABASE_ID)
@@ -30,7 +33,7 @@ export const getBlocks = async (blockId:string) => {
 }
 
 
-export const getPosts = async (databaseId:string) => {
+export const getPosts = async (databaseId:string):Promise<IArticle[]> => {
   const response = await notion.databases.query({
     // database_id: process.env.NOTION_DATABASE_ID || '',
     database_id: databaseId,
@@ -44,11 +47,13 @@ export const getPosts = async (databaseId:string) => {
   console.log(response,'response')
   return response.results.map((page) => {
     const thePage = page as any
-    console.log(thePage,'page');
-    const titleObj = R.pickBy(thePage.properties, (val, key) => key === 'Page' && val.type === 'title')
-    const titleProp = R.pathOr(thePage, ['properties','Page','title'],{})
+    const pageTitles = R.pathOr(thePage, ['properties','Page','title'],[])
     return {
-      title:titleProp
+      id: thePage.id,
+      name:pageTitles[0].plain_text,
+      cover_image: R.pathOr(thePage, ['cover','external','url'],''),
+      last_edited_time: getFormatDate(thePage.last_edited_time),
+      tags: R.pathOr(thePage, ['properties','Tags','multi_select'],[]),
     }
   })
 }

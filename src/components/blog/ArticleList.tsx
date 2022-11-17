@@ -1,15 +1,15 @@
-import { Article } from '@/lib/types'
+import { IArticle } from '@/lib/types'
 import { ArticleCard } from '@/components/blog/ArticleCard'
 
 type Props = {
-  articles: Article[]
+  articles: IArticle[]
 }
 
 export function ArticleList({ articles }:Props) {
   return (
     <div className="">
       {articles.map((article) => (
-        <ArticleCard key={article.title} article={article} />
+        <ArticleCard key={article.id} article={article} />
       ))}
     </div>
   )

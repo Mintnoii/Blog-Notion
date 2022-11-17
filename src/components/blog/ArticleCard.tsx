@@ -1,4 +1,4 @@
-import { Article } from '@/lib/types'
+import { IArticle } from '@/lib/types'
 import Image from 'next/image'
 // import { handleArticleClicked } from '@/lib/handleArticleClick'
 // import siteMetadata from '@/data/siteMetadata'
@@ -16,12 +16,12 @@ import slugify from 'slugify'
 // import { Views } from 'lib/types'
 
 type Props = {
-  article: Article
+  article: IArticle
 }
 
 export function ArticleCard({ article }: Props) {
   // const router = useRouter()
-  const slug = slugify(article.title).toLowerCase()
+  // const slug = slugify(article.name).toLowerCase()
   // const { data } = useSWR<Views>(`/api/views/${slug}`, fetcher)
   // const views = data?.total
   //  onClick={() => handleArticleClicked(slug)}
@@ -32,20 +32,20 @@ export function ArticleCard({ article }: Props) {
     >
       <div className="flex flex-col">
         <div className="flex font-semibold text-md text-left mb-2 justify-between ">
-          {article.title}
+          {article.name}
         </div>
 
         {/*JSON.stringify(article) */}
-        <div className="flex flex-row flex-wrap mb-1 gap-x-3 gap-y-1">
-          {['函数式'].map((tag) => (
+        {/* <div className="flex flex-row flex-wrap mb-1 gap-x-3 gap-y-1">
+          {article.tags?.map((tag) => (
             // eslint-disable-next-line react/jsx-key
             <div className="rounded-sm bg-zinc-200 mt-0.5 text-xs opacity-80 px-3 text-gray-700 dark:bg-zinc-700 dark:text-gray-300">
               {tag}
             </div>
           ))}
-        </div>
+        </div> */}
         <span className="flex space-x-4 text-xs text-gray-600 justify-end dark:text-gray-400 ">
-          <div>2023-10-01</div>
+          <div>{article.last_edited_time}</div>
           {/* <div>
             {new Date(article.publishedDate).toLocaleDateString('de-AT', {
               year: 'numeric',
