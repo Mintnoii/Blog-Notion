@@ -4,21 +4,7 @@ import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import slugify from 'slugify'
 import { IArticle } from '@/lib/types'
-// import { handleArticleClicked } from '@/lib/handleArticleClick'
-// import siteMetadata from '@/data/siteMetadata'
-// import { useIsArticleRead } from '@/lib/hooks/useIsArticleRead'
-// import { useRouter } from 'next/dist/client/router'
-// import Link from 'next/link'
-// import useSWR from 'swr'
-// import cn from 'classnames'
-// import readingTime from 'reading-time'
-// import { FiClock } from 'react-icons/fi'
-// import { Tag } from './Tag'
 // import { fetcher } from 'lib/fetcher'
-// import LikeButton from '@/components/features/LikeButton'
-// import { Views } from 'lib/types'
-
-
 
 type Props = {
   article: IArticle
@@ -26,14 +12,15 @@ type Props = {
 
 export function ArticleCard({ article }: Props) {
    const router = useRouter()
-  const slug = slugify(article.name).toLowerCase()
+  // const slug = slugify(article.name).toLowerCase()
+  // todo 注意标题中有特殊字符的情况
+  const slug = article.name
   const handleArticleClicked = (slug:string) => {
-  console.log(slug,'slug', article.name)
   // const localData = JSON.parse(localStorage.getItem(slug)||'')
   // if (typeof window !== 'undefined') {
   //   localStorage.setItem(slug, JSON.stringify({ ...localData, has_read: true }))
   // }
-  router.push(`/posts/函数式思维前端开发`)
+  router.push(`/blogs/${slug}`)
 }
 
   {/*JSON.stringify(article) */}

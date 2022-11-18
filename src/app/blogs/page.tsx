@@ -12,9 +12,6 @@ import { ArticleList } from '@/components/blog/ArticleList'
  export default async function PostsPage() {
  const articles = await getPosts('2b33b4bab64d4aeb9ee8f62aabe1ae5d')
  console.log(articles,'articles')
-const test = [{
-  title: '从东大三扥扥'
-}]
   return <section className='w-full'>
      <header>
        <h1>My Posts</h1>
