@@ -25,6 +25,7 @@ export function ArticleCard({ article }: Props) {
   // const { data } = useSWR<Views>(`/api/views/${slug}`, fetcher)
   // const views = data?.total
   //  onClick={() => handleArticleClicked(slug)}
+        {/*JSON.stringify(article) */}
   return (
     <button
       className="bg-white border rounded-md mb- border-gray-100 shadow-sm my-2 text-sm w-full py-4 px-4  shadow-gray-300 dark:bg-zinc-900 dark:border-zinc-900 dark:shadow-none hover:bg-zinc-300 dark:hover:bg-zinc-800"
@@ -34,25 +35,15 @@ export function ArticleCard({ article }: Props) {
         <div className="flex font-semibold text-md text-left mb-2 justify-between ">
           {article.name}
         </div>
-
-        {/*JSON.stringify(article) */}
-        {/* <div className="flex flex-row flex-wrap mb-1 gap-x-3 gap-y-1">
+        <div className="flex flex-row flex-wrap mb-1 gap-x-3 gap-y-1">
           {article.tags?.map((tag) => (
-            // eslint-disable-next-line react/jsx-key
-            <div className="rounded-sm bg-zinc-200 mt-0.5 text-xs opacity-80 px-3 text-gray-700 dark:bg-zinc-700 dark:text-gray-300">
-              {tag}
+            <div key={tag.id} className="rounded-sm bg-zinc-200 mt-0.5 text-xs opacity-80 py-1 px-2 text-gray-700 dark:bg-zinc-700 dark:text-gray-300">
+              {tag.name}
             </div>
           ))}
-        </div> */}
+        </div>
         <span className="flex space-x-4 text-xs text-gray-600 justify-end dark:text-gray-400 ">
           <div>{article.last_edited_time}</div>
-          {/* <div>
-            {new Date(article.publishedDate).toLocaleDateString('de-AT', {
-              year: 'numeric',
-              month: '2-digit',
-              day: '2-digit',
-            })}{' '}
-          </div> */}
         </span>
       </div>
     </button>
