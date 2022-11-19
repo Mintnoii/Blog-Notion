@@ -1,8 +1,11 @@
-import { IArticle } from '@/lib/types'
+'use client'
+
+import { useRouter } from 'next/navigation'
 import Image from 'next/image'
+import slugify from 'slugify'
+import { IArticle } from '@/lib/types'
 // import { handleArticleClicked } from '@/lib/handleArticleClick'
 // import siteMetadata from '@/data/siteMetadata'
-import slugify from 'slugify'
 // import { useIsArticleRead } from '@/lib/hooks/useIsArticleRead'
 // import { useRouter } from 'next/dist/client/router'
 // import Link from 'next/link'
@@ -15,21 +18,29 @@ import slugify from 'slugify'
 // import LikeButton from '@/components/features/LikeButton'
 // import { Views } from 'lib/types'
 
+
+
 type Props = {
   article: IArticle
 }
 
 export function ArticleCard({ article }: Props) {
-  // const router = useRouter()
-  // const slug = slugify(article.name).toLowerCase()
-  // const { data } = useSWR<Views>(`/api/views/${slug}`, fetcher)
-  // const views = data?.total
-  //  onClick={() => handleArticleClicked(slug)}
-        {/*JSON.stringify(article) */}
+   const router = useRouter()
+  const slug = slugify(article.name).toLowerCase()
+  const handleArticleClicked = (slug:string) => {
+  console.log(slug,'slug', article.name)
+  // const localData = JSON.parse(localStorage.getItem(slug)||'')
+  // if (typeof window !== 'undefined') {
+  //   localStorage.setItem(slug, JSON.stringify({ ...localData, has_read: true }))
+  // }
+  router.push(`/posts/函数式思维前端开发`)
+}
+
+  {/*JSON.stringify(article) */}
   return (
     <button
       className="bg-white border rounded-md mb- border-gray-100 shadow-sm my-2 text-sm w-full py-4 px-4  shadow-gray-300 dark:bg-zinc-900 dark:border-zinc-900 dark:shadow-none hover:bg-zinc-300 dark:hover:bg-zinc-800"
-     
+      onClick={() => handleArticleClicked(slug)}
     >
       <div className="flex flex-col">
         <div className="flex font-semibold text-md text-left mb-2 justify-between ">
