@@ -1,22 +1,21 @@
 import Image from 'next/image'
-import {getPosts, getPage } from '@/lib/notion'
+import {getBlogs,getWorkSpace } from '@/lib/notion'
 import '@/styles/global.css'
 import Link from 'next/link'
 import { ArticleList } from '@/components/blog/ArticleList'
 
-// async function getPageData() {
-//   const res = await getPage('fa134157f87b4a30be5712e13c1428df')
-//  console.log('res', res)
-//   return res
-// }
  export default async function PostsPage() {
- const articles = await getPosts('2b33b4bab64d4aeb9ee8f62aabe1ae5d')
- console.log(articles,'articles')
+  const articles = await getBlogs('2b33b4bab64d4aeb9ee8f62aabe1ae5d')
+  console.log(articles,'articles')
+  const content = await getWorkSpace()
+  console.log(content,'content')
   return <section className='w-full'>
      <header>
-       <h1>My Posts</h1>
+       <h1>My Blogs</h1>
      </header>
-
+    <div>
+      {JSON.stringify(content)}
+    </div>
      <div>
        <ArticleList articles={articles} />
        {/* {
