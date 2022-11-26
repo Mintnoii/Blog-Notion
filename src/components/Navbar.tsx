@@ -1,7 +1,7 @@
+'use client'
 import * as React from 'react'
-// import { motion, AnimateSharedLayout } from 'framer-motion'
+import { motion, AnimateSharedLayout } from 'framer-motion'
 import ThemeSwitch from '@/features/ThemeSwitch'
-
 // import CommandPalette from '~/components/features/command-palette/CommandPalette'
 // import Link from 'next/link'
 // import { useRouter } from 'next/router'
@@ -18,11 +18,9 @@ export default function Navbar() {
   return (
     <nav className="flex flex-col  max-w-sm mt-4  w-full pt-2 pb-4 md:max-w-2xl ">
       <div className="flex flex-row justify-between ">
-        {/* <Link href="/">
-          <a>
-            <TBoxIcon className="cursor-pointer mr-auto h-8 ml-2 w-8" />
-          </a>
-  </Link>*/}
+        <motion.button whileHover={{ scale: 1.2, transition: { duration: 0.2 }}}>
+          <span className='font-bold'>Mintnoii</span>
+        </motion.button>
         {/* <AnimateSharedLayout>
           <motion.ul
             className="flex font-serif text-sm gap-y-1  md:gap-x-4 dark:text-gray-300 "
