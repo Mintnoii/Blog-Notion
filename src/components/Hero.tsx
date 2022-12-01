@@ -4,10 +4,10 @@ import Link from 'next/link'
 
 const CustomLink = (href:string, text:string) => {
   return (
-    <Link href={href} className="relative before:h-full before:bg-cyan-500 before:w-full before:opacity-50 before:origin-bottom before:transition-transform before:ease-in-out before:bottom-0 before:left-0 before:scale-y-[0.35] before:duration-500 before:absolute hover:before:scale-y-100">
-        <span className="relative hover:text-gray-800 hover:dark:text-gray-200">
-          {text}
-        </span>
+    <Link href={href} className="relative before:h-full before:bg-violet-400 before:w-full before:opacity-50 before:origin-bottom before:transition-transform before:ease-in-out before:bottom-0 before:left-0 before:scale-y-[0.35] before:duration-500 before:absolute hover:before:scale-y-100">
+      <span className="relative hover:text-gray-800 hover:dark:text-gray-200">
+        {text}
+      </span>
     </Link>
   )
 }
@@ -16,8 +16,8 @@ export default function Hero() {
   return (
     <div>
       <div className="flex flex-col min-h-screen pb-[25vh] justify-center lg:mt-12 lg:px-4">
-        <div className=''>
-            <motion.div
+        <div>
+          <motion.div
             initial="hidden"
             animate="visible"
             transition={{ delay: 0.1, duration: 1 }}
@@ -35,7 +35,7 @@ export default function Hero() {
           >
             Mintnoii
           </motion.div>
-           <motion.div
+          <motion.div
             initial="hidden"
             animate="visible"
             transition={{ delay: 1.3, duration: 0.8 }}
