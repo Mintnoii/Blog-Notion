@@ -40,7 +40,7 @@ export default function Navbar() {
                      >
                       <span
                         className={classnames('relative z-50', {
-                          'font-semibold  text-gray-900 underline decoration-cyan-500 decoration-2 underline-offset-1 dark:text-gray-300 ': pathname === item.path,
+                          'font-semibold  text-gray-900 underline decoration-cyan-400 decoration-2 underline-offset-1 dark:text-gray-300 ': pathname === item.path,
                           'font-normal text-gray-700 dark:text-gray-400': pathname !== item.path
                         })}
                       >

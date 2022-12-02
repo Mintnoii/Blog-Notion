@@ -12,8 +12,7 @@ export const getDatabase = async (databaseId:string) => {
     // database_id: process.env.NOTION_DATABASE_ID || '',
     database_id: databaseId,
   })
-  console.log(response,'response')
-  return response.results
+  return response
 }
 
 export const getPage = async (pageId:string) => {
@@ -21,12 +20,13 @@ export const getPage = async (pageId:string) => {
   return response
 }
 
-export const getBlocks = async (blockId:string) => {
+export const getBlockContent = async (block_id:string, start_cursor?:string|null) => {
   const response = await notion.blocks.children.list({
-    block_id: blockId,
+    block_id,
+    start_cursor: start_cursor || undefined,
     page_size: 50,
   })
-  return response.results
+  return response
 }
 
 

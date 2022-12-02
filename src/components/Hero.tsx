@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 const CustomLink = (href:string, text:string) => {
   return (
-    <Link href={href} className="relative before:h-full before:bg-violet-400 before:w-full before:opacity-50 before:origin-bottom before:transition-transform before:ease-in-out before:bottom-0 before:left-0 before:scale-y-[0.35] before:duration-500 before:absolute hover:before:scale-y-100">
+    <Link href={href} className="relative before:h-full before:bg-indigo-400 before:w-full before:opacity-50 before:origin-bottom before:transition-transform before:ease-in-out before:bottom-0 before:left-0 before:scale-y-[0.35] before:duration-500 before:absolute hover:before:scale-y-100">
       <span className="relative hover:text-gray-800 hover:dark:text-gray-200">
         {text}
       </span>
