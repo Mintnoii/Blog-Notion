@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import slugify from 'slugify'
-import { IArticle } from '@/lib/types'
+import { IArticle } from '@/types/data'
 // import { fetcher } from 'lib/fetcher'
 
 type Props = {

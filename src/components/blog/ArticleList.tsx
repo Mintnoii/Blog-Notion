@@ -1,4 +1,4 @@
-import { IArticle } from '@/lib/types'
+import { IArticle } from '@/types/data'
 import { ArticleCard } from '@/components/blog/ArticleCard'
 
 type Props = {
