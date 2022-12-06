@@ -20,7 +20,7 @@ export function ArticleCard({ article }: Props) {
   // if (typeof window !== 'undefined') {
   //   localStorage.setItem(slug, JSON.stringify({ ...localData, has_read: true }))
   // }
-  router.push(`/blogs/${slug}`)
+  router.push(`/blog/${slug}`)
 }
 
   {/*JSON.stringify(article) */}

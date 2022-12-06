@@ -1,8 +1,11 @@
-import {queryDatabase} from '@/lib/notion'
-import * as R from 'remeda'
-import {getFormatDate} from '@/utils'
+import {getPageInfo, getFormatDate} from '@/utils'
+import {queryDatabase, retrievePage, getAllBlockContent} from '@/lib/notion'
 import { IArticle } from '@/types/data'
+import { IPageObjectResponse } from '@/types/notion'
 
+export const getPage =async (page_id:string) => {
+  const page = await retrievePage(page_id)
+}
 export const getBlogs = async (blogId:string):Promise<IArticle[]> => {
   const dbRes = await queryDatabase({
     database_id: blogId,
@@ -13,16 +16,11 @@ export const getBlogs = async (blogId:string):Promise<IArticle[]> => {
       }
     }
   })
-  console.log(dbRes,'dbRes')
-  return dbRes.results.map((page) => {
-    const thePage = page as any
-    const pageTitles = R.pathOr(thePage, ['properties','Page','title'],[])
-    return {
-      id: thePage.id,
-      name:pageTitles[0].plain_text,
-      cover_image: R.pathOr(thePage, ['cover','external','url'],''),
-      last_edited_time: getFormatDate(thePage.last_edited_time),
-      tags: R.pathOr(thePage, ['properties','Tags','multi_select'],[]),
-    }
-  })
+  return dbRes.results.map((page) => getPageInfo(page as IPageObjectResponse))
+}
+
+ export const fetchPage = async (page_id:string) => {
+  const page = await retrievePage(page_id)
+  const content = await getAllBlockContent(page_id)
+
 }

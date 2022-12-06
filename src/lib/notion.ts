@@ -1,15 +1,12 @@
 import { Client } from '@notionhq/client'
-import * as R from 'remeda'
-import {getFormatDate} from '@/utils'
-import { IArticle } from '@/types/data'
-import { QueryDatabaseParameters,BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
+import { QueryDatabaseParameters,BlockObjectResponse,GetPageResponse } from '@notionhq/client/build/src/api-endpoints'
 const notion = new Client({ auth: process.env.NOTION_TOKEN })
 
 export const queryDatabase = (params:QueryDatabaseParameters) => notion.databases.query(params)
 
-export const getPage = (page_id:string) => notion.pages.retrieve({ page_id })
+export const retrievePage = (page_id:string) => notion.pages.retrieve({ page_id })
 
-export const getBlocks = async (block_id:string, start_cursor?:string|null) => {
+export const listBlocks = async (block_id:string, start_cursor?:string|null) => {
   const response = await notion.blocks.children.list({
     block_id,
     start_cursor: start_cursor || undefined,
@@ -19,7 +16,7 @@ export const getBlocks = async (block_id:string, start_cursor?:string|null) => {
 }
 
  export const getAllBlockContent = async (page_id:string, start_cursor?:string|null) => {
-  const blocks = await getBlocks(page_id,start_cursor)
+  const blocks = await listBlocks(page_id,start_cursor)
   const content = [...blocks.results]
   if (blocks.has_more) {
     const nextBlocks = await getAllBlockContent(page_id, blocks.next_cursor)
@@ -29,11 +26,6 @@ export const getBlocks = async (block_id:string, start_cursor?:string|null) => {
 }
 
 
- export const fetchPage = async (page_id:string) => {
-  const page = await getPage(page_id)
-  const content = await getAllBlockContent(page_id)
-
-}
 
 
 export const getWorkSpace = async () => {
