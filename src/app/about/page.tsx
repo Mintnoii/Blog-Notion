@@ -1,7 +1,6 @@
-import {getAllBlockContent, retrievePage } from '@/lib/notion'
+import {getPage } from '@/api'
  export default async  function AboutPage() {
-   const page = await retrievePage(process.env.NOTION_ABOUT_PAGE_ID || '')
-   const content = await getAllBlockContent(page.id)
+   const page = await getPage(process.env.NOTION_ABOUT_PAGE_ID || '')
   console.log('page', page)
   return (
     <>

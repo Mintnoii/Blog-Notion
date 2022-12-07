@@ -1,14 +1,20 @@
-import {getPageInfo, getFormatDate} from '@/utils'
+import {formatPageInfo} from '@/utils'
 import {queryDatabase, retrievePage, getAllBlockContent} from '@/lib/notion'
 import { IArticle } from '@/types/data'
-import { IPageObjectResponse } from '@/types/notion'
+import { IPageObject } from '@/types/notion'
 
-export const getPage =async (page_id:string) => {
+export const getPage = async (page_id:string) => {
   const page = await retrievePage(page_id)
+  const pageInfo = formatPageInfo(page as IPageObject)
+  const content = await getAllBlockContent(page_id)
+  return {
+    ...pageInfo,
+    content
+  }
 }
-export const getBlogs = async (blogId:string):Promise<IArticle[]> => {
+export const getBlogs = async (database_id:string):Promise<IArticle[]> => {
   const dbRes = await queryDatabase({
-    database_id: blogId,
+    database_id,
     filter: {
       property: 'Status',
       status: {
@@ -16,11 +22,6 @@ export const getBlogs = async (blogId:string):Promise<IArticle[]> => {
       }
     }
   })
-  return dbRes.results.map((page) => getPageInfo(page as IPageObjectResponse))
+  return dbRes.results.map((page) => formatPageInfo(page as IPageObject))
 }
 
- export const fetchPage = async (page_id:string) => {
-  const page = await retrievePage(page_id)
-  const content = await getAllBlockContent(page_id)
-
-}
