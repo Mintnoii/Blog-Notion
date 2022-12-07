@@ -22,7 +22,7 @@ export const listBlocks = async (block_id:string, start_cursor?:string|null) => 
     const nextBlocks = await getAllBlockContent(page_id, blocks.next_cursor)
     content.push(...nextBlocks)
   }
-  return content
+  return content as BlockObjectResponse[]
 }
 
 

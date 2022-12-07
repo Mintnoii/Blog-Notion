@@ -24,11 +24,11 @@ export default function RootLayout({
       <body className="bg-white text-black dark:bg-black dark:text-white">
         <Providers>
           <div className="flex flex-col min-h-screen items-center">
-          <Navbar />
-          <main className="flex flex-col max-w-sm w-full justify-center  md:max-w-md lg:max-w-lg xl:max-w-xl">
-            {children}
-          </main>
-          {/* <Footer /> */}
+            <Navbar />
+            <main className="flex flex-col max-w-sm w-full justify-center  md:max-w-md lg:max-w-lg xl:max-w-xl">
+              {children}
+            </main>
+            {/* <Footer /> */}
         </div>
         </Providers>
       </body>
