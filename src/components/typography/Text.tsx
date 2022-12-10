@@ -11,7 +11,7 @@ export const Text = ({rich_text}:any) => {
     return (
       <span
         key={index}
-          className={[
+        className={[
           bold ? 'font-bold' : null,
           italic ? 'italic' : null,
           code

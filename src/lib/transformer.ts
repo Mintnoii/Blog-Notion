@@ -8,6 +8,10 @@ const getTextContent = (RichTextItems:IRichTextItem[]) => {
   return theItem?.text?.content || ''
 }
 
+export function formatHashLink(link_text: string) {
+  return link_text.toLowerCase().replace(/ /g, '-')
+}
+
 export const formatDate = (timestamp: string): string => {
   const date = new Date(timestamp)
   const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`
@@ -45,7 +49,7 @@ const calcHeading = (block:IHeadingBlock) => {
   return {
     id,
     type,
-    text: getRichText(rich_text_items)
+    rich_text: getRichText(rich_text_items)
   }
 }
 const calcBlock = (block:BlockObjectResponse) => {
