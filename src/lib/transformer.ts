@@ -16,10 +16,12 @@ export const formatDate = (timestamp: string): string => {
 
 const getRichText = (RichTextItems:TextRichTextItemResponse[]) => {
   const richTextArr = RichTextItems.map(item => {
+    // console.log(item,'item')
     return {
       type: item.type,
-      text: item.text?.content || '',
-      href: item.href || ''
+      content: item.text?.content || '',
+      link: item.text?.link?.url || '',
+      annotations: item.annotations
     }
   })
   return richTextArr
@@ -53,7 +55,7 @@ const calcBlock = (block:BlockObjectResponse) => {
   return {
     id,
     type,
-    text: getRichText(rich_text_items),
+    rich_text: getRichText(rich_text_items),
   }
 }
 // https://developers.notion.com/reference/block

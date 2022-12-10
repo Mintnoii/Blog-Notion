@@ -2,13 +2,12 @@ import React from 'react'
 import {Text} from '@/components/typography'
 const renderBlocks = (block:any) => {
   const { type, id } = block
-  const value = block[type]
-
+  console.log(block.rich_text,block,'blockblockblockblock');
   switch (type) {
     case 'paragraph':
       return (
         <p className="text-sm text-neutral-800 dark:text-neutral-300">
-          <Text text={value.text} />
+          <Text text={block.rich_text} />
         </p>
       )
     // case 'heading_1':
