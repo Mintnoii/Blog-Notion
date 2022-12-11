@@ -1,23 +1,33 @@
 import React from 'react'
 import {Text} from '@/components/typography'
-const renderBlocks = (block:any) => {
-  const { type, id } = block
-  console.log(block.rich_text,block,'blockblockblockblock');
+import {AnchorLink} from '@/components/links'
+const renderBlock = (block:any) => {
+  const { id, type, rich_text } = block
   switch (type) {
+    case 'heading_1':
+      return (
+        <h1 className="font-bold mb-2 text-3xl text-neutral-800 dark:text-neutral-300">
+          <AnchorLink text={block.rich_text[0].content}>
+            <Text rich_text={block.rich_text} />
+          </AnchorLink>
+        </h1>
+      )
     case 'paragraph':
       return (
-        <p className="text-sm text-neutral-800 dark:text-neutral-300">
-          <Text text={block.rich_text} />
+        <p key={id} className="text-sm text-neutral-800 dark:text-neutral-300">
+          <Text rich_text={rich_text} />
         </p>
       )
-    // case 'heading_1':
-    //   return (
-    //     <h1 className="font-bold mb-2 text-3xl text-neutral-800 dark:text-neutral-300">
-    //       <AnchorLink text={value.text[0].text.content}>
-    //         <Text text={value.text} />
-    //       </AnchorLink>
-    //     </h1>
-    //   )
+    default:
+      return `❌ Unsupported block (${
+        type === 'unsupported' ? 'unsupported by Notion API' : type
+      })`
+  }
+}
+
+export default renderBlock
+
+
     // case 'heading_2':
     //   return (
     //     <h2 className="font-semibold text-lg pb-6 text-neutral-800 dark:text-neutral-300">
@@ -71,7 +81,7 @@ const renderBlocks = (block:any) => {
     //         <Text text={value.text} />
     //       </summary>
     //       {value.children?.map((block) => (
-    //         <Fragment key={block.id}>{renderBlocks(block)}</Fragment>
+    //         <Fragment key={block.id}>{renderBlock(block)}</Fragment>
     //       ))}
     //     </details>
     //   )
@@ -162,11 +172,3 @@ const renderBlocks = (block:any) => {
     //   return (
     //     <hr className="border-none h-10 my-16 text-center w-full before:text-2xl before:text-[#D1D5DB] '∿∿∿']"></hr>
     //   )
-    default:
-      return `❌ Unsupported block (${
-        type === 'unsupported' ? 'unsupported by Notion API' : type
-      })`
-  }
-}
-
-export default renderBlocks
