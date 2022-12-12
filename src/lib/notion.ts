@@ -1,5 +1,6 @@
 import { Client } from '@notionhq/client'
 import { QueryDatabaseParameters,BlockObjectResponse,GetPageResponse } from '@notionhq/client/build/src/api-endpoints'
+import { get } from 'http'
 const notion = new Client({ auth: process.env.NOTION_TOKEN })
 
 export const queryDatabase = (params:QueryDatabaseParameters) => notion.databases.query(params)
@@ -17,6 +18,12 @@ export const listBlocks = async (block_id:string, start_cursor?:string|null) => 
 
  export const getAllBlockContent = async (page_id:string, start_cursor?:string|null) => {
   const blocks = await listBlocks(page_id,start_cursor)
+  // console.log(blocks,'blocks====blocks')
+  // const moreBlocks = blocks.results.filter((block:any) => block.has_children)
+  // console.log(moreBlocks,'moreBlocks');
+  // moreBlocks.every(async (item:any) => {
+  //   item['children'] = await getAllBlockContent(item.id)
+  // })
   const content = [...blocks.results]
   if (blocks.has_more) {
     const nextBlocks = await getAllBlockContent(page_id, blocks.next_cursor)

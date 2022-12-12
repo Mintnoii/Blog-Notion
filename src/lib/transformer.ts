@@ -1,7 +1,7 @@
 import * as R from 'remeda'
 import { IArticle } from '@/types/data'
 import { IPageObject,IRichTextItem,IBlockObject,IHeading, IHeadingBlock, IListBlock, IList } from '@/types/notion'
-import { PageObjectResponse,TextRichTextItemResponse,RichTextItemResponse, BlockObjectResponse,Heading1BlockObjectResponse,Heading2BlockObjectResponse,BulletedListItemBlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
+import { PageObjectResponse,TextRichTextItemResponse,RichTextItemResponse, BlockObjectResponse, } from '@notionhq/client/build/src/api-endpoints'
 
 const getTextContent = (RichTextItems:IRichTextItem[]) => {
   const theItem = RichTextItems[0] as TextRichTextItemResponse
@@ -52,12 +52,14 @@ const calcHeading = (block:IHeadingBlock) => {
     rich_text: getRichText(rich_text_items)
   }
 }
-const calcBlock = (block:BlockObjectResponse) => {
-  const theBlock = block as BulletedListItemBlockObjectResponse
-  const {id,type} = theBlock
-  const rich_text_items = R.pathOr(theBlock, [type,'rich_text'],[]) as TextRichTextItemResponse[]
+// todo 支持 list 子项
+const calcListItems = (block:IListBlock) => {
+  const {id,type} = block
+  console.log(block,'listttttt');
+  const rich_text_items = R.pathOr(block, [type,'rich_text'],[]) as TextRichTextItemResponse[]
   return {
     id,
+    parent_id: R.pathOr(block, [type,'rich_text'],[]),
     type,
     rich_text: getRichText(rich_text_items),
   }
@@ -66,24 +68,21 @@ const calcBlock = (block:BlockObjectResponse) => {
 export const formatContent = (block:IBlockObject) => {
   const {id,type} = block
   const basicData = {id, type}
-
-  switch (type) {
-    case 'heading_1':
-    case 'heading_2':
-    case 'heading_3':
-      return calcHeading(block as IHeadingBlock)
-    case 'bulleted_list_item':
-    case 'numbered_list_item':
-      return {
-        ...basicData,
-        text: getTextContent(R.pathOr(block, [block.type,'rich_text'],[]) as IRichTextItem[])
-      }
-    case 'paragraph':
-      return {
-        ...basicData,
-        rich_text: getRichText(R.pathOr(block, [block.type,'rich_text'],[]) as TextRichTextItemResponse[])
-      }
-    default:
-      return basicData
-  }
+  // switch (type) {
+  //   case 'heading_1':
+  //   case 'heading_2':
+  //   case 'heading_3':
+  //     return calcHeading(block as IHeadingBlock)
+  //   case 'bulleted_list_item':
+  //   case 'numbered_list_item':
+  //     return calcListItems(block as IListBlock)
+  //   case 'paragraph':
+  //     return {
+  //       ...basicData,
+  //       rich_text: getRichText(R.pathOr(block, [block.type,'rich_text'],[]) as TextRichTextItemResponse[])
+  //     }
+  //   default:
+  //     return basicData
+  // }
+  return block
 }

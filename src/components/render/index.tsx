@@ -7,10 +7,26 @@ const renderBlock = (block:any) => {
     case 'heading_1':
       return (
         <h1 className="font-bold mb-2 text-3xl text-neutral-800 dark:text-neutral-300">
-          <AnchorLink text={block.rich_text[0].content}>
-            <Text rich_text={block.rich_text} />
+          <AnchorLink text={rich_text[0].content}>
+            <Text rich_text={rich_text} />
           </AnchorLink>
         </h1>
+      )
+      case 'heading_2':
+      return (
+        <h2 className="font-semibold text-xl mb-2 text-neutral-800 dark:text-neutral-300">
+           <AnchorLink text={rich_text[0].content}>
+            <Text rich_text={rich_text} />
+          </AnchorLink>
+        </h2>
+      )
+        case 'heading_3':
+      return (
+        <h3 className="font-semibold text-lg mb-2 text-neutral-800 dark:text-neutral-300">
+          <AnchorLink text={rich_text[0].content}>
+            <Text rich_text={rich_text} />
+          </AnchorLink>
+        </h3>
       )
     case 'paragraph':
       return (
@@ -18,6 +34,20 @@ const renderBlock = (block:any) => {
           <Text rich_text={rich_text} />
         </p>
       )
+     case 'bulleted_list_item':
+      return (
+        <li className="text-sm ml-4 text-neutral-800 dark:text-neutral-300">
+           <Text rich_text={rich_text} />
+        </li>
+      )
+//     case 'numbered_list_item':
+//       return (
+//         <ol className='list-decimal'>
+//           <li className=" text-sm ml-4 text-neutral-800 dark:text-neutral-300">
+//            <Text rich_text={rich_text} />
+//         </li>
+//         </ol>
+//       )
     default:
       return `❌ Unsupported block (${
         type === 'unsupported' ? 'unsupported by Notion API' : type
@@ -27,35 +57,8 @@ const renderBlock = (block:any) => {
 
 export default renderBlock
 
+   
 
-    // case 'heading_2':
-    //   return (
-    //     <h2 className="font-semibold text-lg pb-6 text-neutral-800 dark:text-neutral-300">
-    //       <AnchorLink text={value.text[0].text.content}>
-    //         <Text text={value.text} />
-    //       </AnchorLink>
-    //     </h2>
-    //   )
-    // case 'heading_3':
-    //   return (
-    //     <h3 className="font-semibold text-xl mb-2 text-neutral-800 dark:text-neutral-300">
-    //       <AnchorLink text={value.text[0].text.content}>
-    //         <Text text={value.text} />
-    //       </AnchorLink>
-    //     </h3>
-    //   )
-    // case 'bulleted_list_item':
-    //   return (
-    //     <li className="text-sm ml-4 text-neutral-800 dark:text-neutral-300">
-    //       <Text text={value.text} />
-    //     </li>
-    //   )
-    // case 'numbered_list_item':
-    //   return (
-    //     <li>
-    //       <Text text={value.text} />
-    //     </li>
-    //   )
     // case 'to_do':
     //   return (
     //     <div>

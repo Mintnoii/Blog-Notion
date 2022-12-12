@@ -7,7 +7,6 @@ type Props = {
 }
 
 export const AnchorLink = ({ children, text }: Props) => {
-  console.log(children,'children')
   return (
     <div className="flex space-x-2 group items-center justify-start">
       {children}
