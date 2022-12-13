@@ -1,6 +1,6 @@
 import { Client } from '@notionhq/client'
+import { IPageObject,IRichTextItem,IBlockObject,IHeading, IHeadingBlock, IListBlock, IList } from '@/types/notion'
 import { QueryDatabaseParameters,BlockObjectResponse,GetPageResponse } from '@notionhq/client/build/src/api-endpoints'
-import { get } from 'http'
 const notion = new Client({ auth: process.env.NOTION_TOKEN })
 
 export const queryDatabase = (params:QueryDatabaseParameters) => notion.databases.query(params)
@@ -18,6 +18,7 @@ export const listBlocks = async (block_id:string, start_cursor?:string|null) => 
 
  export const getAllBlockContent = async (page_id:string, start_cursor?:string|null) => {
   const blocks = await listBlocks(page_id,start_cursor)
+  console.log(blocks,'blocks222');
   // console.log(blocks,'blocks====blocks')
   // const moreBlocks = blocks.results.filter((block:any) => block.has_children)
   // console.log(moreBlocks,'moreBlocks');
@@ -29,7 +30,7 @@ export const listBlocks = async (block_id:string, start_cursor?:string|null) => 
     const nextBlocks = await getAllBlockContent(page_id, blocks.next_cursor)
     content.push(...nextBlocks)
   }
-  return content as BlockObjectResponse[]
+  return content as IBlockObject[]
 }
 
 

@@ -49,7 +49,7 @@ const calcHeading = (block:IHeadingBlock) => {
   return {
     id,
     type,
-    rich_text: getRichText(rich_text_items)
+    rich_text: getRichText(rich_text_items),
   }
 }
 // todo 支持 list 子项
@@ -66,23 +66,28 @@ const calcListItems = (block:IListBlock) => {
 }
 // https://developers.notion.com/reference/block
 export const formatContent = (block:IBlockObject) => {
-  const {id,type} = block
-  const basicData = {id, type}
-  // switch (type) {
-  //   case 'heading_1':
-  //   case 'heading_2':
-  //   case 'heading_3':
-  //     return calcHeading(block as IHeadingBlock)
-  //   case 'bulleted_list_item':
-  //   case 'numbered_list_item':
-  //     return calcListItems(block as IListBlock)
-  //   case 'paragraph':
-  //     return {
-  //       ...basicData,
-  //       rich_text: getRichText(R.pathOr(block, [block.type,'rich_text'],[]) as TextRichTextItemResponse[])
-  //     }
-  //   default:
-  //     return basicData
-  // }
-  return block
+  const {id,type,has_children} = block
+    const test = block as any
+
+  const basicData = {id, type,has_children, children: test.children}
+  switch (type) {
+    case 'heading_1':
+    case 'heading_2':
+    case 'heading_3':
+      return calcHeading(block as IHeadingBlock)
+    case 'bulleted_list_item':
+    case 'numbered_list_item':
+      return {
+        ...basicData,
+        ...calcListItems(block as IListBlock)
+      }
+    case 'paragraph':
+      return {
+        ...basicData,
+        rich_text: getRichText(R.pathOr(block, [block.type,'rich_text'],[]) as TextRichTextItemResponse[])
+      }
+    default:
+      return basicData
+  }
+  // return block
 }
