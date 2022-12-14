@@ -4,7 +4,10 @@ export interface IPageObject extends PageObjectResponse {}
 
 export type IRichTextItem = RichTextItemResponse
 
-export type IBlockObject = BlockObjectResponse
+// 使用交叉类型扩展 BlockObjectResponse
+export type IBlockObject = BlockObjectResponse & {
+  children: IBlockObject[]
+}
 
 export type IHeading = 'heading_1'|'heading_2'|'heading_3'
 export type IHeadingBlock = Heading1BlockObjectResponse | Heading2BlockObjectResponse | Heading3BlockObjectResponse

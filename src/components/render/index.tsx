@@ -2,7 +2,7 @@ import React from 'react'
 import {Text} from '@/components/typography'
 import {AnchorLink} from '@/components/links'
 const renderBlock = (block:any) => {
-  const { id, type, rich_text } = block
+  const { id, type, rich_text, has_children, children } = block
   switch (type) {
     case 'heading_1':
       return (
@@ -38,6 +38,13 @@ const renderBlock = (block:any) => {
       return (
         <li className="text-sm ml-4 text-neutral-800 dark:text-neutral-300">
            <Text rich_text={rich_text} />
+            {
+          has_children && (
+            <ul className='list-disc'>
+              {children.map((block:any) => (renderBlock(block)))}
+            </ul>
+          )
+        }
         </li>
       )
 //     case 'numbered_list_item':
@@ -48,6 +55,23 @@ const renderBlock = (block:any) => {
 //         </li>
 //         </ol>
 //       )
+    case 'to_do':
+      return (
+        <div>
+          <label
+            htmlFor={id}
+            className="flex space-x-3 items-center justify-start"
+          >
+            <input
+              id={id}
+              name={id}
+              type="checkbox"
+              className="rounded border-gray-300 h-4 text-teal-500 w-4 focus:ring-teal-500"
+            />
+            <Text rich_text={rich_text} />
+          </label>
+        </div>
+      )
     default:
       return `❌ Unsupported block (${
         type === 'unsupported' ? 'unsupported by Notion API' : type
@@ -59,24 +83,7 @@ export default renderBlock
 
    
 
-    // case 'to_do':
-    //   return (
-    //     <div>
-    //       <label
-    //         htmlFor={id}
-    //         className="flex space-x-3 items-center justify-start"
-    //       >
-    //         <input
-    //           id={id}
-    //           aria-describedby={value.text}
-    //           name={id}
-    //           type="checkbox"
-    //           className="rounded border-gray-300 h-4 text-teal-500 w-4 focus:ring-teal-500"
-    //         />
-    //         <Text text={value.text} />
-    //       </label>
-    //     </div>
-    //   )
+
     // case 'toggle':
     //   return (
     //     <details>

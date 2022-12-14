@@ -44,32 +44,22 @@ export const formatPageInfo = (page:IPageObject):IArticle => {
 }
 // todo 支持 toggle 子项
 const calcHeading = (block:IHeadingBlock) => {
-  const {id,type} = block
   const rich_text_items = R.pathOr(block, [block.type,'rich_text'],[]) as TextRichTextItemResponse[]
   return {
-    id,
-    type,
     rich_text: getRichText(rich_text_items),
   }
 }
 // todo 支持 list 子项
 const calcListItems = (block:IListBlock) => {
-  const {id,type} = block
-  console.log(block,'listttttt');
-  const rich_text_items = R.pathOr(block, [type,'rich_text'],[]) as TextRichTextItemResponse[]
+  const rich_text_items = R.pathOr(block, [block.type,'rich_text'],[]) as TextRichTextItemResponse[]
   return {
-    id,
-    parent_id: R.pathOr(block, [type,'rich_text'],[]),
-    type,
     rich_text: getRichText(rich_text_items),
   }
 }
 // https://developers.notion.com/reference/block
 export const formatContent = (block:IBlockObject) => {
-  const {id,type,has_children} = block
-    const test = block as any
-
-  const basicData = {id, type,has_children, children: test.children}
+  const {id,type,has_children,children} = block
+  const basicData = {id, type,has_children, children}
   switch (type) {
     case 'heading_1':
     case 'heading_2':
@@ -82,12 +72,18 @@ export const formatContent = (block:IBlockObject) => {
         ...calcListItems(block as IListBlock)
       }
     case 'paragraph':
+    case 'to_do':
       return {
         ...basicData,
         rich_text: getRichText(R.pathOr(block, [block.type,'rich_text'],[]) as TextRichTextItemResponse[])
       }
+    case 'child_page':
+      return {
+        ...basicData,
+        title: block.child_page.title
+      }
     default:
-      return basicData
+      return block
   }
   // return block
 }
