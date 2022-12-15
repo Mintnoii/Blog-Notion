@@ -60,10 +60,21 @@ const calcListItems = (block:IListBlock) => {
 export const formatContent = (block:IBlockObject) => {
   const {id,type,has_children,children} = block
   const basicData = {id, type,has_children, children}
+  console.log(block,'block===', type);
+  if(!type){
+    const test = block as any
+    return {
+      type: 'paragraph',
+      rich_text: getRichText(test.rich_text as TextRichTextItemResponse[])
+    }
+  }
   switch (type) {
+    case 'heading_3':
+      console.log(block, 'heading_33333')
+      return block
     case 'heading_1':
     case 'heading_2':
-    case 'heading_3':
+    // case 'heading_3':
       return calcHeading(block as IHeadingBlock)
     case 'bulleted_list_item':
     case 'numbered_list_item':
@@ -72,10 +83,20 @@ export const formatContent = (block:IBlockObject) => {
         ...calcListItems(block as IListBlock)
       }
     case 'paragraph':
+      return {
+        ...basicData,
+        rich_text: getRichText(block.paragraph.rich_text as TextRichTextItemResponse[])
+      }
     case 'to_do':
       return {
         ...basicData,
-        rich_text: getRichText(R.pathOr(block, [block.type,'rich_text'],[]) as TextRichTextItemResponse[])
+        rich_text: getRichText(block.to_do.rich_text as TextRichTextItemResponse[]),
+        checked: block.to_do.checked
+      }
+    case 'toggle':
+      return {
+        ...basicData,
+        rich_text: getRichText(block.toggle.rich_text as TextRichTextItemResponse[]),
       }
     case 'child_page':
       return {

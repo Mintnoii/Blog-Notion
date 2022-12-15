@@ -1,8 +1,8 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import {Text} from '@/components/typography'
 import {AnchorLink} from '@/components/links'
 const renderBlock = (block:any) => {
-  const { id, type, rich_text, has_children, children } = block
+  const { id, type, rich_text, has_children, children,checked } = block
   switch (type) {
     case 'heading_1':
       return (
@@ -66,14 +66,24 @@ const renderBlock = (block:any) => {
               id={id}
               name={id}
               type="checkbox"
+              checked={checked || false}
               className="rounded border-gray-300 h-4 text-teal-500 w-4 focus:ring-teal-500"
             />
             <Text rich_text={rich_text} />
           </label>
         </div>
       )
+     case 'toggle':
+      return (
+        <details>
+          <summary>
+            <Text rich_text={rich_text} />
+          </summary>
+          {has_children && children.map((block:any) => (<Fragment key={block.id}>{renderBlock(block)}</Fragment>))}
+        </details>
+      )
     default:
-      return `❌ Unsupported block (${
+      return `👾 Unsupported block (${
         type === 'unsupported' ? 'unsupported by Notion API' : type
       })`
   }

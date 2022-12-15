@@ -2,7 +2,7 @@ import {getPage,getPageContent } from '@/api'
 import renderBlock from '@/components/render'
  export default async  function AboutPage() {
    const page = await getPageContent(process.env.NOTION_ABOUT_PAGE_ID || '')
-  console.log('page', page)
+  // console.log('page', page)
   // const content = page.contentInfo
 
   const renderBlocks = (blocks:any) => {
@@ -16,7 +16,7 @@ import renderBlock from '@/components/render'
 
   return (
     <>
-    {/* {JSON.stringify(page)} */}
+    {JSON.stringify(page)}
     <div>
       {renderBlocks(page)}
       {/* {JSON.stringify(content)} */}

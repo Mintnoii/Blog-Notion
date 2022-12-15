@@ -40,6 +40,7 @@ export const getAllBlocks = async (page_id:string, start_cursor?:string|null) =>
 
 export const getPageContent = async (pageId: string) => {
   const blocks = await getAllBlocks(pageId);
+  console.log(blocks,'blocks');
   // 处理块内容，将块内容转换为前端需要的格式
   const allPromise = blocks.map(async (block) => {
       const { id,type,has_children } = block;

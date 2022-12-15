@@ -1,5 +1,4 @@
 import { Client } from '@notionhq/client'
-import { IPageObject,IRichTextItem,IBlockObject,IHeading, IHeadingBlock, IListBlock, IList } from '@/types/notion'
 import { QueryDatabaseParameters,BlockObjectResponse,GetPageResponse } from '@notionhq/client/build/src/api-endpoints'
 const notion = new Client({ auth: process.env.NOTION_TOKEN })
 
