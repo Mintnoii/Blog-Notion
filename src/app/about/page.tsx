@@ -1,9 +1,9 @@
-import {getPage,getPageContent } from '@/api'
+import {getPage,getPageContent,calcListItems } from '@/api'
 import renderBlock from '@/components/render'
  export default async  function AboutPage() {
    const page = await getPageContent(process.env.NOTION_ABOUT_PAGE_ID || '')
   // console.log('page', page)
-  // const content = page.contentInfo
+  const test = calcListItems(page)
 
   const renderBlocks = (blocks:any) => {
     // console.log(blocks,'blocks');
@@ -16,7 +16,7 @@ import renderBlock from '@/components/render'
 
   return (
     <>
-    {/* {JSON.stringify(page)} */}
+    {JSON.stringify(test)}
     <div>
       {renderBlocks(page)}
       {/* {JSON.stringify(content)} */}

@@ -1,7 +1,7 @@
 import * as R from 'remeda'
 import { IArticle } from '@/types/data'
-import { IPageObject,IRichTextItem,IBlockObject,IHeading, IHeadingBlock, IListBlock, IList } from '@/types/notion'
-import { PageObjectResponse,TextRichTextItemResponse,RichTextItemResponse, BlockObjectResponse, } from '@notionhq/client/build/src/api-endpoints'
+import { IPageObject,IRichTextItem,IBlockObject, IBlockObjectResp } from '@/types/notion'
+import { ChildPageBlockObjectResponse,TextRichTextItemResponse,ToDoBlockObjectResponse, CalloutBlockObjectResponse, } from '@notionhq/client/build/src/api-endpoints'
 
 const getTextContent = (RichTextItems:IRichTextItem[]) => {
   const theItem = RichTextItems[0] as TextRichTextItemResponse
@@ -42,7 +42,7 @@ const calcRichText = (block:any) => {
   return {rich_text}
 }
 // https://developers.notion.com/reference/block
-export const formatContent = (block:IBlockObject) => {
+export const formatContent = (block:IBlockObjectResp) => {
   const {id,type,has_children,children} = block
   const basicData = {id, type,has_children, children}
   switch (type) {
@@ -57,26 +57,26 @@ export const formatContent = (block:IBlockObject) => {
       return {
         ...basicData,
         ...calcRichText(block)
-      }
+      } as IBlockObject
     case 'to_do':
       return {
         ...basicData,
         ...calcRichText(block),
-        checked: block.to_do.checked
-      }
+        checked: (block as ToDoBlockObjectResponse).to_do.checked
+      }as IBlockObject
     case 'callout':
       return {
         ...basicData,
         ...calcRichText(block),
-        icon: block.callout.icon
-      }
+        icon: (block as CalloutBlockObjectResponse).callout.icon
+      }as IBlockObject
     case 'child_page':
       return {
         ...basicData,
-        title: block.child_page.title
-      }
+        title: (block as ChildPageBlockObjectResponse).child_page.title
+      }as IBlockObject
     default:
-      return block
+      return block as IBlockObject
   }
   // return block
 }
