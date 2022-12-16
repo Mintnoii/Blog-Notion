@@ -82,18 +82,22 @@ const renderBlock = (block:any) => {
           {has_children && children.map((block:any) => (<Fragment key={block.id}>{renderBlock(block)}</Fragment>))}
         </details>
       )
+    case 'quote':
+      return (
+        <blockquote className="rounded-r-lg border-l-gray-500 border-l-2 p-1 ps-2">
+         <Text rich_text={rich_text} />
+        </blockquote>
+      )
     case 'child_page':
       // todo 待优化
       return <p>{block.title}</p>
-        // case 'callout':
-    //   return (
-    //     <Callout>
-    //       {value.icon && <span>{value.icon.emoji}</span>}
-    //       <div>
-    //         <Text text={value.text} />
-    //       </div>
-    //     </Callout>
-    //   )
+    case 'callout':
+      return (
+        <div className="rounded-lg flex space-x-4 bg-gray-50 p-3 text-slate-500 dark:bg-slate-800 dark:text-slate-400">
+           {block.icon && <span>{block.icon.emoji}</span>}
+          <Text rich_text={rich_text} />
+    </div>
+      )
     default:
       return `👾 Unsupported block (${
         type === 'unsupported' ? 'unsupported by Notion API' : type
@@ -143,8 +147,6 @@ export default renderBlock
     //       </Link>
     //     </div>
     //   )
-
-
     // case 'embed':
     //   const codePenEmbedKey = value.url.slice(value.url.lastIndexOf('/') + 1)
     //   return (
@@ -169,12 +171,7 @@ export default renderBlock
     //   return <div>TOC</div>
     // case 'video':
     //   return <YoutubeEmbed url={value.external.url} />
-    // case 'quote':
-    //   return (
-    //     <blockquote className="rounded-r-lg p-4">
-    //       <Text text={value.text} />
-    //     </blockquote>
-    //   )
+
     // case 'divider':
     //   return (
     //     <hr className="border-none h-10 my-16 text-center w-full before:text-2xl before:text-[#D1D5DB] '∿∿∿']"></hr>

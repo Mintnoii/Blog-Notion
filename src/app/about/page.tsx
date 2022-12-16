@@ -16,7 +16,7 @@ import renderBlock from '@/components/render'
 
   return (
     <>
-    {JSON.stringify(page)}
+    {/* {JSON.stringify(page)} */}
     <div>
       {renderBlocks(page)}
       {/* {JSON.stringify(content)} */}

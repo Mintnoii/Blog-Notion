@@ -51,8 +51,9 @@ export const formatContent = (block:IBlockObject) => {
     case 'heading_3':
     case 'bulleted_list_item':
     case 'numbered_list_item':
-    case 'toggle':
     case 'paragraph':
+    case 'quote':
+    case 'toggle':
       return {
         ...basicData,
         ...calcRichText(block)
@@ -62,6 +63,12 @@ export const formatContent = (block:IBlockObject) => {
         ...basicData,
         ...calcRichText(block),
         checked: block.to_do.checked
+      }
+    case 'callout':
+      return {
+        ...basicData,
+        ...calcRichText(block),
+        icon: block.callout.icon
       }
     case 'child_page':
       return {
