@@ -18,19 +18,6 @@ export const formatDate = (timestamp: string): string => {
   return formattedDate
 }
 
-const getRichText = (RichTextItems:TextRichTextItemResponse[]) => {
-  const richTextArr = RichTextItems.map(item => {
-    // console.log(item,'item')
-    return {
-      type: item.type,
-      content: item.text?.content || '',
-      link: item.text?.link?.url || '',
-      annotations: item.annotations
-    }
-  })
-  return richTextArr
-}
-
 export const formatPageInfo = (page:IPageObject):IArticle => {
   const cover_image =  R.pathOr(page, ['cover','external','url'],'') as string
   const tags = R.pathOr(page, ['properties','Tags','multi_select'],[]) as any[]
@@ -42,61 +29,39 @@ export const formatPageInfo = (page:IPageObject):IArticle => {
     tags
   }
 }
-// todo 支持 toggle 子项
-const calcHeading = (block:IHeadingBlock) => {
-  const rich_text_items = R.pathOr(block, [block.type,'rich_text'],[]) as TextRichTextItemResponse[]
-  return {
-    rich_text: getRichText(rich_text_items),
-  }
-}
-// todo 支持 list 子项
-const calcListItems = (block:IListBlock) => {
-  const rich_text_items = R.pathOr(block, [block.type,'rich_text'],[]) as TextRichTextItemResponse[]
-  return {
-    rich_text: getRichText(rich_text_items),
-  }
+const calcRichText = (block:any) => {
+  const rich_text_items =  R.pathOr(block, [block.type,'rich_text'],[]) as TextRichTextItemResponse[]
+  const rich_text = rich_text_items.map(item => {
+    return {
+      type: item.type,
+      content: item.text?.content || '',
+      link: item.text?.link?.url || '',
+      annotations: item.annotations
+    }
+  })
+  return {rich_text}
 }
 // https://developers.notion.com/reference/block
 export const formatContent = (block:IBlockObject) => {
   const {id,type,has_children,children} = block
   const basicData = {id, type,has_children, children}
-  console.log(block,'block===', type);
-  if(!type){
-    const test = block as any
-    return {
-      type: 'paragraph',
-      rich_text: getRichText(test.rich_text as TextRichTextItemResponse[])
-    }
-  }
   switch (type) {
-    case 'heading_3':
-      console.log(block, 'heading_33333')
-      return block
     case 'heading_1':
     case 'heading_2':
-    // case 'heading_3':
-      return calcHeading(block as IHeadingBlock)
+    case 'heading_3':
     case 'bulleted_list_item':
     case 'numbered_list_item':
-      return {
-        ...basicData,
-        ...calcListItems(block as IListBlock)
-      }
+    case 'toggle':
     case 'paragraph':
       return {
         ...basicData,
-        rich_text: getRichText(block.paragraph.rich_text as TextRichTextItemResponse[])
+        ...calcRichText(block)
       }
     case 'to_do':
       return {
         ...basicData,
-        rich_text: getRichText(block.to_do.rich_text as TextRichTextItemResponse[]),
+        ...calcRichText(block),
         checked: block.to_do.checked
-      }
-    case 'toggle':
-      return {
-        ...basicData,
-        rich_text: getRichText(block.toggle.rich_text as TextRichTextItemResponse[]),
       }
     case 'child_page':
       return {

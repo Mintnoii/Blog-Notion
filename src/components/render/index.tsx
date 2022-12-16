@@ -12,7 +12,7 @@ const renderBlock = (block:any) => {
           </AnchorLink>
         </h1>
       )
-      case 'heading_2':
+    case 'heading_2':
       return (
         <h2 className="font-semibold text-xl mb-2 text-neutral-800 dark:text-neutral-300">
            <AnchorLink text={rich_text[0].content}>
@@ -20,7 +20,7 @@ const renderBlock = (block:any) => {
           </AnchorLink>
         </h2>
       )
-        case 'heading_3':
+    case 'heading_3':
       return (
         <h3 className="font-semibold text-lg mb-2 text-neutral-800 dark:text-neutral-300">
           <AnchorLink text={rich_text[0].content}>
@@ -47,14 +47,14 @@ const renderBlock = (block:any) => {
         }
         </li>
       )
-//     case 'numbered_list_item':
-//       return (
-//         <ol className='list-decimal'>
-//           <li className=" text-sm ml-4 text-neutral-800 dark:text-neutral-300">
-//            <Text rich_text={rich_text} />
-//         </li>
-//         </ol>
-//       )
+    case 'numbered_list_item':
+      return (
+        <ol className='list-decimal'>
+          <li className=" text-sm ml-4 text-neutral-800 dark:text-neutral-300">
+           <Text rich_text={rich_text} />
+        </li>
+        </ol>
+      )
     case 'to_do':
       return (
         <div>
@@ -82,6 +82,18 @@ const renderBlock = (block:any) => {
           {has_children && children.map((block:any) => (<Fragment key={block.id}>{renderBlock(block)}</Fragment>))}
         </details>
       )
+    case 'child_page':
+      // todo 待优化
+      return <p>{block.title}</p>
+        // case 'callout':
+    //   return (
+    //     <Callout>
+    //       {value.icon && <span>{value.icon.emoji}</span>}
+    //       <div>
+    //         <Text text={value.text} />
+    //       </div>
+    //     </Callout>
+    //   )
     default:
       return `👾 Unsupported block (${
         type === 'unsupported' ? 'unsupported by Notion API' : type
@@ -90,23 +102,6 @@ const renderBlock = (block:any) => {
 }
 
 export default renderBlock
-
-   
-
-
-    // case 'toggle':
-    //   return (
-    //     <details>
-    //       <summary>
-    //         <Text text={value.text} />
-    //       </summary>
-    //       {value.children?.map((block) => (
-    //         <Fragment key={block.id}>{renderBlock(block)}</Fragment>
-    //       ))}
-    //     </details>
-    //   )
-    // case 'child_page':
-    //   return <p>{value.title}</p>
     // case 'image':
     //   const src =
     //     value.type === 'external' ? value.external.url : value.file.url
@@ -149,15 +144,7 @@ export default renderBlock
     //     </div>
     //   )
 
-    // case 'callout':
-    //   return (
-    //     <Callout>
-    //       {value.icon && <span>{value.icon.emoji}</span>}
-    //       <div>
-    //         <Text text={value.text} />
-    //       </div>
-    //     </Callout>
-    //   )
+
     // case 'embed':
     //   const codePenEmbedKey = value.url.slice(value.url.lastIndexOf('/') + 1)
     //   return (
