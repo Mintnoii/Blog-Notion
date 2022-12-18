@@ -27,37 +27,5 @@ export const getWorkSpace = async () => {
       timestamp: 'last_edited_time'
     },
   })
-  console.log(response,'response')
   return response.results
 }
-
-// export const transformPageToQuestion = (page: BlockObjectResponse ): any => {
-//   const data:any = {
-//     id: page.id,
-//     title: '',
-//     content: '',
-//     // Initialize other properties as needed
-//   };
-
-//   for (const key in page.properties) {
-//     const property = page.properties[key];
-//     switch (property.type) {
-//       case 'relation':
-//         data[key] = property.relation[0].id;
-//         break;
-
-//       case 'title':
-//       case 'rich_text':
-//         if (property[property.type].length > 0) {
-//           data[key] = property[property.type][0].text.content;
-//         }
-//         break;
-
-//       default:
-//         data[key] = property;
-//         break;
-//     }
-//   }
-
-//   return data;
-// };

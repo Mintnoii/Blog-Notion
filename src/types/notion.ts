@@ -23,6 +23,7 @@ export type IBlockType = IListItem | IHeading | 'paragraph' | 'quote' | 'to_do' 
 
 export interface IListBlock {
   type: IList
+  has_children: boolean
   children: IBlockObject[]
 }
 

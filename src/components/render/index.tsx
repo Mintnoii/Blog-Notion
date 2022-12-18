@@ -34,26 +34,31 @@ const renderBlock = (block:any) => {
           <Text rich_text={rich_text} />
         </p>
       )
+    case 'bulleted_list':
+      return (
+        <ul className='list-disc'>
+           {children.map((block:any) => (renderBlock(block)))}
+        </ul>
+    )
      case 'bulleted_list_item':
       return (
         <li className="text-sm ml-4 text-neutral-800 dark:text-neutral-300">
-           <Text rich_text={rich_text} />
-            {
-          has_children && (
-            <ul className='list-disc'>
-              {children.map((block:any) => (renderBlock(block)))}
-            </ul>
-          )
-        }
+          <Text rich_text={rich_text} />
+          { has_children && (children.map((block:any) => (renderBlock(block))))}
         </li>
       )
-    case 'numbered_list_item':
+    case 'numbered_list':
       return (
         <ol className='list-decimal'>
-          <li className=" text-sm ml-4 text-neutral-800 dark:text-neutral-300">
-           <Text rich_text={rich_text} />
-        </li>
+           {children.map((block:any) => (renderBlock(block)))}
         </ol>
+    )
+    case 'numbered_list_item':
+      return (
+        <li className=" text-sm ml-4 text-neutral-800 dark:text-neutral-300">
+          <Text rich_text={rich_text} />
+          { has_children && (children.map((block:any) => (renderBlock(block))))}
+        </li>
       )
     case 'to_do':
       return (
