@@ -23,9 +23,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className="bg-white text-black dark:bg-black dark:text-white">
         <Providers>
-          <div className="flex flex-col min-h-screen items-center">
+          <div className="flex flex-col min-h-screen pb-12 items-center">
             <Navbar />
-            <main className="flex flex-col max-w-sm w-full break-all justify-center  md:max-w-md lg:max-w-lg xl:max-w-xl">
+            <main className="flex flex-col max-w-md w-full break-all justify-center  md:max-w-md lg:max-w-lg xl:max-w-xl">
               {children}
             </main>
             {/* <Footer /> */}

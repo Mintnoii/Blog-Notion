@@ -101,7 +101,11 @@ const renderBlock = (block:any) => {
         <div className="rounded-lg flex space-x-4 bg-gray-50 p-3 text-slate-500 dark:bg-slate-800 dark:text-slate-400">
            {block.icon && <span>{block.icon.emoji}</span>}
           <Text rich_text={rich_text} />
-    </div>
+        </div>
+      )
+    case 'divider':
+      return (
+        <hr className="bg-gray h-0.5 my-2 w-full dark:bg-slate-800"></hr>
       )
     default:
       return `👾 Unsupported block (${
