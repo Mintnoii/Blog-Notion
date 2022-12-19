@@ -1,8 +1,9 @@
 import React, {Fragment} from 'react'
+import Image from 'next/image'
 import {Text} from '@/components/typography'
 import {AnchorLink} from '@/components/links'
 const renderBlock = (block:any) => {
-  const { id, type, rich_text, has_children, children,checked } = block
+  const { id, type, rich_text, has_children, children,checked,image,caption} = block
   switch (type) {
     case 'heading_1':
       return (
@@ -103,6 +104,24 @@ const renderBlock = (block:any) => {
           <Text rich_text={rich_text} />
         </div>
       )
+    case 'image':
+      const src = image.type === 'external' ? image.external.url : image.file.url
+      const alt = caption.length >= 1 ? caption[0].plain_text : ''
+      return (
+        <figure className="mt-0">
+          <Image
+            className=""
+            objectFit="cover"
+            width={500}
+            height={500}
+            alt={alt}
+            src={src}
+          />
+          {caption && (
+            <figcaption className="text-center">{caption}</figcaption>
+          )}
+        </figure>
+      )
     case 'divider':
       return (
         <hr className="bg-gray h-0.5 my-2 w-full dark:bg-slate-800"></hr>
@@ -115,30 +134,7 @@ const renderBlock = (block:any) => {
 }
 
 export default renderBlock
-    // case 'image':
-    //   const src =
-    //     value.type === 'external' ? value.external.url : value.file.url
-    //   const caption =
-    //     value.caption.length >= 1 ? value.caption[0].plain_text : ''
-    //   return (
-    //     <figure className="mt-0">
-    //       <Image
-    //         className=""
-    //         objectFit="cover"
-    //         width={500}
-    //         height={500}
-    //         alt={
-    //           caption
-    //             ? caption
-    //             : 'A visual depiction of what is being written about'
-    //         }
-    //         src={src}
-    //       />
-    //       {caption && (
-    //         <figcaption className="text-center">{caption}</figcaption>
-    //       )}
-    //     </figure>
-    //   )
+
     // case 'code':
     //   return (
     //     <div>

@@ -1,7 +1,7 @@
 import * as R from 'remeda'
 import { IArticle } from '@/types/data'
 import { IPageObject,IRichTextItem,IBlockObject, IBlockObjectResp } from '@/types/notion'
-import { ChildPageBlockObjectResponse,TextRichTextItemResponse,ToDoBlockObjectResponse, CalloutBlockObjectResponse, } from '@notionhq/client/build/src/api-endpoints'
+import { ChildPageBlockObjectResponse,TextRichTextItemResponse,ToDoBlockObjectResponse, CalloutBlockObjectResponse, ImageBlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 
 const getTextContent = (RichTextItems:IRichTextItem[]) => {
   const theItem = RichTextItems[0] as TextRichTextItemResponse
@@ -63,18 +63,24 @@ export const formatContent = (block:IBlockObjectResp) => {
         ...basicData,
         ...calcRichText(block),
         checked: (block as ToDoBlockObjectResponse).to_do.checked
-      }as IBlockObject
+      } as IBlockObject
     case 'callout':
       return {
         ...basicData,
         ...calcRichText(block),
         icon: (block as CalloutBlockObjectResponse).callout.icon
-      }as IBlockObject
+      } as IBlockObject
     case 'child_page':
       return {
         ...basicData,
         title: (block as ChildPageBlockObjectResponse).child_page.title
-      }as IBlockObject
+      } as IBlockObject
+    case 'image':
+      return {
+        ...basicData,
+        image: (block as ImageBlockObjectResponse).image,
+        caption: (block as ImageBlockObjectResponse).image.caption
+      } as IBlockObject
     default:
       return block as IBlockObject
   }
