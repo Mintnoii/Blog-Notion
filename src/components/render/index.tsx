@@ -2,8 +2,10 @@ import React, {Fragment} from 'react'
 import Image from 'next/image'
 import {Text} from '@/components/typography'
 import {AnchorLink} from '@/components/links'
+import {CodeBlock} from '@/components/CodeBlock'
+
 const renderBlock = (block:any) => {
-  const { id, type, rich_text, has_children, children,checked,image,caption} = block
+  const { id, type, rich_text, has_children, children,checked,image,caption,language,code} = block
   switch (type) {
     case 'heading_1':
       return (
@@ -122,6 +124,15 @@ const renderBlock = (block:any) => {
           )}
         </figure>
       )
+    case 'code':
+      return (
+        <div>
+          <CodeBlock
+            language={language}
+            code={rich_text?.[0].content}
+          />
+        </div>
+      )
     case 'divider':
       return (
         <hr className="bg-gray h-0.5 my-2 w-full dark:bg-slate-800"></hr>
@@ -134,16 +145,6 @@ const renderBlock = (block:any) => {
 }
 
 export default renderBlock
-
-    // case 'code':
-    //   return (
-    //     <div>
-    //       <CodeBlock
-    //         language={value.language}
-    //         code={value.text[0].text.content}
-    //       />
-    //     </div>
-    //   )
     // case 'bookmark':
     //   return (
     //     <div className="flex=col flex">
@@ -176,8 +177,3 @@ export default renderBlock
     //   return <div>TOC</div>
     // case 'video':
     //   return <YoutubeEmbed url={value.external.url} />
-
-    // case 'divider':
-    //   return (
-    //     <hr className="border-none h-10 my-16 text-center w-full before:text-2xl before:text-[#D1D5DB] '∿∿∿']"></hr>
-    //   )
