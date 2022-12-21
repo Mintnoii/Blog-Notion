@@ -6,7 +6,7 @@ const ArticlePage = async () => {
 
   const renderBlocks = (blocks:any) => {
     return blocks.map((block:any) => (
-      <div key={block.id}>
+      <div key={block.id} className='py-1 px-0.5'>
         {renderBlock(block)}
       </div>
     ))

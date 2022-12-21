@@ -1,4 +1,6 @@
+'use client'
 import classnames from 'classnames'
+import {Code} from "@nextui-org/code"
 
 export const Text = ({rich_text}:any) => {
   if (!rich_text) {
@@ -10,6 +12,9 @@ export const Text = ({rich_text}:any) => {
       link,
       content,
     } = value
+    if (code) {
+      return (<Code key={index}>{content}</Code>)
+    }
     return (
       <span
         key={index}
@@ -21,7 +26,7 @@ export const Text = ({rich_text}:any) => {
               'italic': italic,
               'line-through': strikethrough,
               'underline': underline,
-              'mx-1 inline-block rounded-md bg-cyan-200 py-0.5 px-2 align-middle text-base tracking-tight text-indigo-500 dark:bg-cyan-800 dark:bg-opacity-50 dark:text-indigo-200': code,
+              'mx-1 inline-block rounded-md bg-slate-400 px-1 py-0.5 align-middle tracking-tight text-green-500 dark:bg-cyan-800 dark:bg-opacity-50 dark:text-indigo-200': code,
             }
           )}
         style={color !== 'default' ? { color } : {}}

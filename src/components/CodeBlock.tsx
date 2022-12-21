@@ -124,19 +124,21 @@ export const CodeBlock = ({ code, language, metastring }: Props) => {
             <pre className="">
               {tokens.map((line:any, i:any) => {
                 const lineProps = getLineProps({ line, key: i })
-
                 if (shouldHighlightLine(i)) {
                   lineProps.className = `${lineProps.className} highlight-line`
                 }
-
+                const {key, ...rest} = lineProps
                 return (
-                  <div key={i} {...lineProps}>
+                  <div key={key} {...rest}>
                     <span className="ml-4 opacity-30 py-0.5 w-8 inline-block select-none">
                       {i + 1}
                     </span>
-                    {line.map((token:any, key:any) => (
-                      <span key={key} {...getTokenProps({ token, key })} />
-                    ))}
+                    {line.map((token:any, key:number) => {
+                      const {key:tokenKey, ...rest} = getTokenProps({ token, key })
+                      return (
+                      <span key={tokenKey} {...rest} />
+                    )
+                    })}
                   </div>
                 )
               })}
