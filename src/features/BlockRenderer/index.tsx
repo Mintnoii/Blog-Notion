@@ -4,7 +4,7 @@ import {Text} from '@/components/typography'
 import {AnchorLink} from '@/components/links'
 import {CodeBlock} from '@/components/CodeBlock'
 
-const renderBlock = (block:any) => {
+export const renderBlock = (block:any) => {
   const { id, type, rich_text, has_children, children,checked,image,caption,language,code} = block
   switch (type) {
     case 'heading_1':
@@ -144,7 +144,6 @@ const renderBlock = (block:any) => {
   }
 }
 
-export default renderBlock
     // case 'bookmark':
     //   return (
     //     <div className="flex=col flex">

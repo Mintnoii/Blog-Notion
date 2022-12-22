@@ -1,5 +1,5 @@
 import {getPage } from '@/api'
-import renderBlock from '@/components/render'
+import {renderBlock} from '@/features/BlockRenderer'
 
 export default async  function AboutPage() {
   const page = await getPage(process.env.NOTION_ABOUT_PAGE_ID || '')
