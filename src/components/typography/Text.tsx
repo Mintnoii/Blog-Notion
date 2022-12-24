@@ -20,7 +20,7 @@ export const Text = ({rich_text}:any) => {
         key={index}
         className={
           classnames(
-            'whitespace-pre-line',
+            'text-sm whitespace-pre-line',
             {
               'font-bold': bold,
               'italic': italic,

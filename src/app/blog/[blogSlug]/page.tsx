@@ -6,6 +6,7 @@ const ArticlePage = async () => {
 
   return (
     <div>
+      {/* {JSON.stringify(page.content)} */}
       {renderBlocks(page.content)}
     </div>
   )

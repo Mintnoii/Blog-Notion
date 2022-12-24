@@ -3,8 +3,8 @@ import Image from 'next/image'
 import {Text} from '@/components/typography'
 import {AnchorLink} from '@/components/links'
 import {CodeBlock} from '@/components/CodeBlock'
+
 import {IBlock} from '@/types/notion'
-import {Snippet} from "@nextui-org/snippet"
 export const renderBlock = (block:any) => {
   const { id, type, rich_text, has_children, children,checked,image,caption,language,code} = block
   switch (type) {
@@ -34,7 +34,7 @@ export const renderBlock = (block:any) => {
       )
     case 'paragraph':
       return (
-        <p className="text-sm text-neutral-800 dark:text-neutral-300">
+        <p className="text-neutral-800 dark:text-neutral-300">
           <Text rich_text={rich_text} />
         </p>
       )
@@ -46,7 +46,7 @@ export const renderBlock = (block:any) => {
     )
      case 'bulleted_list_item':
       return (
-        <li className="text-sm ml-4 py-1 text-neutral-800 dark:text-neutral-300">
+        <li className="ml-4 py-0.5 text-neutral-800 dark:text-neutral-300">
           <Text rich_text={rich_text} />
           { has_children && (children.map((block:any) => (renderBlock(block))))}
         </li>
@@ -59,7 +59,7 @@ export const renderBlock = (block:any) => {
     )
     case 'numbered_list_item':
       return (
-        <li className=" text-sm ml-4 py-1 text-neutral-800 dark:text-neutral-300">
+        <li className="ml-4 py-0.5 text-neutral-800 dark:text-neutral-300">
           <Text rich_text={rich_text} />
           { has_children && (children.map((block:any) => (renderBlock(block))))}
         </li>
@@ -125,16 +125,12 @@ export const renderBlock = (block:any) => {
           )}
         </figure>
       )
-    // case 'code':
-    //   return (
-    //     <Snippet radius="md">{rich_text?.[0].content}</Snippet>
-    //   )
     case 'code':
       return (
-        <div>
+        <div className='text-sm font-mono'>
           <CodeBlock
             language={language}
-            code={rich_text?.[0].content}
+            rich_text={rich_text}
           />
         </div>
       )
@@ -184,7 +180,7 @@ export const renderBlock = (block:any) => {
 
 export const renderBlocks = (blocks:any) => {
   return blocks.map((block:any) => (
-    <div key={block.id} className='py-1 px-0.5'>
+    <div key={block.id} className='p-0.5'>
       {renderBlock(block)}
     </div>
   ))
