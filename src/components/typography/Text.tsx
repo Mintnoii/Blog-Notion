@@ -1,8 +1,13 @@
 'use client'
 import classnames from 'classnames'
 import {Code} from "@nextui-org/code"
+import {Link} from "@nextui-org/link"
 
-export const Text = ({rich_text}:any) => {
+interface TextProps {
+  rich_text: any
+  showAnchorIcon?: boolean
+}
+export const Text = ({rich_text, showAnchorIcon=true}:TextProps) => {
   if (!rich_text) {
     return null
   }
@@ -31,7 +36,10 @@ export const Text = ({rich_text}:any) => {
           )}
         style={color !== 'default' ? { color } : {}}
       >
-        {link ? <a href={link}>{content}</a> : content}
+       {link ?  <Link className='text-sm' isExternal showAnchorIcon={showAnchorIcon} href={link}>
+        {content}
+      </Link> : content}
+        {/* {link ? <a href={link}>{content}</a> : content} */}
       </span>
     )
   })

@@ -1,10 +1,9 @@
 import React, {Fragment} from 'react'
-import Image from 'next/image'
 import {Text} from '@/components/typography'
 import {AnchorLink} from '@/components/links'
 import {CodeBlock} from '@/components/CodeBlock'
 
-import {IBlock} from '@/types/notion'
+//TODO: improve types here, cleanup the code
 export const renderBlock = (block:any) => {
   const { id, type, rich_text, has_children, children,checked,image,caption,language,code} = block
   switch (type) {
@@ -18,7 +17,7 @@ export const renderBlock = (block:any) => {
       )
     case 'heading_2':
       return (
-        <h2 className="font-semibold text-xl mb-2 text-neutral-800 dark:text-neutral-300">
+        <h2 className="font-semibold mb-2 text-2xl text-neutral-800 dark:text-neutral-300">
            <AnchorLink text={rich_text[0].content}>
             <Text rich_text={rich_text} />
           </AnchorLink>
@@ -26,7 +25,7 @@ export const renderBlock = (block:any) => {
       )
     case 'heading_3':
       return (
-        <h3 className="font-semibold text-lg mb-2 text-neutral-800 dark:text-neutral-300">
+        <h3 className="font-semibold text-xl mb-2 text-neutral-800 dark:text-neutral-300">
           <AnchorLink text={rich_text[0].content}>
             <Text rich_text={rich_text} />
           </AnchorLink>
@@ -109,25 +108,16 @@ export const renderBlock = (block:any) => {
       )
     case 'image':
       const src = image.type === 'external' ? image.external.url : image.file.url
-      const alt = caption.length >= 1 ? caption[0].plain_text : ''
+      const figcaption = caption.length >= 1 ? caption[0].plain_text : ''
       return (
         <figure className="mt-0">
-          <Image
-            className=""
-            objectFit="cover"
-            width={500}
-            height={500}
-            alt={alt}
-            src={src}
-          />
-          {caption && (
-            <figcaption className="text-center">{caption}</figcaption>
-          )}
+          <img src={src} alt={figcaption} />
+          <figcaption className="text-center">{caption}</figcaption>
         </figure>
       )
     case 'code':
       return (
-        <div className='text-sm font-mono'>
+        <div className='font-mono text-sm'>
           <CodeBlock
             language={language}
             rich_text={rich_text}
