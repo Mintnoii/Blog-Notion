@@ -1,13 +1,8 @@
-import React from 'react'
+import { SVGProps } from 'react'
 
-const NotFound = (children:React.ReactNode) => {
-
+export default function UnhappyIcon(props: SVGProps<SVGSVGElement>) {
   return (
-    <div className="">
-      <p className="">
-        {children}
-        <span>
-          <svg className="h-7 ml-3 w-7" fill="none" viewBox="0 0 24 24">
+    <svg width="1em" height="1em" fill="none" viewBox="0 0 24 24" {...props}>
             <path
               stroke="currentColor"
               strokeLinecap="round"
@@ -25,10 +20,5 @@ const NotFound = (children:React.ReactNode) => {
             <circle cx="14" cy="10" r="1" fill="currentColor"></circle>
             <circle cx="10" cy="10" r="1" fill="currentColor"></circle>
           </svg>
-        </span>
-      </p>
-    </div>
   )
 }
-
-export default NotFound

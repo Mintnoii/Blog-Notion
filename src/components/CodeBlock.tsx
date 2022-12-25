@@ -5,7 +5,7 @@ type Props = {
   language: string
   rich_text: any[]
 }
-
+// todo https://github.com/rajinwonderland/react-code-blocks/issues/104
 export const CodeBlock = ({ language, rich_text }: Props) => {
   const text = rich_text.map((item) => item.content).join('')
   const props = {
