@@ -4,8 +4,8 @@ import { ArticleCard } from '@/components/blog/ArticleCard'
 type Props = {
   articles: IArticle[]
 }
-
-export function ArticleList({ articles }:Props) {
+const ArticleList = ({ articles }:Props) => {
+  if (!articles || !articles.length) return null
   return (
     <div className="">
       {articles.map((article) => (
@@ -14,3 +14,5 @@ export function ArticleList({ articles }:Props) {
     </div>
   )
 }
+
+export default ArticleList

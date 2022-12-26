@@ -16,6 +16,13 @@ export const getBlogs = async (database_id:string):Promise<IArticle[]> => {
   return dbRes.results.map((page) => formatPageInfo(page as IPageObject))
 }
 
+export const getPublishedBlogs = async () => {
+  const blogsIds:string[] = JSON.parse(process.env.NOTION_BLOGS_IDS || '[]')
+  const promiseArr = blogsIds.map((id:string) => getBlogs(id))
+  const results = await Promise.allSettled(promiseArr)
+  const blogs = results.map((result:PromiseSettledResult<IArticle[]>) => result.status === 'fulfilled' ? result.value : []).flat()
+  return blogs
+}
 // 获取指定页面 (page_id) 下的所有块，并将这些块内容以数组形式返回
 // 这里的块都为第一层的内容，不包含子块
 export const getAllBlocks = async (page_id:string, start_cursor?:string|null) => {

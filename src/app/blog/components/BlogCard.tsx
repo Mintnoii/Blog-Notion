@@ -10,7 +10,7 @@ type Props = {
   article: IArticle
 }
 
-export function ArticleCard({ article }: Props) {
+export default function ArticleCard({ article }: Props) {
    const router = useRouter()
   // const slug = slugify(article.name).toLowerCase()
   // todo 注意标题中有特殊字符的情况
