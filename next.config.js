@@ -9,7 +9,10 @@ const nextConfig = {
         hostname: '**',
       },
     ],
-  }
+  },
+  compiler: {
+    styledComponents: true,
+  },
 }
 
 module.exports = nextConfig

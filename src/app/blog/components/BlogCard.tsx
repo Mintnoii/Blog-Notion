@@ -6,12 +6,12 @@ type Props = {
   article: IArticle
 }
 
-export default function ArticleCard({ article }: Props) {
+export default function BlogCard({ article }: Props) {
 
   return (
      <Link key={article.id} href={`/blog/${article.id}`}>
       <button
-        className="bg-white border rounded-md mb- border-gray-100 shadow-sm my-2 text-sm w-full py-4 px-4  shadow-gray-300 dark:bg-zinc-900 dark:border-zinc-900 dark:shadow-none hover:bg-zinc-300 dark:hover:bg-zinc-800"
+        className="bg-white rounded-md shadow-sm my-2 text-sm w-full py-4 px-4  shadow-gray-300 dark:bg-zinc-900 dark:border-zinc-900 dark:shadow-none hover:bg-zinc-300 dark:hover:bg-zinc-800"
       >
         <div className="flex flex-col">
           <div className="flex font-semibold text-md text-left mb-2 justify-between ">

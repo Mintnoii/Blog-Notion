@@ -27,23 +27,24 @@ export default function Navbar() {
           >
             {navData.map((item, index) => {
               const isActive = activeIndex === index
+              const isCurrent = pathname === item.path
+              const linkSpanStyle = classnames({
+                'relative z-50': true,
+                'font-semibold  text-gray-900 underline decoration-cyan-400 decoration-2 underline-offset-1 dark:text-gray-300 ': isCurrent,
+                'font-normal text-gray-700 dark:text-gray-400': !isCurrent
+              })
               return (
                 <motion.li
                   key={index}
                   onHoverStart={() => setActiveIndex(index)}
                 >
-                  <Link href={item.path} className={classnames(
+                  <Link href={item.path} passHref className={classnames(
                         'relative block px-2 py-2',
                         ['text-gray-600 hover:text-gray-700'],
                         ['dark:text-gray-300 dark:hover:text-white']
                       )}
                      >
-                      <span
-                        className={classnames('relative z-50', {
-                          'font-semibold  text-gray-900 underline decoration-cyan-400 decoration-2 underline-offset-1 dark:text-gray-300 ': pathname === item.path,
-                          'font-normal text-gray-700 dark:text-gray-400': pathname !== item.path
-                        })}
-                      >
+                      <span className={linkSpanStyle}>
                         {item.label}
                       </span>
                       {isActive && (
