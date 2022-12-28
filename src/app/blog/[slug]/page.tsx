@@ -1,5 +1,6 @@
 import {getPublishedBlogs,getPage } from '@/api'
 import {renderBlocks} from '@/features/BlockRenderer'
+import { Title, Description } from '@/components/typography'
 
 interface Props {
   params: {
@@ -16,8 +17,9 @@ const BlogSlugPage = async ({ params }: Props) => {
 
   return (
     <div>
-      {/* {JSON.stringify(page.content)} */}
-      {/* {JSON.stringify(params)} */}
+      {/* {JSON.stringify(page)} */}
+      <Title>{page.name}</Title>
+      {/* todo tags */}
        {renderBlocks(page.content)}
     </div>
   )

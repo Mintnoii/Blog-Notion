@@ -1,7 +1,7 @@
 import * as R from 'remeda'
 import { IArticle } from '@/types/data'
 import { IPageObject,IRichTextItem,IBlockObject, IBlockObjectResp } from '@/types/notion'
-import { ChildPageBlockObjectResponse,TextRichTextItemResponse,ToDoBlockObjectResponse, CalloutBlockObjectResponse, ImageBlockObjectResponse, CodeBlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
+import { ChildPageBlockObjectResponse,TextRichTextItemResponse,ToDoBlockObjectResponse, CalloutBlockObjectResponse, ImageBlockObjectResponse, CodeBlockObjectResponse, BookmarkBlockObjectResponse, LinkPreviewBlockObjectResponse,ColumnListBlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 
 const getTextContent = (RichTextItems:IRichTextItem[]) => {
   const theItem = RichTextItems[0] as TextRichTextItemResponse
@@ -54,6 +54,8 @@ export const formatContent = (block:IBlockObjectResp) => {
     case 'paragraph':
     case 'quote':
     case 'toggle':
+    case 'column_list':
+    case 'column':
       return {
         ...basicData,
         ...calcRichText(block)
@@ -87,8 +89,18 @@ export const formatContent = (block:IBlockObjectResp) => {
         ...calcRichText(block),
         language: (block as CodeBlockObjectResponse).code.language
       } as IBlockObject
+    case 'bookmark':
+      return {
+        ...basicData,
+        caption: (block as BookmarkBlockObjectResponse).bookmark.caption,
+        url: (block as BookmarkBlockObjectResponse).bookmark.url,
+      }
+    case 'link_preview':
+      return {
+        ...basicData,
+        url: (block as LinkPreviewBlockObjectResponse).link_preview.url,
+      }
     default:
       return block as IBlockObject
   }
-  // return block
 }

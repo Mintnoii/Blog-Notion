@@ -2,10 +2,11 @@ import React, {Fragment} from 'react'
 import {Text} from '@/components/typography'
 import {AnchorLink} from '@/components/links'
 import {CodeBlock} from '@/components/CodeBlock'
+import {Link} from "@nextui-org/link"
 
 //TODO: improve types here, cleanup the code
 export const renderBlock = (block:any) => {
-  const { id, type, rich_text, has_children, children,checked,image,caption,language,code} = block
+  const { id, type, rich_text, has_children, children,checked,image,caption,language,url} = block
   switch (type) {
     case 'heading_1':
       return (
@@ -124,6 +125,21 @@ export const renderBlock = (block:any) => {
           />
         </div>
       )
+    case 'link_preview':
+    case 'bookmark':
+      const content = caption?.length ? caption[0].plain_text : url
+      return (
+        <Link href={url} isExternal showAnchorIcon>
+          {content}
+        </Link>
+      )
+    case 'column_list':
+    case 'column':
+      return (
+        <div className='flex mx-1'>
+          {has_children && children.map((block:any) => (<Fragment key={block.id}>{renderBlock(block)}</Fragment>))}
+        </div>
+      )
     case 'divider':
       return (
         <hr className="bg-gray h-0.5 my-2 w-full dark:bg-slate-800"></hr>
@@ -134,15 +150,6 @@ export const renderBlock = (block:any) => {
       })`
   }
 }
-
-    // case 'bookmark':
-    //   return (
-    //     <div className="flex=col flex">
-    //       <Link href={value.url}>
-    //         <a>{value.url}</a>
-    //       </Link>
-    //     </div>
-    //   )
     // case 'embed':
     //   const codePenEmbedKey = value.url.slice(value.url.lastIndexOf('/') + 1)
     //   return (

@@ -1,4 +1,4 @@
-import { PageObjectResponse,RichTextItemResponse,BlockObjectResponse,Heading1BlockObjectResponse,Heading2BlockObjectResponse,Heading3BlockObjectResponse,BulletedListItemBlockObjectResponse,NumberedListItemBlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
+import { PageObjectResponse,RichTextItemResponse,BlockObjectResponse,Heading1BlockObjectResponse,Heading2BlockObjectResponse,Heading3BlockObjectResponse,updateBlock } from '@notionhq/client/build/src/api-endpoints'
 
 export interface IPageObject extends PageObjectResponse {}
 
@@ -15,7 +15,7 @@ export type IList = 'bulleted_list'|'numbered_list'
 export type IListItem = 'bulleted_list_item'|'numbered_list_item'
 // export type IListBlock = BulletedListItemBlockObjectResponse | NumberedListItemBlockObjectResponse
 
-export type IBlockType = IListItem | IHeading | 'paragraph' | 'quote' | 'to_do' | 'toggle' | 'unsupported' | 'child_page' | 'callout'
+export type IBlockType = BlockObjectResponse['type']
 
 // export const KeyMap = {
 //   'bulleted_list_item': BulletedListItemBlockObjectResponse,
