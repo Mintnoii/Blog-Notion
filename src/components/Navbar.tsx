@@ -16,8 +16,8 @@ export default function Navbar() {
   const [activeIndex, setActiveIndex] = React.useState<number|null>(null)
   // const [isOpen, setisOpen] = React.useState()
   return (
-    <nav className="flex flex-col  max-w-md mt-4  w-full pt-2 pb-4 md:max-w-2xl ">
-      <div className="flex flex-row justify-between ">
+    <nav className="flex w-full z-40 h-16 sticky top-0 inset-x-0 backdrop-blur-lg backdrop-saturate-150 bg-background/70">
+      <div className="flex flex-row justify-between w-full mx-auto  items-center md:max-w-3xl sm:max-w-2xl">
         <motion.button whileHover={{ scale: 1.2, transition: { duration: 0.2 }}}>
           <span className='font-bold'>Mintnoii</span>
         </motion.button>

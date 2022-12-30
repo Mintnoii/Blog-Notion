@@ -23,13 +23,13 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className="bg-white text-black dark:bg-black dark:text-white">
         <Providers>
-          <div className="flex flex-col min-h-screen pb-12 items-center">
+          <div className="flex relative flex-col">
             <Navbar />
-            <main className="flex flex-col max-w-2xl w-full break-all justify-center  md:max-w-lg lg:max-w-xl xl:max-w-2xl">
+            <main className="relative flex mx-auto min-h-[calc(100vh_-_64px)]">
               {children}
             </main>
-            {/* <Footer /> */}
-        </div>
+              {/* <Footer /> */}
+          </div>
         </Providers>
       </body>
     </html>

@@ -6,23 +6,23 @@ const BlogPage = async () => {
   const blogs = await getPublishedBlogs()
 
   return (
-    <>
-     <header>
-      <Title>Blog</Title>
-      <Description
-      >
-        This is where I write about programming, tech, life, and everything in
-        between.
-      </Description>
-     </header>
-     <div>
-       {blogs.map((article) => (
-        <BlogCard key={article.id} article={article}></BlogCard>
-      ))}
-       {/* <ArticleList articles={blogs} /> */}
-        {/* <Image src={result.cover?.external?.url} width={300} height={200} alt="Picture of the author" /> */}
-     </div>
-  </>
+    <section className='max-w-2xl break-all md:max-w-lg lg:max-w-xl xl:max-w-2xl'>
+      <header>
+        <Title>Blog</Title>
+        <Description
+        >
+          This is where I write about programming, tech, life, and everything in
+          between.
+        </Description>
+      </header>
+      <div>
+        {blogs.map((article) => (
+          <BlogCard key={article.id} article={article}></BlogCard>
+        ))}
+        {/* <ArticleList articles={blogs} /> */}
+          {/* <Image src={result.cover?.external?.url} width={300} height={200} alt="Picture of the author" /> */}
+      </div>
+  </section>
   )
 }
 

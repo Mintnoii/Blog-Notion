@@ -10,6 +10,9 @@ dependencies:
   '@nextui-org/link':
     specifier: ^2.0.21
     version: 2.0.21(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.3.3)
+  '@nextui-org/scroll-shadow':
+    specifier: ^2.1.9
+    version: 2.1.9(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.3.3)
   '@nextui-org/system':
     specifier: ^2.0.9
     version: 2.0.9(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.3.3)
@@ -1719,6 +1722,10 @@ packages:
     resolution: {integrity: sha512-x/yjFrAJX7Ev+OEHEjTEeX7CcdN1xNASFLYj0rtjly9kYf3zjG4lhMGPNXrhtoIsZbMEBJBOc58tk62cFZAUew==}
     dev: false
 
+  /@nextui-org/react-rsc-utils@2.0.9:
+    resolution: {integrity: sha512-RrA6LzLPj6y9LJIILeqJ5JKmXUFZDbTRZDTTz0rd8qv3yyt5zNgOI07dkG6P43+q5cLNnG9j+P11+Nr0W81cDg==}
+    dev: false
+
   /@nextui-org/react-utils@2.0.8(react@18.2.0):
     resolution: {integrity: sha512-oqOYomtCue5Sg39r2xy7eJlcxDnhtC7/7lDRNDbAQjf0vDQ7mm2hhmo26CZqb9WFQ45hLHgzdzaan5cVW94NDg==}
     peerDependencies:
@@ -1727,6 +1734,32 @@ packages:
       '@nextui-org/react-rsc-utils': 2.0.8
       '@nextui-org/shared-utils': 2.0.3(react@18.2.0)
       react: 18.2.0
+    dev: false
+
+  /@nextui-org/react-utils@2.0.9(react@18.2.0):
+    resolution: {integrity: sha512-UK4/9uy7A6A2vMnbIWprJo7b/8+N/zg4D5Hf36pI6xR0mkt4RY9OGuo24I/ZBwoU0k5kjaod/hTW6nCQwCPtvg==}
+    peerDependencies:
+      react: '>=18'
+    dependencies:
+      '@nextui-org/react-rsc-utils': 2.0.9
+      '@nextui-org/shared-utils': 2.0.3(react@18.2.0)
+      react: 18.2.0
+    dev: false
+
+  /@nextui-org/scroll-shadow@2.1.9(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.3.3):
+    resolution: {integrity: sha512-ipB9br95RTrDzM7K2gEQVRJGCzh+QSCRO8mNMxIkO7MuxHuVW9zyZ5SevstR5W0rgbQuvfxEZq1xlL0eUB8RlA==}
+    peerDependencies:
+      react: '>=18'
+    dependencies:
+      '@nextui-org/react-utils': 2.0.9(react@18.2.0)
+      '@nextui-org/shared-utils': 2.0.3(react@18.2.0)
+      '@nextui-org/system': 2.0.10(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.3.3)
+      '@nextui-org/theme': 2.1.9(tailwindcss@3.3.3)
+      '@nextui-org/use-data-scroll-overflow': 2.1.1(react@18.2.0)
+      react: 18.2.0
+    transitivePeerDependencies:
+      - react-dom
+      - tailwindcss
     dev: false
 
   /@nextui-org/shared-icons@2.0.4(react@18.2.0):
@@ -1754,6 +1787,32 @@ packages:
       react: 18.2.0
       tailwind-variants: 0.1.14(tailwindcss@3.3.3)
     transitivePeerDependencies:
+      - tailwindcss
+    dev: false
+
+  /@nextui-org/system-rsc@2.0.6(react@18.2.0)(tailwindcss@3.3.3):
+    resolution: {integrity: sha512-Q3ojwiFggjLONG8Lyv1xuP8AhrVk7ShuiHkJ08dpNnJ7HQTYaKlwoFR3CFSWvgJbGsK6YkLLFSFFPTFvTuNpUg==}
+    peerDependencies:
+      react: '>=18'
+    dependencies:
+      clsx: 1.2.1
+      react: 18.2.0
+      tailwind-variants: 0.1.14(tailwindcss@3.3.3)
+    transitivePeerDependencies:
+      - tailwindcss
+    dev: false
+
+  /@nextui-org/system@2.0.10(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.3.3):
+    resolution: {integrity: sha512-5F6739zMOYSYR5CM/N8FQsRlQn8yCKiU5VNNPFkk022P5cA2NZXrhZ08mQSmFw2BU7OWxa/ieLivjDptKcRozQ==}
+    peerDependencies:
+      react: '>=18'
+    dependencies:
+      '@nextui-org/system-rsc': 2.0.6(react@18.2.0)(tailwindcss@3.3.3)
+      '@react-aria/i18n': 3.8.2(react@18.2.0)
+      '@react-aria/overlays': 3.17.0(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+    transitivePeerDependencies:
+      - react-dom
       - tailwindcss
     dev: false
 
@@ -1796,6 +1855,31 @@ packages:
       tailwindcss: 3.3.3
     dev: false
 
+  /@nextui-org/theme@2.1.9(tailwindcss@3.3.3):
+    resolution: {integrity: sha512-DmSv6yWb8zp3dQ4ic5XDWGc1rNjEOPphrfc5E4tzUZqgsLisNjr2Gm3bMzM51Kquepv8OzYojoaB2nO2zmI6mw==}
+    peerDependencies:
+      tailwindcss: '*'
+    dependencies:
+      '@types/color': 3.0.4
+      '@types/flat': 5.0.3
+      '@types/lodash.foreach': 4.5.7
+      '@types/lodash.get': 4.4.7
+      '@types/lodash.kebabcase': 4.1.7
+      '@types/lodash.mapkeys': 4.6.7
+      '@types/lodash.omit': 4.5.7
+      color: 4.2.3
+      color2k: 2.0.2
+      deepmerge: 4.3.1
+      flat: 5.0.2
+      lodash.foreach: 4.5.0
+      lodash.get: 4.4.2
+      lodash.kebabcase: 4.1.1
+      lodash.mapkeys: 4.6.0
+      lodash.omit: 4.5.0
+      tailwind-variants: 0.1.14(tailwindcss@3.3.3)
+      tailwindcss: 3.3.3
+    dev: false
+
   /@nextui-org/use-aria-link@2.0.14(react@18.2.0):
     resolution: {integrity: sha512-pUwM8tzfxa2+l7K/njKErd0JE34BVTWmW1BmpiJ0dnRj90+DtbijR3utMwtBBxb7UEC8lmWPXGcfq22LQoVZdg==}
     peerDependencies:
@@ -1806,6 +1890,14 @@ packages:
       '@react-aria/utils': 3.20.0(react@18.2.0)
       '@react-types/link': 3.4.5(react@18.2.0)
       '@react-types/shared': 3.20.0(react@18.2.0)
+      react: 18.2.0
+    dev: false
+
+  /@nextui-org/use-data-scroll-overflow@2.1.1(react@18.2.0):
+    resolution: {integrity: sha512-1NFrjOfTcypxR5S/Ar3HBNFkNC8nMt9YGLAZa4c8bA9T9uKiwpqcKQJxzGk8HmWJqPQStcZnuTZ1nRvuLUVoAA==}
+    peerDependencies:
+      react: '>=18'
+    dependencies:
       react: 18.2.0
     dev: false
 
