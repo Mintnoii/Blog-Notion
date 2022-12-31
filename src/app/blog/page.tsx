@@ -19,8 +19,7 @@ const BlogPage = async () => {
         {blogs.map((article) => (
           <BlogCard key={article.id} article={article}></BlogCard>
         ))}
-        {/* <ArticleList articles={blogs} /> */}
-          {/* <Image src={result.cover?.external?.url} width={300} height={200} alt="Picture of the author" /> */}
+        {/* <Image src={result.cover?.external?.url} width={300} height={200} alt="Picture of the author" /> */}
       </div>
   </section>
   )

@@ -1,6 +1,6 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import Navbar from '@/components/Navbar'
+import Navbar from '@/modules/navbar'
 import { Providers } from '@/app/providers'
 // import Footer from '~/components/ui/Footer'
 // import { ScrollToTop } from '../features/scroll'

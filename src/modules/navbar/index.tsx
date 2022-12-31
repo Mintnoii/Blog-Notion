@@ -4,14 +4,14 @@ import { usePathname } from 'next/navigation'
 import * as React from 'react'
 import { navData } from '@/constants/nav'
 import { motion } from 'framer-motion'
-import ThemeSwitch from '@/features/ThemeSwitch'
+import ThemeSwitch from '@/modules/navbar/components/ThemeSwitch'
 import classnames from 'classnames'
 // import CommandPalette from '~/components/features/command-palette/CommandPalette'
 // import DropMenu from './DropMenu'
 // import AuthButton from '../auth/AuthButton'
 // import { TBoxIcon } from '../icons/t-box'
 
-export default function Navbar() {
+const Navbar = () => {
   const pathname = usePathname()
   const [activeIndex, setActiveIndex] = React.useState<number|null>(null)
   // const [isOpen, setisOpen] = React.useState()
@@ -74,3 +74,4 @@ export default function Navbar() {
     </nav>
   )
 }
+export default Navbar
