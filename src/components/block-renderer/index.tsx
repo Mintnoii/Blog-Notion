@@ -1,8 +1,7 @@
 import React, {Fragment} from 'react'
 import {Text} from '@/components/typography'
 import {AnchorLink} from '@/components/links'
-import {CodeBlock} from '@/components/ui'
-import {Link} from "@nextui-org/link"
+import {CodeBlock,Link} from '@/components/ui'
 
 //TODO: improve types here, cleanup the code
 export const renderBlock = (block:any) => {

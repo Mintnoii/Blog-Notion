@@ -6,8 +6,8 @@ import { navData } from '@/constants/nav'
 import { motion } from 'framer-motion'
 import ThemeSwitch from '@/modules/navbar/components/ThemeSwitch'
 import classnames from 'classnames'
+import Menu from '@/modules/navbar/components/Menu'
 // import CommandPalette from '~/components/features/command-palette/CommandPalette'
-// import DropMenu from './DropMenu'
 // import AuthButton from '../auth/AuthButton'
 // import { TBoxIcon } from '../icons/t-box'
 
@@ -17,7 +17,7 @@ const Navbar = () => {
   // const [isOpen, setisOpen] = React.useState()
   return (
     <nav className="flex w-full z-40 h-16 sticky top-0 inset-x-0 backdrop-blur-lg backdrop-saturate-150 bg-background/70">
-      <div className="flex flex-row justify-between w-full mx-auto  items-center md:max-w-3xl sm:max-w-2xl">
+      <div className="flex flex-row justify-between w-full max-w-3xl mx-auto  items-center lg:max-w-3xl md:max-w-3xl sm:max-w-2xl">
         <motion.button whileHover={{ scale: 1.2, transition: { duration: 0.2 }}}>
           <span className='font-bold'>Mintnoii</span>
         </motion.button>
@@ -68,7 +68,7 @@ const Navbar = () => {
         <div className="flex ">
           {/* <CommandPalette navigation={navigation} /> */}
           <ThemeSwitch />
-          {/* <DropMenu /> */}
+          <Menu />
         </div>
       </div>
     </nav>

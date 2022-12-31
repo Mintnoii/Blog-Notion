@@ -1,7 +1,6 @@
 'use client'
 import classnames from 'classnames'
-import {Code} from "@nextui-org/code"
-import {Link} from "@nextui-org/link"
+import {Code, Link} from "@nextui-org/react"
 
 interface TextProps {
   rich_text: any

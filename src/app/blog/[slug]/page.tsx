@@ -1,7 +1,7 @@
 import {getPublishedBlogs,getPage } from '@/api'
 import {renderBlocks} from '@/components/block-renderer'
 import { Title, Description } from '@/components/typography'
-import {ScrollShadow} from "@nextui-org/scroll-shadow"
+import {ScrollShadow} from "@nextui-org/react"
 
 interface Props {
   params: {
