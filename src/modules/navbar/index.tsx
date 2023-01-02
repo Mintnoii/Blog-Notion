@@ -16,8 +16,8 @@ const Navbar = () => {
   const [activeIndex, setActiveIndex] = React.useState<number|null>(null)
   // const [isOpen, setisOpen] = React.useState()
   return (
-    <nav className="flex w-full z-40 h-16 sticky top-0 inset-x-0 backdrop-blur-lg backdrop-saturate-150 bg-background/70">
-      <div className="flex flex-row justify-between w-full mx-auto  items-center md:max-w-3xl xs:max-w-xs">
+    <nav className="flex z-40 h-16 sticky top-0 inset-x-0 backdrop-blur-lg backdrop-saturate-150 bg-background/70">
+      <div className="flex justify-between w-full mx-auto max-w-xs md:max-w-lg lg:max-w-xl xl:max-w-2xl items-center">
         <motion.button whileHover={{ scale: 1.2, transition: { duration: 0.2 }}}>
           <span className='font-bold'>Mintnoii</span>
         </motion.button>
