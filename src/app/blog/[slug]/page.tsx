@@ -17,9 +17,9 @@ const BlogSlugPage = async ({ params }: Props) => {
    const page = await getPage(params.slug)
 
   return (
-    <div className="grid grid-cols-12 gap-4">
-      {/* <section className='max-w-2xl break-all md:max-w-lg lg:max-w-xl xl:max-w-2xl'> */}
-      <div  className='col-start-3 col-span-8 max-w-2xl md:max-w-lg lg:max-w-xl xl:max-w-2xl'>
+    <div className="grid grid-cols-12 gap-4 xs:gap-0">
+      {/* <section className='max-w-2xl break-all md:max-w-lg lg:max-w-xl xl:max-w-2xl xs:max-w-xs'> */}
+      <div  className='col-start-3 col-span-8 max-w-2xl xs:col-start-2 xs:col-span-10 md:max-w-lg lg:max-w-xl xl:max-w-2xl'>
          <ScrollShadow hideScrollBar>
       {/* {JSON.stringify(page)} */}
       <Title>{page.name}</Title>
@@ -28,7 +28,7 @@ const BlogSlugPage = async ({ params }: Props) => {
     </ScrollShadow>
       </div>
       {/* </section> */}
-     <div className='col-start-11 col-span-2 z-10 mt-8 pl-4'>
+     <div className='col-start-11 col-span-2 z-10 mt-8 pl-4 xs:hidden'>
       {/* <div className="fixed w-full max-w-[12rem] flex flex-col h-[calc(100vh-121px)] scrollbar-hide overflow-y-scroll">
         outline
       </div> */}

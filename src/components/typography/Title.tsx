@@ -21,7 +21,7 @@ export const Title = ({
           y: 0,
         },
       }}
-      className="font-bold mt-20 mb-10 text-4xl text-gray-800 dark:text-gray-300"
+      className="font-bold mt-20 mb-10 text-4xl text-gray-800 dark:text-gray-300 xs:text-2xl"
     >
       {children}
     </motion.div>
