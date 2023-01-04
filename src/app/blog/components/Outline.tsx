@@ -1,13 +1,41 @@
 'use client'
-import {Divider} from "@nextui-org/react"
+import {formatHashLink} from '@/lib/transformer'
+import { IBlock } from '@/types/notion'
+import {Divider,Listbox, ListboxItem} from "@nextui-org/react"
 
-export default function Outline() {
-  return (
-     <section className='hidden md:block'>
-      <div className="fixed w-full max-w-[12rem] flex flex-col h-100vh scrollbar-hide overflow-y-scroll">
-        <div className='text-center font-bold'>outline</div>
-        <Divider className="my-2" />
+const renderAnchrors = (anchors:IBlock[]) => {
+  if(anchors.length) {
+    return (
+      <Listbox>
+        {anchors.map((anchor:any) => (
+          <ListboxItem  key={anchor.id}>
+            <a
+          href={`#${formatHashLink(anchor.rich_text[0].content)}`}
+        >{
+          anchor.rich_text[0].content
+        }</a>
+          </ListboxItem>
+        ))}
+      </Listbox>
+    )
+  }else{
+    return (
+      <div className="text-gray-600 dark:text-gray-400 text-sm py-2">
+        This article has no outline.
       </div>
-     </section>
+    )
+  }
+}
+
+export default function Outline({content}: {content:IBlock[]}) {
+  const anchors = content.filter((block:IBlock) => block.type === 'heading_2')
+  return (
+    <section className='hidden md:block'>
+      <div className="fixed w-full max-w-[12rem] flex flex-col h-100vh scrollbar-hide overflow-y-scroll">
+        <div className='text-center font-bold'>Outline</div>
+        <Divider className="my-2" />
+        { renderAnchrors(anchors)}
+      </div>
+    </section>
   )
 }

@@ -12,7 +12,12 @@ export const navData = [
       label: 'about',
     },
     // {
-    //   path: '/now',
-    //   label: 'now',
+    //   path: '/creating',
+    //   label: 'creating',
+    // },
+    // {
+    //   path: '/localhost',
+    //   label: 'localhost',
     // },
   ]
+

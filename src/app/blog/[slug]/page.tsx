@@ -21,7 +21,7 @@ const BlogSlugPage = async ({ params }: Props) => {
       <Title>{page.name}</Title>
        {renderBlocks(page.content)}
       </div>
-      <Outline />
+      <Outline content={page.content} />
     </div>
   )
 }

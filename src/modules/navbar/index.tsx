@@ -66,7 +66,7 @@ const Navbar = () => {
         <div className="flex ">
           {/* <CommandPalette navigation={navigation} /> */}
           <ThemeSwitch />
-          <Menu />
+          {/* <Menu /> */}
         </div>
       </div>
     </nav>
