@@ -50,9 +50,7 @@ const Navbar = () => {
                       {isActive && (
                         <motion.span
                           layoutId="shadow"
-                          transition={{
-                            duration: 0.2,
-                          }}
+                          transition={{ duration: 0.2 }}
                           className={classnames(
                             'pointer-events-none absolute inset-0 z-0 rounded-md',
                             ['bg-zinc-300'],
