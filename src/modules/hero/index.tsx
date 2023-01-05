@@ -14,8 +14,8 @@ const CustomLink = (href:string, text:string) => {
 
 export default function Hero() {
   return (
-    <div className="flex flex-col h-full pb-[25vh] justify-center lg:px-4">
-      <div>
+    <div className="flex flex-col h-full lg:px-4">
+      <div className='mb-8'>
         <motion.div
           initial="hidden"
           animate="visible"
@@ -30,7 +30,7 @@ export default function Hero() {
               y: 0,
             },
           }}
-          className=" font-bold text-xl tracking-wider text-gray-900 lg:text-4xl dark:text-neutral-200"
+          className=" font-bold text-3xl lg:text-4xl tracking-wider text-gray-900  dark:text-neutral-200"
         >
           Mintnoii
         </motion.div>
@@ -51,7 +51,7 @@ export default function Hero() {
           Qing
         </motion.div>
       </div>
-      <div className="font-serif mt-8 text-md text-neutral-800 dark:text-gray-300">
+      <div className="font-serif text-md text-neutral-800 dark:text-gray-300">
         <motion.div
           initial="hidden"
           animate="visible"
