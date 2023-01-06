@@ -4,10 +4,10 @@ import { usePathname } from 'next/navigation'
 import * as React from 'react'
 import { navData } from '@/constants/nav'
 import { motion } from 'framer-motion'
-import ThemeSwitch from '@/modules/navbar/components/ThemeSwitch'
+import ThemeSwitch from '@/modules/navbar/ThemeSwitch'
 import classnames from 'classnames'
 import { Listbox, ListboxItem } from "@nextui-org/react"
-import Menu from '@/modules/navbar/components/Menu'
+import Menu from '@/modules/navbar/Menu'
 // import CommandPalette from '~/components/features/command-palette/CommandPalette'
 // import AuthButton from '../auth/AuthButton'
 // import { TBoxIcon } from '../icons/t-box'
@@ -16,8 +16,8 @@ const Navbar = () => {
   const pathname = usePathname()
   // const [isOpen, setisOpen] = React.useState()
   return (
-    <nav className="flex z-40 h-16 sticky top-0 inset-x-0 backdrop-blur-lg backdrop-saturate-150 bg-background/70">
-      <div className="flex justify-between w-full mx-auto max-w-xs md:max-w-lg lg:max-w-xl xl:max-w-2xl items-center">
+    <nav className="flex justify-center z-40 h-16 sticky top-0 inset-x-0 backdrop-blur-lg backdrop-saturate-150 bg-background/70">
+      <div className="flex justify-between w-full max-w-xs md:max-w-lg lg:max-w-xl xl:max-w-2xl items-center">
         <motion.button whileHover={{ scale: 1.2, transition: { duration: 0.2 } }}>
           <span className='font-bold'>Mintnoii</span>
         </motion.button>
