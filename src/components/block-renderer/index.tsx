@@ -33,7 +33,7 @@ export const renderBlock = (block:any) => {
       )
     case 'paragraph':
       return (
-        <p className="text-neutral-800 dark:text-neutral-300">
+        <p className="my-0.5 text-neutral-800 dark:text-neutral-300">
           <Text rich_text={rich_text} />
         </p>
       )
@@ -176,7 +176,7 @@ export const renderBlock = (block:any) => {
 
 export const renderBlocks = (blocks:any) => {
   return blocks.map((block:any) => (
-    <div key={block.id} className='p-0.5'>
+    <div key={block.id}>
       {renderBlock(block)}
     </div>
   ))
