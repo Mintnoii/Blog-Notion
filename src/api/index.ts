@@ -15,7 +15,17 @@ export const getBlogs = async (database_id:string):Promise<IArticle[]> => {
   })
   return dbRes.results.map((page) => formatPageInfo(page as IPageObject))
 }
-
+export const collectAllTags = (blogs:IArticle[]) => {
+  return blogs.reduce((allTags, item) => {
+    item.tags?.forEach(tag => {
+      const isTagAlreadyAdded = allTags.some(existingTag => existingTag.name === tag.name);
+      if (!isTagAlreadyAdded) {
+        allTags.push(tag)
+      }
+    })
+    return allTags
+  }, [] as any[])
+}
 export const getPublishedBlogs = async () => {
   const blogsIds:string[] = JSON.parse(process.env.NOTION_BLOGS_IDS || '[]')
   const promiseArr = blogsIds.map((id:string) => getBlogs(id))

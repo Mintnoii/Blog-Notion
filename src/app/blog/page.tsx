@@ -1,10 +1,10 @@
-import {getPublishedBlogs } from '@/api'
+import {getPublishedBlogs, collectAllTags } from '@/api'
 import { Title, Description } from '@/components/typography'
 import BlogCard from '@/app/blog/components/BlogCard'
 
 const BlogPage = async () => {
   const blogs = await getPublishedBlogs()
-
+  const allTags = await collectAllTags(blogs)
   return (
     <section className='max-w-xs md:max-w-lg lg:max-w-xl xl:max-w-2xl '>
       <header>
@@ -19,7 +19,6 @@ const BlogPage = async () => {
         {blogs.map((article) => (
           <BlogCard key={article.id} article={article}></BlogCard>
         ))}
-        {/* <Image src={result.cover?.external?.url} width={300} height={200} alt="Picture of the author" /> */}
       </div>
   </section>
   )
