@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import classnames from 'classnames'
-import { Card, CardBody, Button } from "@nextui-org/react";
+import { Card, CardBody, Button,Link } from "@nextui-org/react";
 import { ITag, IBlog } from '@/types/data'
 import { motion } from 'framer-motion'
 
@@ -53,11 +53,11 @@ const BlogPanel = ({ blogs, tags }: IBlogPanel) => {
       </section>
       <section className='flex flex-col mt-4'>
         {filteredBlogs.map((blog) => (
-          <Card key={blog.id} isHoverable={true} isPressable={true} onPressStart={() => openBlog(blog.id)} className='my-2'>
+          <Card key={blog.id} isHoverable={true} className='my-2'>
             <CardBody className='flex-col flex'>
-              <div className="flex font-semibold text-md text-left mb-2 justify-between ">
-                {blog.name}
-              </div>
+                <Link {...{underline:'hover'}} className="flex font-semibold text-md text-left mb-2 justify-between cursor-pointer text-black dark:text-gray-300" onClick={() => openBlog(blog.id)}>
+                  {blog.name}
+                </Link>
               <div className="flex flex-row flex-wrap mb-1 gap-x-3 gap-y-1">
                 {blog.tags?.map(({ name }) => {
                   return (
