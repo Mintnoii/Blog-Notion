@@ -24,7 +24,7 @@ export const MotionDiv = ({
           y: 0,
         },
       }}
-      className="font-serif text-sm mb-8 text-neutral-800 dark:text-gray-300"
+      className="font-serif text-sm text-neutral-800 dark:text-gray-300"
     >
       {children}
     </motion.div>

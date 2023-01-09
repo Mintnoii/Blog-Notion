@@ -9,7 +9,7 @@ export default async  function AboutPage() {
       <AboutMe/>
       {/* {JSON.stringify(page)} */}
     <div className='mt-12 break-words max-w-xs md:max-w-lg'>
-      <MotionDiv delay={0.5}>
+    <MotionDiv delay={0.5}>
      {renderBlocks(page.content)}
     </MotionDiv>
     </div>
