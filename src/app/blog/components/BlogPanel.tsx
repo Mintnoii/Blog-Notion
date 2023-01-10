@@ -4,7 +4,6 @@ import { useRouter } from 'next/navigation'
 import classnames from 'classnames'
 import { Card, CardBody, Button,Link } from "@nextui-org/react";
 import { ITag, IBlog } from '@/types/data'
-import { motion } from 'framer-motion'
 
 interface IBlogPanel {
   blogs: IBlog[],

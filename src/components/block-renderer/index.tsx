@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react'
 import {Text} from '@/components/typography'
-import {AnchorLink} from '@/components/links'
 import {CodeBlock,Link} from '@/components/ui'
+import {formatHashLink} from '@/lib/transformer'
 
 //TODO: improve types here, cleanup the code
 export const renderBlock = (block:any) => {
@@ -10,25 +10,25 @@ export const renderBlock = (block:any) => {
     case 'heading_1':
       return (
         <h1 className="font-bold mb-2 text-3xl text-neutral-800 dark:text-neutral-300">
-          <AnchorLink text={rich_text[0].content}>
+          <Link href={`#${formatHashLink(rich_text[0].content)}`}>
             <Text rich_text={rich_text} />
-          </AnchorLink>
+          </Link>
         </h1>
       )
     case 'heading_2':
       return (
         <h2 className="font-semibold mb-2 text-2xl text-neutral-800 dark:text-neutral-300">
-           <AnchorLink text={rich_text[0].content}>
+          <Link href={`#${formatHashLink(rich_text[0].content)}`}>
             <Text rich_text={rich_text} />
-          </AnchorLink>
+          </Link>
         </h2>
       )
     case 'heading_3':
       return (
         <h3 className="font-semibold text-xl mb-2 text-neutral-800 dark:text-neutral-300">
-          <AnchorLink text={rich_text[0].content}>
+          <Link href={`#${formatHashLink(rich_text[0].content)}`}>
             <Text rich_text={rich_text} />
-          </AnchorLink>
+          </Link>
         </h3>
       )
     case 'paragraph':
