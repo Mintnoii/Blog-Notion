@@ -1,6 +1,7 @@
 'use client'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import {HelloIcon} from '@/components/icons'
 
 const CustomLink = (href:string, text:string) => {
   return (
@@ -68,7 +69,14 @@ export default function Hero() {
           }}
           className="mb-4 "
         >
-          {`Hello! I am a self taught web developer currently focused on
+          <p className='flex items-center'>
+            <HelloIcon/>
+            <span className='ml-1'>{`Hey, I am Qing, nickname is Mintnoii.`}</span>
+          </p>
+          <p>
+            {`Welcome to my personal site build with love and bug.`}
+          </p>
+          {` I am a self taught web developer currently focused on
           typescript, nextjs, tailwind and vue. Some of my work is open source and publicly available on `}
           {CustomLink('https://github.com/Mintnoii', 'github')}.
         </motion.div>
