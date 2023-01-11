@@ -1,11 +1,13 @@
-export interface IBlog {
+export interface IDataItem {
   id: string
   name: string
   cover_image: string
-  last_edited_time?: string
-  tags?: any[]
+  last_edited_time: string
 }
 
+export interface IBlog extends IDataItem {
+  tags?: any[]
+}
 
 export interface IContentBlock {
   id: string
