@@ -1,6 +1,6 @@
 'use client'
-import {formatHashLink} from '@/lib/transformer'
-import { IBlock } from '@/types/notion'
+import {formatHashLink} from '@/utils'
+import { IBlock } from '@/services/notion/types'
 import {Divider,Listbox, ListboxItem} from "@nextui-org/react"
 
 const renderAnchrors = (anchors:IBlock[]) => {

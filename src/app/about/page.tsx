@@ -1,4 +1,4 @@
-import {getPage } from '@/api'
+import { getPage } from '@/services/notion'
 import {renderBlocks} from '@/components/block-renderer'
 import { AboutMe,MotionDiv } from "@/components/views"
 

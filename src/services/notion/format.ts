@@ -1,11 +1,6 @@
 import * as R from 'remeda'
-import { IBlockObject, IBlockObjectResp } from '@/types/notion'
 import { ChildPageBlockObjectResponse, TextRichTextItemResponse, ToDoBlockObjectResponse, CalloutBlockObjectResponse, ImageBlockObjectResponse, CodeBlockObjectResponse, BookmarkBlockObjectResponse, LinkPreviewBlockObjectResponse, PageObjectResponse } from '@notionhq/client/build/src/api-endpoints'
-import { ITextRichText, IPageObject, IStatus, IStatusName, IProject } from '@/services/notion/types'
-
-export function formatHashLink(link_text: string) {
-  return link_text.toLowerCase().replace(/ /g, '-')
-}
+import { ITextRichText, IBlog, IPageObject, IStatus, IStatusName, IProject, IBlockObject, IBlockObjectResp } from '@/services/notion/types'
 
 export const formatDate = (timestamp: string): string => {
   const date = new Date(timestamp)
@@ -20,6 +15,16 @@ export const formatProject = (page: IPageObject): IProject => {
     cover: R.pathOr(page, ['cover', 'file', 'url'], '') as string,
     status: (page.properties.Status as IStatus).status?.name as IStatusName,
     last_edited_time: formatDate(page.last_edited_time),
+  }
+}
+export const formatPageInfo = (page: IPageObject): IBlog => {
+  const tags = R.pathOr(page, ['properties', 'Tags', 'multi_select'], []) as any[]
+  return {
+    id: page.id,
+    name: (R.pathOr(page, ['properties', 'Name', 'title'], []) as ITextRichText[])?.[0]?.text?.content || '',
+    cover: R.pathOr(page, ['cover', 'file', 'url'], '') as string,
+    last_edited_time: formatDate(page.last_edited_time),
+    tags
   }
 }
 

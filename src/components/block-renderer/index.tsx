@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react'
 import {Text} from '@/components/typography'
 import {CodeBlock,Link} from '@/components/ui'
-import {formatHashLink} from '@/lib/transformer'
+import {formatHashLink} from '@/utils'
 
 //TODO: improve types here, cleanup the code
 export const renderBlock = (block:any) => {

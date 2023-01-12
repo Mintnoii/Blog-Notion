@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import classnames from 'classnames'
 import { Card, CardBody, Button,Link } from "@nextui-org/react";
-import { ITag, IBlog } from '@/types/data'
+import { ITag, IBlog } from '@/services/notion/types'
 
 interface IBlogPanel {
   blogs: IBlog[],

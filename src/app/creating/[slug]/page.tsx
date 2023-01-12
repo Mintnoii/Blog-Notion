@@ -1,4 +1,4 @@
-import {getPublishedBlogs,getPage } from '@/api'
+import {getPublishedBlogs,getPage } from '@/services/notion'
 import {renderBlocks} from '@/components/block-renderer'
 import { Title, Description } from '@/components/typography'
 import Outline from '@/app/blog/components/Outline'

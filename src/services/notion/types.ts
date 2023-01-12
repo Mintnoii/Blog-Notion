@@ -57,3 +57,19 @@ export interface IBlockObject {
 }
 
 export type IBlock = IBlockObject | IListBlock
+
+export interface IContentBlock {
+  id: string
+  // todo add more types
+  type: string
+  href: string | null
+  text?: string
+  color?: string
+
+}
+
+export interface ITag {
+  id: string
+  name: string
+  color: string
+}

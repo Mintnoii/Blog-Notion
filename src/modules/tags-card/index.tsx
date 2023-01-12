@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Menu from '@/modules/navbar/Menu'
 import {Card, CardBody,Button} from "@nextui-org/react";
-import {ITag} from '@/types/data'
+import {ITag} from '@/services/notion/types'
 interface ITagsCard {
   tags: ITag[],
   onTagChange: (tag:string) => void
