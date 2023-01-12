@@ -1,6 +1,6 @@
-import {getPublishedBlogs, getProjects } from '@/api'
 import { Title, Description } from '@/components/typography'
 import CreatingPanel from '@/app/creating/components/CreatingPanel'
+import {getProjects} from '@/services/notion'
 
 const CreatingPage = async () => {
   const projects = await getProjects()

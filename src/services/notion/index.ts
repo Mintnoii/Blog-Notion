@@ -1,16 +1,29 @@
 import { queryDatabase, retrievePage, listBlocks } from '@/services/notion/api'
-import { IDataItem } from '@/services/notion/types'
+import { IDataItem, IPageObject, } from '@/services/notion/types'
+import { formatProject } from './format'
 
-export const getDataItems = async (database_id: string): Promise<IDataItem[]> => {
+/**
+ * 获取开源项目数据
+ */
+export const getProjects = async (): Promise<IDataItem[]> => {
   const dbRes = await queryDatabase({
-    database_id,
+    database_id: process.env.NOTION_PROJECTS_PAGE_ID || '',
     filter: {
-      property: 'Status',
-      status: {
-        equals: 'Done',
-      }
+      'or': [
+        {
+          property: 'Status',
+          status: {
+            equals: 'In progress',
+          }
+        },
+        {
+          property: 'Status',
+          status: {
+            equals: 'Done',
+          }
+        }
+      ]
     }
   })
-  return dbRes.results as any
-  // return dbRes.results.map((item) => formatPageInfo(page as IDataItem))
+  return dbRes.results.map((item) => formatProject(item as IPageObject))
 }
