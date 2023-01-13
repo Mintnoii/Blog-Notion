@@ -1,5 +1,5 @@
 import { queryDatabase, retrievePage, listBlocks } from '@/services/notion/api'
-import { IDataItem, IPageObject, IBlock, IBlog, ITag, IBlockObjectResp, IList } from '@/services/notion/types'
+import { IPageObject, IBlock, IBlog, IProject, ITag, IBlockObjectResp } from '@/services/notion/types'
 import { formatProject, formatPageInfo, formatContent } from './format'
 
 export const getBlogs = async (database_id: string): Promise<IBlog[]> => {
@@ -38,7 +38,7 @@ export const collectAllTags = (blogs: IBlog[]) => {
 /**
  * 获取开源项目数据
  */
-export const getProjects = async (): Promise<IDataItem[]> => {
+export const getProjects = async (): Promise<IProject[]> => {
   const dbRes = await queryDatabase({
     database_id: process.env.NOTION_PROJECTS_PAGE_ID || '',
     filter: {
@@ -58,6 +58,7 @@ export const getProjects = async (): Promise<IDataItem[]> => {
       ]
     }
   })
+  // return dbRes.results as IPageObject[]
   return dbRes.results.map((item) => formatProject(item as IPageObject))
 }
 

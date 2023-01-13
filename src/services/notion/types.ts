@@ -20,7 +20,10 @@ export interface IBlog extends IDataItem {
 export type IStatus = StatusPropertyItemObjectResponse
 export type IStatusName = 'In Progress' | 'Done'
 export interface IProject extends IDataItem {
+  icon?: string
   status?: IStatusName
+  intro?: string
+  github?: string
 }
 
 export type IBlockObjectResp = BlockObjectResponse & {

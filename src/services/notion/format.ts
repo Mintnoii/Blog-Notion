@@ -1,6 +1,10 @@
 import * as R from 'remeda'
 import { ChildPageBlockObjectResponse, TextRichTextItemResponse, ToDoBlockObjectResponse, CalloutBlockObjectResponse, ImageBlockObjectResponse, CodeBlockObjectResponse, BookmarkBlockObjectResponse, LinkPreviewBlockObjectResponse, PageObjectResponse } from '@notionhq/client/build/src/api-endpoints'
-import { ITextRichText, IBlog, IPageObject, IStatus, IStatusName, IProject, IBlockObject, IBlockObjectResp } from '@/services/notion/types'
+import { IRichTextItem, ITextRichText, IBlog, IPageObject, IStatus, IStatusName, IProject, IBlockObject, IBlockObjectResp } from '@/services/notion/types'
+
+const formatTextRichText = (text_rich_text: ITextRichText[]) => {
+  return text_rich_text.map(item => (item.text.content)).join('')
+}
 
 export const formatDate = (timestamp: string): string => {
   const date = new Date(timestamp)
@@ -11,9 +15,12 @@ export const formatDate = (timestamp: string): string => {
 export const formatProject = (page: IPageObject): IProject => {
   return {
     id: page.id,
-    name: (R.pathOr(page, ['properties', 'Name', 'title'], []) as ITextRichText[])?.[0]?.text?.content || '',
+    name: formatTextRichText(R.pathOr(page, ['properties', 'Name', 'title'], []) as ITextRichText[]),
     cover: R.pathOr(page, ['cover', 'file', 'url'], '') as string,
+    icon: R.pathOr(page, ['icon', 'file', 'url'], '') as string,
+    github: R.pathOr(page, ['properties', 'github', 'url'], '') as string,
     status: (page.properties.Status as IStatus).status?.name as IStatusName,
+    intro: formatTextRichText(R.pathOr(page, ['properties', 'intro', 'rich_text'], []) as ITextRichText[]),
     last_edited_time: formatDate(page.last_edited_time),
   }
 }
@@ -21,7 +28,7 @@ export const formatPageInfo = (page: IPageObject): IBlog => {
   const tags = R.pathOr(page, ['properties', 'Tags', 'multi_select'], []) as any[]
   return {
     id: page.id,
-    name: (R.pathOr(page, ['properties', 'Name', 'title'], []) as ITextRichText[])?.[0]?.text?.content || '',
+    name: (R.pathOr(page, ['properties', 'Page', 'title'], []) as ITextRichText[])?.[0]?.text?.content || '',
     cover: R.pathOr(page, ['cover', 'file', 'url'], '') as string,
     last_edited_time: formatDate(page.last_edited_time),
     tags

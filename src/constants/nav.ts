@@ -8,12 +8,12 @@ export const navData = [
     label: 'blog',
   },
   {
-    path: '/about',
-    label: 'about',
-  },
-  {
     path: '/creating',
     label: 'creating',
+  },
+  {
+    path: '/about',
+    label: 'about',
   },
   // {
   //   path: '/localhost',
