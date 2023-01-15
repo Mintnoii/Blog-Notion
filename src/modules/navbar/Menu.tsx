@@ -1,8 +1,11 @@
 import React from "react"
 import {Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button} from "@nextui-org/react"
 import { Bars3Icon } from '@heroicons/react/24/outline'
+import { navData } from '@/constants/nav'
+import { useRouter } from 'next/navigation'
 
 export default function App() {
+  const router = useRouter()
   return (
     <Dropdown>
       <DropdownTrigger>
@@ -11,12 +14,15 @@ export default function App() {
         </Button>
       </DropdownTrigger>
       <DropdownMenu aria-label="Static Actions">
-        <DropdownItem key="new">New file</DropdownItem>
-        <DropdownItem key="copy">Copy link</DropdownItem>
-        <DropdownItem key="edit">Edit file</DropdownItem>
-        <DropdownItem key="delete" className="text-danger" color="danger">
-          Delete file
-        </DropdownItem>
+        {
+            navData.map((item) => {
+              return (
+                <DropdownItem key={item.path} onClick={() => router.push(item.path)}>
+                   {item.label}
+                </DropdownItem>
+              )
+            })
+          }
       </DropdownMenu>
     </Dropdown>
   );

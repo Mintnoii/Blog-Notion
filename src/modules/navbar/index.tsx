@@ -47,9 +47,9 @@ const Navbar = () => {
         <div className="flex">
           {/* <CommandPalette navigation={navigation} /> */}
           <ThemeSwitch />
-          <div className='ml-1 flex md:hidden'>
+          {/* <div className="ml-1 block md:invisible"> */}
             <Menu />
-          </div>
+          {/* </div> */}
         </div>
       </div>
     </nav>
