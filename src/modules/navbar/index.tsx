@@ -16,8 +16,6 @@ import Menu from '@/modules/navbar/Menu'
 const Navbar = () => {
   const pathname = usePathname()
   const router = useRouter()
-
-  // const [isOpen, setisOpen] = React.useState()
   return (
     <nav className="flex justify-center z-40 h-16 sticky top-0 inset-x-0 backdrop-blur-lg backdrop-saturate-150 bg-background/70">
       <div className="flex justify-between w-full max-w-xs md:max-w-lg lg:max-w-xl xl:max-w-2xl items-center">
@@ -29,7 +27,7 @@ const Navbar = () => {
             navData.map((item) => {
               const isCurrent = pathname === item.path
               const linkSpanStyle = classnames(
-                'relative z-50',
+                'relative z-50 hidden md:block',
                 {
                   'font-semibold text-gray-900 underline decoration-cyan-400 decoration-2 underline-offset-1 dark:text-gray-300 ': isCurrent,
                   'font-normal text-gray-700 dark:text-gray-400': !isCurrent
@@ -46,10 +44,12 @@ const Navbar = () => {
             })
           }
         </Listbox>
-        <div className="flex ">
+        <div className="flex">
           {/* <CommandPalette navigation={navigation} /> */}
           <ThemeSwitch />
-          {/* <Menu /> */}
+          <div className='ml-1 flex md:hidden'>
+            <Menu />
+          </div>
         </div>
       </div>
     </nav>

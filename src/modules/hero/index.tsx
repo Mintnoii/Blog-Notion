@@ -12,7 +12,7 @@ export default function Hero() {
            Mintnoii
           </div>
         </MotionDiv>
-        <MotionDiv delay={0.8} duration={0.8}>
+        <MotionDiv delay={0.5} duration={0.8}>
           <div className="text-sm text-gray-500 dark:text-neutral-400">
            Qing
           </div>

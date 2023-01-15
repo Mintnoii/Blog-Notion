@@ -26,7 +26,7 @@ export const AboutMe = () => {
           <motion.div
             initial="hidden"
             animate="visible"
-            transition={{ delay: 0.2, duration: 1.2 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
             variants={{
               hidden: {
                 opacity: 0.25,
@@ -44,11 +44,11 @@ export const AboutMe = () => {
           <motion.div
             initial="hidden"
             animate="visible"
-            transition={{ delay: 0.3, duration: 1.2 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
             variants={{
               hidden: {
                 opacity: 0.25,
-                y: 50,
+                y: 52,
               },
               visible: {
                 opacity: 1,
@@ -62,11 +62,11 @@ export const AboutMe = () => {
           <motion.div
             initial="hidden"
             animate="visible"
-            transition={{ delay: 0.5, duration: 1.2 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
             variants={{
               hidden: {
                 opacity: 0.25,
-                y: 50,
+                y: 55,
               },
               visible: {
                 opacity: 1,

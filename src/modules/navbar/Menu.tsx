@@ -6,7 +6,7 @@ export default function App() {
   return (
     <Dropdown>
       <DropdownTrigger>
-        <Button isIconOnly size="sm" className="bg-zinc-300 transition ease-in-out ring-neutral-400 duration-200 dark:bg-zinc-700 hover:bg-zinc-300 hover:ring-2 dark:hover:bg-zinc-800">
+        <Button isIconOnly size="sm" variant="light">
           <Bars3Icon className="h-4 w-4" />
         </Button>
       </DropdownTrigger>
