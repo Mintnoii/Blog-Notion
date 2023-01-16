@@ -13,7 +13,7 @@ export default function App() {
           <Bars3Icon className="h-4 w-4" />
         </Button>
       </DropdownTrigger>
-      <DropdownMenu aria-label="Static Actions">
+      <DropdownMenu aria-label="nav menu">
         {
             navData.map((item) => {
               return (

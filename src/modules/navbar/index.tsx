@@ -1,5 +1,4 @@
 'use client'
-import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { usePathname } from 'next/navigation'
 import * as React from 'react'
@@ -9,6 +8,8 @@ import ThemeSwitch from '@/modules/navbar/ThemeSwitch'
 import classnames from 'classnames'
 import { Listbox, ListboxItem } from "@nextui-org/react"
 import Menu from '@/modules/navbar/Menu'
+import {Link} from '@/components/ui'
+
 // import CommandPalette from '~/components/features/command-palette/CommandPalette'
 // import AuthButton from '../auth/AuthButton'
 // import { TBoxIcon } from '../icons/t-box'
@@ -22,7 +23,7 @@ const Navbar = () => {
         <motion.button whileHover={{ scale: 1.2, transition: { duration: 0.2 } }}>
           <span className='font-bold'>Mintnoii</span>
         </motion.button>
-        <Listbox variant='flat' className='flex flex-row justify-center'>
+        <Listbox variant='flat' aria-label="navbar" className='flex flex-row justify-center'>
           {
             navData.map((item) => {
               const isCurrent = pathname === item.path
@@ -33,8 +34,8 @@ const Navbar = () => {
                   'font-normal text-gray-700 dark:text-gray-400': !isCurrent
                 })
               return (
-                <ListboxItem className="w-fit mx-0.5 inline-block" key={item.path} onClick={() => router.push(item.path)}>
-                  <Link href={item.path} passHref className="text-gray-600 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white">
+                <ListboxItem textValue={item.label} className="w-fit mx-0.5 inline-block" key={item.path} onClick={() => router.push(item.path)}>
+                  <Link href={item.path} className="text-gray-600 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white">
                     <span className={linkSpanStyle}>
                       {item.label}
                     </span>
