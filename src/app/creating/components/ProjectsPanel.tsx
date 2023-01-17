@@ -8,7 +8,7 @@ export default function ProjectsPanel({projects}:{projects:IProject[]}) {
   return (
     <div className="w-full flex flex-col">
       {projects.map((project) => (
-            <Card className="w-4/5 mb-4" key={project.id}>
+            <Card className="mb-4" key={project.id}>
               <CardHeader className="flex gap-3">
                 <Image
                   height={40}
@@ -17,16 +17,22 @@ export default function ProjectsPanel({projects}:{projects:IProject[]}) {
                   src={project.cover}
                   width={40}
                   className="object-cover w-10 h-10"
+                  alt="project icon"
                 />
                 <div className="flex flex-col">
                   <p className="text-md">{project.name}</p>
-                    <Link
+                  {project.github?
+                  (<Link
                       className="text-small "
                       isExternal
                       href={project.github}
                     >
                     GitHub Repo
-                  </Link>
+                  </Link>):
+                  (
+                    <div className="text-sm text-slate-500">未开源</div>
+                  )
+                }
                 </div>
               </CardHeader>
             <Divider/>
