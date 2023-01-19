@@ -2,7 +2,7 @@
 import { useRouter } from 'next/navigation'
 import { usePathname } from 'next/navigation'
 import * as React from 'react'
-import { navData } from '@/constants/nav'
+import { NAV_DATA } from '@/constants/nav'
 import { motion } from 'framer-motion'
 import ThemeSwitch from '@/modules/navbar/ThemeSwitch'
 import classnames from 'classnames'
@@ -25,7 +25,7 @@ const Navbar = () => {
         </motion.button>
         <Listbox variant='flat' aria-label="navbar" data-focus-visible={false} className='flex flex-row justify-center'>
           {
-            navData.map((item) => {
+            NAV_DATA.map((item) => {
               const isCurrent = pathname === item.path
               const linkSpanStyle = classnames(
                 'relative z-50 hidden md:block',

@@ -1,4 +1,4 @@
-export const navData = [
+export const NAV_DATA = [
   {
     path: '/',
     label: 'home',
@@ -15,9 +15,12 @@ export const navData = [
     path: '/about',
     label: 'about',
   },
-  // {
-  //   path: '/localhost',
-  //   label: 'localhost',
-  // },
-]
 
+]
+export const MENU_DATA = [
+  ...NAV_DATA,
+  {
+    path: '/localhost',
+    label: 'localhost',
+  },
+]
