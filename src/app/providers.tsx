@@ -1,5 +1,6 @@
 'use client'
 
+import "./globals.css"
 import { ThemeProvider } from 'next-themes'
 import {NextUIProvider} from "@nextui-org/react"
 
@@ -7,10 +8,10 @@ export function Providers({ children }:{
   children: React.ReactNode
 }) {
   return (
-    <ThemeProvider attribute="class">
-      <NextUIProvider>
+    <NextUIProvider>
+      <ThemeProvider attribute="class" defaultTheme="dark">
         {children}
-      </NextUIProvider>
-    </ThemeProvider>
+      </ThemeProvider>
+    </NextUIProvider>
   )
 }

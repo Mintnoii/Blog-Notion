@@ -2,20 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
-/* :root {
-  --background: white;
-  --foreground: black;
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+:root {
+  --background: theme('colors.white');
+  --background-secondary: theme('colors.gray.50');
 
+  --primary-dark: theme('colors.gray.900');
+  --primary-medium: theme('colors.gray.700');
+  --primary-light: theme('colors.gray.500');
+
+  --nextui-background: theme('colors.red.900');
+}
+/* dark theme styles go here */
 [data-theme='dark'] {
-  --background: black;
-  --foreground: white;
-  --foreground-rgb: 255, 255, 255;
+  --nextui-background: theme('colors.gray.900');
+  --background-secondary: theme('colors.gray.800');
+
+  --primary-dark: theme('colors.gray.300');
+  --primary-medium: theme('colors.gray.200');
+  --primary-light: theme('colors.gray.100');
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-} */
+/* pink theme styles go here */
+[data-theme='pink'] {
+  --background: theme('colors.gray.900');
+  --background-secondary: theme('colors.gray.800');
+
+  --primary-dark: theme('colors.gray.300');
+  --primary-medium: theme('colors.gray.200');
+  --primary-light: theme('colors.gray.100');
+}
