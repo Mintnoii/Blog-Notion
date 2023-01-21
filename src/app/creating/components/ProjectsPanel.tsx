@@ -2,14 +2,14 @@
 import React from "react"
 import {Card, CardHeader, CardBody, Divider, Image} from "@nextui-org/react"
 import { IProject } from "@/services/notion/types"
-import NextImage from "next/image"
+// import NextImage from "next/image"
 import {Link} from '@/components/ui'
 
 export default function ProjectsPanel({projects}:{projects:IProject[]}) {
   return (
     <div className="w-full flex flex-col">
       {projects.map((project) => (
-            <Card className="mb-4 w-full" key={project.id}>
+            <Card shadow={'sm'} className="mb-4 w-full" key={project.id}>
               <CardHeader className="flex gap-3">
                 {/* <Image
                   height={40}

@@ -16,7 +16,7 @@ interface ITagsCard {
 }
 const TagsCard = ({ tagName, tags, setTagName }: ITagsCard) => {
   return (
-    <Card>
+    <Card shadow={'sm'}>
       <CardBody className='flex flex-row flex-wrap p-3'>
         {[{ id: 'All', name: 'All' }, ...tags].map(({ name }) => {
           return (
@@ -52,7 +52,7 @@ const BlogPanel = ({ blogs, tags }: IBlogPanel) => {
       </section>
       <section className='flex flex-col mt-4'>
         {filteredBlogs.map((blog) => (
-          <Card key={blog.id} isHoverable={true} className='my-2'>
+          <Card key={blog.id} isHoverable={true} shadow={'sm'} className='my-2'>
             <CardBody className='flex-col flex'>
                 <Link {...{underline:'hover'}} className="flex font-semibold text-md text-left mb-2 justify-between cursor-pointer text-black dark:text-gray-300" onClick={() => openBlog(blog.id)}>
                   {blog.name}
