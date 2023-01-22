@@ -20,10 +20,10 @@ export const getPublishedBlogs = async () => {
   const promiseArr = blogsIds.map((id: string) => getBlogs(id))
   const results = await Promise.allSettled(promiseArr)
   const blogs = results.map((result: PromiseSettledResult<IBlog[]>) => result.status === 'fulfilled' ? result.value : []).flat().sort((a, b) => {
-  const dateA = new Date(a.last_edited_time).getTime()
-  const dateB = new Date(b.last_edited_time).getTime()
-  return dateB - dateA
-})
+    const dateA = new Date(a.last_edited_time).getTime()
+    const dateB = new Date(b.last_edited_time).getTime()
+    return dateB - dateA
+  })
   return blogs
 }
 export const collectAllTags = (blogs: IBlog[]) => {
@@ -69,12 +69,12 @@ export const getProjects = async (): Promise<IProject[]> => {
 
 // 获取指定页面 (page_id) 下的所有块，并将这些块内容以数组形式返回
 // 这里的块都为第一层的内容，不包含子块
-export const getAllBlocks = async (page_id: string, start_cursor?: string | null) => {
-  const blocks = await listBlocks(page_id, start_cursor)
+export const getAllBlocks = async (page_id: string, start_cursor?: string) => {
+  const blocks = await listBlocks(page_id, { start_cursor })
   const { results, has_more, next_cursor } = blocks
   const data = results as IBlockObjectResp[]
   if (has_more) {
-    const more_blocks = await getAllBlocks(page_id, next_cursor)
+    const more_blocks = await getAllBlocks(page_id, next_cursor || undefined)
     data.push(...more_blocks)
   }
   return data as IBlockObjectResp[]
