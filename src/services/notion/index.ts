@@ -1,6 +1,8 @@
-import { queryDatabase, retrievePage, listBlocks } from '@/services/notion/api'
-import { IPageObject, IBlock, IBlog, IProject, ITag, IBlockObjectResp } from '@/services/notion/types'
+import {NotionKit,IPageObject} from "@tachikomas/notion-kit"
+import { IBlock, IBlog, IProject, ITag, IBlockObjectResp } from '@/services/notion/types'
 import { formatProject, formatPageInfo, formatContent } from './format'
+const {notion, queryDatabase, retrievePage, retrieveBlockChildren }  = new NotionKit({ token: process.env.NOTION_TOKEN })
+export { notion, queryDatabase, retrieveBlockChildren, retrievePage }
 
 export const getBlogs = async (database_id: string): Promise<IBlog[]> => {
   const dbRes = await queryDatabase({
@@ -70,7 +72,7 @@ export const getProjects = async (): Promise<IProject[]> => {
 // 获取指定页面 (page_id) 下的所有块，并将这些块内容以数组形式返回
 // 这里的块都为第一层的内容，不包含子块
 export const getAllBlocks = async (page_id: string, start_cursor?: string) => {
-  const blocks = await listBlocks(page_id, { start_cursor })
+  const blocks = await retrieveBlockChildren(page_id, { start_cursor })
   const { results, has_more, next_cursor } = blocks
   const data = results as IBlockObjectResp[]
   if (has_more) {
@@ -114,12 +116,15 @@ export const calcListItems = (blocks: IBlock[]): IBlock[] => {
       // 否则，根据当前块的类型创建新的列表对象并加入到结果数组中
       if (block.type === 'bulleted_list_item') {
         acc.push({
+          // todo 待优化 这里手动生成一个 id
+          id: Math.random().toString(36),
           type: 'bulleted_list',
           has_children: true,
           children: [block],
         });
       } else if (block.type === 'numbered_list_item') {
         acc.push({
+          id: Math.random().toString(36),
           type: 'numbered_list',
           has_children: true,
           children: [block],
