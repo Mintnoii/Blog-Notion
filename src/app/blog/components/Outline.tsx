@@ -29,7 +29,7 @@ export default function Outline({content}: {content:IBlock[]}) {
   const anchors = content.filter((block:IBlock) => block.type === 'heading_2')
   return (
     <section className='hidden md:block'>
-      <div className="fixed w-full max-w-[12rem] flex flex-col h-100vh scrollbar-hide overflow-y-scroll opacity-60">
+      <div className="fixed w-full max-w-[12rem] flex flex-col h-100vh scrollbar-hide overflow-y-scroll opacity-85">
         <div className='text-center'>Outline</div>
         <Divider className="my-2" />
         { renderAnchrors(anchors)}

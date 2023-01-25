@@ -21,8 +21,8 @@ html {
   background: transparent !important;
 }
 
-
-:root {
+/* 覆盖 nextui 默认样式，更推荐在 tailwind.config.js 中覆盖 */
+/* :root {
   --background: theme('colors.white');
   --background-secondary: theme('colors.gray.50');
 
@@ -31,23 +31,23 @@ html {
   --primary-light: theme('colors.gray.500');
 
   --nextui-background: theme('colors.red.900');
-}
+} */
 /* dark theme styles go here */
-[data-theme='dark'] {
+/* [data-theme='dark'] {
   --nextui-background: theme('colors.gray.900');
   --background-secondary: theme('colors.gray.800');
 
   --primary-dark: theme('colors.gray.300');
   --primary-medium: theme('colors.gray.200');
   --primary-light: theme('colors.gray.100');
-}
+} */
 
 /* pink theme styles go here */
-[data-theme='pink'] {
+/* [data-theme='pink'] {
   --background: theme('colors.gray.900');
   --background-secondary: theme('colors.gray.800');
 
   --primary-dark: theme('colors.gray.300');
   --primary-medium: theme('colors.gray.200');
   --primary-light: theme('colors.gray.100');
-}
+} */

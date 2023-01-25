@@ -13,7 +13,7 @@ export const renderBlock = (block:any) => {
     case 'heading_3':
       const text = rich_text[0].content
       return (
-          <Link {...{color:'foreground'}} className={classnames('font-bold text-neutral-800 dark:text-neutral-300',{
+          <Link {...{color:'foreground'}} className={classnames('font-bold text-neutral-800 dark:text-neutral-100',{
             'text-3xl my-5': type === 'heading_1',
             'text-2xl my-4': type === 'heading_2',
             'text-xl my-3': type === 'heading_3',
@@ -23,7 +23,7 @@ export const renderBlock = (block:any) => {
       )
     case 'paragraph':
       return (
-        <p className="my-0.5 text-neutral-800 dark:text-neutral-300">
+        <p className="my-0.5 text-neutral-800 dark:text-neutral-100">
           <Text rich_text={rich_text} />
         </p>
       )
@@ -35,7 +35,7 @@ export const renderBlock = (block:any) => {
     )
      case 'bulleted_list_item':
       return (
-        <li className="ml-4 py-0.5 text-neutral-800 dark:text-neutral-300">
+        <li className="ml-4 py-0.5 text-neutral-800 dark:text-neutral-100">
           <Text rich_text={rich_text} />
           { has_children && (children.map((block:any) => (renderBlock(block))))}
         </li>
@@ -48,7 +48,7 @@ export const renderBlock = (block:any) => {
     )
     case 'numbered_list_item':
       return (
-        <li className="ml-4 py-0.5 text-neutral-800 dark:text-neutral-300">
+        <li className="ml-4 py-0.5 text-neutral-800 dark:text-neutral-100">
           <Text rich_text={rich_text} />
           { has_children && (children.map((block:any) => (renderBlock(block))))}
         </li>
@@ -98,11 +98,12 @@ export const renderBlock = (block:any) => {
       )
     case 'image':
       const src = image.type === 'external' ? image.external.url : image.file.url
-      const figcaption = caption.length >= 1 ? caption[0].plain_text : ''
+      // const figcaption = caption.length >= 1 ? caption[0].plain_text : ''
       return (
         <figure className="mt-0">
-          <img src={src} alt={figcaption} />
-          <figcaption className="text-center">{caption}</figcaption>
+          <img src={src} alt="" />
+          {/* <img src={src} alt={figcaption} /> */}
+          {/* <figcaption className="text-center">{caption}</figcaption> */}
         </figure>
       )
     case 'code':
