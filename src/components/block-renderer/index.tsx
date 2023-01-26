@@ -1,56 +1,72 @@
-import React, {Fragment} from 'react'
-import {Text} from '@/components/typography'
-import {CodeBlock,Link} from '@/components/ui'
-import {formatHashLink} from '@/utils'
+import React, { Fragment } from 'react'
+import { Text } from '@/components/typography'
+import { CodeBlock, Link, CustomAccordion } from '@/components/ui'
+import { formatHashLink } from '@/utils'
 import classnames from 'classnames'
 
+const renderHeading = (type: string, text: string) => {
+  return (
+    <Link {...{ color: 'foreground' }} className={classnames('font-bold text-neutral-800 dark:text-neutral-100', {
+      'text-3xl my-4': type === 'heading_1',
+      'text-2xl my-3': type === 'heading_2',
+      'text-xl my-2': type === 'heading_3',
+    })} id={formatHashLink(text)} href={`#${formatHashLink(text)}`}>
+      {text}
+    </Link>
+  )
+}
+
 //TODO: improve types here, cleanup the code
-export const renderBlock = (block:any) => {
-  const { id, type, rich_text, has_children, children,checked,image,caption,language,url} = block
+export const renderBlock = (block: any, options?: any) => {
+  // console.log(block, 'block');
+  const { id, type, rich_text, has_children, children, checked, image, caption, language, url } = block
+  const {isToggleContent=false} = options || {}
   switch (type) {
     case 'heading_1':
     case 'heading_2':
     case 'heading_3':
       const text = rich_text[0].content
-      return (
-          <Link {...{color:'foreground'}} className={classnames('font-bold text-neutral-800 dark:text-neutral-100',{
-            'text-3xl my-5': type === 'heading_1',
-            'text-2xl my-4': type === 'heading_2',
-            'text-xl my-3': type === 'heading_3',
-          })} id={formatHashLink(text)}  href={`#${formatHashLink(text)}`}>
-            {text}
-          </Link>
-      )
+      if (has_children) {
+        return (
+          <CustomAccordion itemProps={{ title: renderHeading(type, text) }}>
+            {children?.map((block: any) => (<Fragment key={block.id}>{renderBlock(block)}</Fragment>))}
+          </CustomAccordion>
+        )
+      } else {
+        return renderHeading(type, text)
+      }
     case 'paragraph':
       return (
-        <p className="my-0.5 text-neutral-800 dark:text-neutral-100">
+        <p className={classnames('my-0.5 text-neutral-800 dark:text-neutral-100',{
+          'pl-4': isToggleContent
+        })}>
           <Text rich_text={rich_text} />
         </p>
       )
     case 'bulleted_list':
       return (
         <ul className='list-disc'>
-           {children.map((block:any) => (renderBlock(block)))}
+          {children.map((block: any) => (renderBlock(block)))}
         </ul>
-    )
-     case 'bulleted_list_item':
+      )
+    case 'bulleted_list_item':
       return (
         <li className="ml-4 py-0.5 text-neutral-800 dark:text-neutral-100">
           <Text rich_text={rich_text} />
-          { has_children && (children.map((block:any) => (renderBlock(block))))}
+          {has_children && (children.map((block: any) => (renderBlock(block))))}
         </li>
       )
     case 'numbered_list':
       return (
         <ol className='list-decimal'>
-           {children.map((block:any) => (renderBlock(block)))}
+          {children.map((block: any) => (renderBlock(block)))}
         </ol>
-    )
+      )
     case 'numbered_list_item':
       return (
         <li className="ml-4 py-0.5 text-neutral-800 dark:text-neutral-100">
           <Text rich_text={rich_text} />
-          { has_children && (children.map((block:any) => (renderBlock(block))))}
+          {has_children && (children.map((block: any) => (renderBlock(block))))}
         </li>
       )
     case 'to_do':
@@ -71,19 +87,19 @@ export const renderBlock = (block:any) => {
           </label>
         </div>
       )
-     case 'toggle':
+    case 'toggle':
       return (
         <details>
-          <summary>
+          <summary className='cursor-pointer'>
             <Text rich_text={rich_text} />
           </summary>
-          {has_children && children.map((block:any) => (<Fragment key={block.id}>{renderBlock(block)}</Fragment>))}
+            {has_children && children.map((block: any) => (<Fragment key={block.id}>{renderBlock(block,{isToggleContent:true})}</Fragment>))}
         </details>
       )
     case 'quote':
       return (
         <blockquote className="rounded-r-lg border-l-gray-500 border-l-2 p-1 ps-2">
-         <Text rich_text={rich_text} />
+          <Text rich_text={rich_text} />
         </blockquote>
       )
     case 'child_page':
@@ -92,7 +108,7 @@ export const renderBlock = (block:any) => {
     case 'callout':
       return (
         <div className="rounded-lg flex space-x-4 bg-gray-50 p-3 text-slate-500 dark:bg-slate-800 dark:text-slate-400">
-           {block.icon && <span>{block.icon.emoji}</span>}
+          {block.icon && <span>{block.icon.emoji}</span>}
           <Text rich_text={rich_text} />
         </div>
       )
@@ -127,7 +143,7 @@ export const renderBlock = (block:any) => {
     case 'column':
       return (
         <div className='flex mx-1'>
-          {has_children && children.map((block:any) => (<Fragment key={block.id}>{renderBlock(block)}</Fragment>))}
+          {has_children && children.map((block: any) => (<Fragment key={block.id}>{renderBlock(block)}</Fragment>))}
         </div>
       )
     case 'divider':
@@ -135,38 +151,37 @@ export const renderBlock = (block:any) => {
         <hr className="bg-gray h-0.5 my-2 w-full dark:bg-slate-800"></hr>
       )
     default:
-      return `👾 Unsupported block (${
-        type === 'unsupported' ? 'unsupported by Notion API' : type
-      })`
+      return `👾 Unsupported block (${type === 'unsupported' ? 'unsupported by Notion API' : type
+        })`
   }
 }
-    // case 'embed':
-    //   const codePenEmbedKey = value.url.slice(value.url.lastIndexOf('/') + 1)
-    //   return (
-    //     <div>
-    //       <iframe
-    //         height="600"
-    //         className="w-full"
-    //         scrolling="no"
-    //         title="Postage from Bag End"
-    //         src={`https://codepen.io/thienjs/embed/preview/${codePenEmbedKey}?default-tab=result`}
-    //         frameBorder="no"
-    //         loading="lazy"
-    //         allowFullScreen={true}
-    //       >
-    //         See the Pen <a href={value.url}></a> by Thien Tran (
-    //         <a href="https://codepen.io/thienjs">@thienjs</a>) on{' '}
-    //         <a href="https://codepen.io">CodePen</a>.
-    //       </iframe>
-    //     </div>
-    //   )
-    // case 'table_of_contents':
-    //   return <div>TOC</div>
-    // case 'video':
-    //   return <YoutubeEmbed url={value.external.url} />
+// case 'embed':
+//   const codePenEmbedKey = value.url.slice(value.url.lastIndexOf('/') + 1)
+//   return (
+//     <div>
+//       <iframe
+//         height="600"
+//         className="w-full"
+//         scrolling="no"
+//         title="Postage from Bag End"
+//         src={`https://codepen.io/thienjs/embed/preview/${codePenEmbedKey}?default-tab=result`}
+//         frameBorder="no"
+//         loading="lazy"
+//         allowFullScreen={true}
+//       >
+//         See the Pen <a href={value.url}></a> by Thien Tran (
+//         <a href="https://codepen.io/thienjs">@thienjs</a>) on{' '}
+//         <a href="https://codepen.io">CodePen</a>.
+//       </iframe>
+//     </div>
+//   )
+// case 'table_of_contents':
+//   return <div>TOC</div>
+// case 'video':
+//   return <YoutubeEmbed url={value.external.url} />
 
-export const renderBlocks = (blocks:any) => {
-  return blocks.map((block:any) => (
+export const renderBlocks = (blocks: any) => {
+  return blocks.map((block: any) => (
     <div key={block.id}>
       {renderBlock(block)}
     </div>
