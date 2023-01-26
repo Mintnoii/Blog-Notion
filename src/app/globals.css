@@ -10,19 +10,6 @@
 html {
   overflow-y: scroll;
 }
-:root {
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
-:root body {
-  position: absolute;
-}
-
-body {
-  width: 100vw;
-  overflow: hidden;
-}
 
 *::-webkit-scrollbar {
   width: 6px !important;
@@ -42,7 +29,7 @@ body {
 
 @layer components {
   .content-wrapper {
-    @apply break-words max-w-xs md:max-w-lg lg:max-w-xl xl:max-w-2xl;
+    @apply max-w-xs break-words md:max-w-lg lg:max-w-xl xl:max-w-2xl;
   }
 }
 
