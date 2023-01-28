@@ -1,8 +1,8 @@
 import React from "react"
 import {Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button} from "@nextui-org/react"
 import { Bars3Icon } from '@heroicons/react/24/outline'
-import { MENU_DATA } from '@/constants/nav'
 import { useRouter } from 'next/navigation'
+import { MENU_DATA } from './data'
 
 export default function App() {
   const router = useRouter()
