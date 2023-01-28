@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-// import Navbar from '@/modules/navbar'
 import Nav from '@/modules/nav/index'
 
 import { Providers } from '@/app/providers'
@@ -22,11 +21,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning className='scroll-smooth scroll-pt-16'>
-      <body className='min-h-screen pb-12'>
+      <body className='min-w-mini min-h-screen pb-12'>
         <Providers>
           <div className="flex flex-col ">
             <Nav/>
-            {/* <Navbar /> */}
             <main className="flex w-full relative justify-center">
               {children}
             </main>
