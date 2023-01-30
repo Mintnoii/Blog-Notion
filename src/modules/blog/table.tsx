@@ -64,7 +64,7 @@ export default function BlogTable({ blogs }: IBlogTable) {
       removeWrapper
       selectionMode="single"
       bottomContent={
-        <div className="flex w-full justify-center">
+        <div className="flex w-full">
           <Pagination
             variant="light"
             showControls
