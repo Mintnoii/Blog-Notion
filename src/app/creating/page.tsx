@@ -1,6 +1,6 @@
 import { Title, Description } from '@/components/typography'
 import {getProjects} from '@/services/notion'
-import ProjectsPanel from '@/app/creating/components/ProjectsPanel'
+import ProjectCards from '@/modules/project/cards'
 
 const CreatingPage = async () => {
   const projects = await getProjects()
@@ -14,7 +14,7 @@ const CreatingPage = async () => {
           {`Things I've made trying to put my dent in the universe.`}
         </Description>
       </header>
-      <ProjectsPanel projects={projects}/>
+      <ProjectCards projects={projects}/>
       {/* {JSON.stringify(projects)} */}
     </section>
   )

@@ -5,7 +5,7 @@ import { IProject } from "@/services/notion/types"
 // import NextImage from "next/image"
 import { Link } from '@/components/ui'
 
-export default function ProjectsPanel({ projects }: { projects: IProject[] }) {
+export default function ProjectCards({ projects }: { projects: IProject[] }) {
   return (
     <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
       {projects.map((project) => (
