@@ -9,13 +9,13 @@ export default function ProjectCards({ projects }: { projects: IProject[] }) {
   return (
     <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
       {projects.map((project) => (
-        <Card className="flex-auto max-w-sm relative" isBlurred shadow="none" radius="sm" key={project.id}>
-          <CardHeader>
+        <Card className="flex-auto max-w-sm relative" radius="sm" key={project.id}>
+          <CardHeader className="p-0">
             <Image
               removeWrapper
-              alt="Card background"
-              className="w-full h-36 object-cover"
-              src={project.cover}
+              alt="project cover"
+              className="w-full h-36 object-cover rounded-none"
+              src={project.cover_url}
             />
           </CardHeader>
           <CardBody>
