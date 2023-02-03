@@ -14,7 +14,7 @@ export default function ProjectCards({ projects }: { projects: IProject[] }) {
             <Image
               removeWrapper
               alt="project cover"
-              className="w-full h-36 object-cover rounded-none"
+              className="w-full h-36 object-cover rounded-sm"
               src={project.cover_url}
             />
           </CardHeader>
