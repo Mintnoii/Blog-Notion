@@ -1,8 +1,8 @@
 import {collectAllTags } from '@/services/notion'
 import {getPublishedBlogs } from '@/api'
 import { Title, Description } from '@/components/typography'
-// import BlogPanel from '@/app/blog/components/BlogPanel'
-import BlogTable from '@/modules/blog/table'
+// import BlogPanel from '@/components/blog-panel'
+import BlogTable from '@/components/blog-table'
 const BlogPage = async () => {
   const blogs = await getPublishedBlogs()
   // console.log(blogs,'blogs')

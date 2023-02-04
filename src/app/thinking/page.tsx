@@ -1,23 +1,27 @@
+import {collectAllTags } from '@/services/notion'
+import {getThinking } from '@/api'
 import { Title, Description } from '@/components/typography'
-import {getProjects} from '@/services/notion'
-import ProjectCards from '@/modules/project/cards'
+// import BlogPanel from '@/components/blog-panel'
+import BlogTable from '@/components/blog-table'
+const BlogPage = async () => {
+  const blogs = await getThinking()
+  // console.log(blogs,'blogs')
+  const allTags = await collectAllTags(blogs)
 
-const CreatingPage = async () => {
-  // const projects = await getProjects()
-  // console.log(projects,'projects');
   return (
-    <section className='w-full max-w-xs md:max-w-lg lg:max-w-xl xl:max-w-2xl pb-10'>
+    <section className='max-w-xs w-full md:max-w-lg lg:max-w-xl xl:max-w-2xl'>
       <header>
-        <Title>Thinking</Title>
+        <Title>Blog</Title>
         <Description
         >
-          {`To learn without thinking is confusing`}
+          This is where I write about programming, tech, life, and everything in
+          between.
         </Description>
       </header>
-      {/* <ProjectCards projects={projects}/> */}
-      {/* {JSON.stringify(projects)} */}
-    </section>
+      <BlogTable  blogs={blogs} />
+      {/* <BlogPanel blogs={blogs} tags={allTags}/> */}
+  </section>
   )
 }
 
-export default CreatingPage
+export default BlogPage

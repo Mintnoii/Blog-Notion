@@ -4,7 +4,6 @@ import { IBlock } from '@/services/notion/types'
 import {Divider,Listbox, ListboxItem} from "@nextui-org/react"
 
 const renderAnchrors = (anchors:IBlock[]) => {
-  if(anchors.length) {
     return (
       <Listbox aria-label="outline">
         {anchors.map((anchor:any) => (
@@ -16,17 +15,11 @@ const renderAnchrors = (anchors:IBlock[]) => {
         ))}
       </Listbox>
     )
-  }else{
-    return (
-      <div className="text-gray-600 dark:text-gray-400 text-sm py-2">
-        This article has no outline.
-      </div>
-    )
-  }
 }
 
 export default function Outline({content}: {content:IBlock[]}) {
   const anchors = content.filter((block:IBlock) => block.type === 'heading_2')
+  if(!anchors.length) return null
   return (
     <section className='hidden md:block'>
       <div className="fixed w-full max-w-[12rem] flex flex-col h-100vh scrollbar-hide overflow-y-scroll opacity-85">
