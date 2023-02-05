@@ -22,7 +22,7 @@ export default function Outline({content}: {content:IBlock[]}) {
   if(!anchors.length) return null
   return (
     <section className='hidden md:block'>
-      <div className="fixed w-full max-w-[12rem] flex flex-col h-100vh scrollbar-hide overflow-y-scroll opacity-85">
+      <div className="fixed w-full max-w-[12rem] ml-3 flex flex-col h-100vh scrollbar-hide overflow-y-scroll opacity-85">
         <div className='text-center'>Outline</div>
         <Divider className="my-2" />
         { renderAnchrors(anchors)}

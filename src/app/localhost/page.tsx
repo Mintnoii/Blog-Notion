@@ -2,8 +2,7 @@ import { getPage } from '@/services/notion'
 import {renderBlocks} from '@/components/block-renderer'
 import { MotionDiv } from "@/components/views"
 import { Title, Description } from '@/components/typography'
-import Outline from '@/app/blog/components/Outline'
-
+import Outline from '@/components/outline-list'
 export default async function LocalhostPage() {
   const page = await getPage(process.env.NOTION_LOCALHOST_PAGE_ID || '')
   return (
