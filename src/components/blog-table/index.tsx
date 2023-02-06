@@ -2,7 +2,7 @@
 import React, { Key } from "react";
 import { useRouter } from 'next/navigation'
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Pagination, getKeyValue } from "@nextui-org/react";
-import { ITag, IBlog } from '@/services/notion/types'
+import { IBlog } from '@/services/notion/types'
 interface IBlogTable {
   blogs: IBlog[],
 }
@@ -64,18 +64,17 @@ export default function BlogTable({ blogs }: IBlogTable) {
       removeWrapper
       selectionMode="single"
       bottomContent={
+        pages > 1 &&
         <div className="flex w-full">
           <Pagination
             variant="light"
-            showControls
-            color="default"
             page={page}
             total={pages}
             classNames={{
-        // item: "w-8 h-8 text-small rounded-none bg-transparent",
-        cursor:
-          "bg-transparent text-primary font-bold",
-      }}
+              prev: "bg-transparent text-default font-bold",
+              // item: "w-8 h-8 text-small rounded-none bg-transparent",
+              cursor: "bg-transparent font-bold",
+            }}
             onChange={(page: any) => setPage(page)}
           />
         </div>

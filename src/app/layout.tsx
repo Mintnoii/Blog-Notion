@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import Nav from '@/themes/nav/index'
+import {Nav} from '@/themes'
 
 import { Providers } from '@/app/providers'
 // import Footer from '~/components/ui/Footer'
