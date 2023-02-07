@@ -21,8 +21,8 @@ export const MENU_DATA = [
     path: '/localhost',
     label: 'localhost',
   },
-  {
-    path: '/about',
-    label: 'about',
-  },
+  // {
+  //   path: '/about',
+  //   label: 'about',
+  // },
 ]
