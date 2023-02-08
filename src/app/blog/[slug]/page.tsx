@@ -1,4 +1,4 @@
-import {getPublishedBlogs,getPage } from '@/services/notion'
+import {getPublishedPosts,getPage } from '@/services/notion'
 import {renderBlocks} from '@/components/block-renderer'
 import { Title, Description } from '@/components/typography'
 import Outline from '@/components/outline-list'
@@ -8,8 +8,8 @@ interface Props {
   }
 }
 export async function generateStaticParams() {
-  const blogs = await getPublishedBlogs()
-  return blogs.map((blog) => ({ slug: blog.id}))
+  const posts = await getPublishedPosts()
+  return posts.map((post) => ({ slug: post.id}))
 }
 
 const BlogSlugPage = async ({ params }: Props) => {

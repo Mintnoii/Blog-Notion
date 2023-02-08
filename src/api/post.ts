@@ -1,5 +1,5 @@
 import {NotionKit,IPageObject} from "@tachikomas/notion-kit"
-import { IBlock, IBlog, IProject, ITag, IBlockObjectResp } from '@/services/notion/types'
+import { IBlock, IPost, IProject, ITag, IBlockObjectResp } from '@/services/notion/types'
 import { formatProject, formatPageInfo, formatContent } from './format'
 const {notion, queryDatabase, retrievePage, retrieveBlockChildren }  = new NotionKit({ token: process.env.NOTION_TOKEN })
 export { notion, queryDatabase, retrieveBlockChildren, retrievePage }
@@ -7,27 +7,27 @@ export { notion, queryDatabase, retrieveBlockChildren, retrievePage }
 
 /**
  * 获取所有已发布的博客文章
- * @returns {Promise<IBlog[]>} 返回一个包含所有已发布博客文章的Promise
+ * @returns {Promise<IPost[]>} 返回一个包含所有已发布博客文章的Promise
  */
-export const getPublishedBlogs = async () => {
+export const getPublishedPosts = async () => {
   // 从环境变量中获取已发布博客的 ID 列表
-  const blogsIds: string[] = JSON.parse(process.env.NOTION_BLOGS_IDS || '[]');
+  const postIds: string[] = JSON.parse(process.env.NOTION_BLOGS_IDS || '[]');
   // 构建 Promise 数组，每个 Promise 代表获取一个博客的异步操作
-  const promiseArr = blogsIds.map((id: string) => getBlogs(id));
+  const promiseArr = postIds.map((id: string) => getBlogs(id));
   // 使用 Promise.allSettled 等待所有异步操作完成
   const results = await Promise.allSettled(promiseArr);
   // 从 Promise 结果中提取已成功获取的博客数据，合并成一个数组，并按最后编辑时间降序排序
-  const blogs = results.map((result: PromiseSettledResult<IBlog[]>) => result.status === 'fulfilled' ? result.value : []).flat().sort((a, b) => {
+  const posts = results.map((result: PromiseSettledResult<IPost[]>) => result.status === 'fulfilled' ? result.value : []).flat().sort((a, b) => {
     const dateA = new Date(a.last_edited_time).getTime()
     const dateB = new Date(b.last_edited_time).getTime()
     return dateB - dateA
   })
-  return blogs
+  return posts
 }
 
 
-export const collectAllTags = (blogs: IBlog[]) => {
-  return blogs.reduce((allTags, item) => {
+export const collectAllTags = (posts: IPost[]) => {
+  return posts.reduce((allTags, item) => {
     item.tags?.forEach(tag => {
       const isTagAlreadyAdded = allTags.some(existingTag => existingTag.name === tag.name);
       if (!isTagAlreadyAdded) {
@@ -38,7 +38,7 @@ export const collectAllTags = (blogs: IBlog[]) => {
   }, [] as ITag[])
 }
 
-async function getBlogs(database_id: string): Promise<IBlog[]> {
+async function getBlogs(database_id: string): Promise<IPost[]> {
   const dbRes = await queryDatabase({
     database_id,
     filter: {

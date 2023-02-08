@@ -15,7 +15,7 @@ export interface IDataItem {
   last_edited_time: string
 }
 
-export interface IBlog extends IDataItem {
+export interface IPost extends IDataItem {
   tags?: any[]
 }
 

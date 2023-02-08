@@ -8,8 +8,8 @@ export const NAV_DATA = [
     label: 'blog',
   },
   {
-    path: '/thinking',
-    label: 'thinking',
+    path: '/notes',
+    label: 'notes',
   },
   {
     path: '/creating',

@@ -1,5 +1,5 @@
 import * as R from 'remeda'
-import { IBlog,  IStatus, IStatusName, IProject, IBlock, IBlockObjectResp } from '@/services/notion/types'
+import { IPost,  IStatus, IStatusName, IProject, IBlock, IBlockObjectResp } from '@/services/notion/types'
 import {IPageObject,IRichTextItem, convertBlock} from "@tachikomas/notion-kit"
 
 const formatTextRichText = (text_rich_text: IRichTextItem[]) => {
@@ -24,7 +24,7 @@ export const formatProject = (page: IPageObject): IProject => {
     last_edited_time: formatDate(page.last_edited_time),
   }
 }
-export const formatPageInfo = (page: IPageObject): IBlog => {
+export const formatPageInfo = (page: IPageObject): IPost => {
   const tags = R.pathOr(page, ['properties', 'Tags', 'multi_select'], []) as any[]
   return {
     id: page.id,
