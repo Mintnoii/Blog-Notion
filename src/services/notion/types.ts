@@ -13,6 +13,7 @@ export interface IDataItem {
   name: string
   cover: string
   last_edited_time: string
+  created_time?: string
 }
 
 export interface IPost extends IDataItem {

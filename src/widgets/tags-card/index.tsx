@@ -8,11 +8,11 @@ import {Card, CardBody,Button} from "@nextui-org/react";
 import {ITag} from '@/services/notion/types'
 interface ITagsCard {
   tags: ITag[],
-  onTagChange: (tag:string) => void
+  onTagChange?: (tag:string) => void
 }
 const TagsCard = ({tags, onTagChange}:ITagsCard) => {
   const [theTagId, setTheTagId] = useState<string>('')
-  useEffect(() => onTagChange(theTagId),[theTagId])
+  // useEffect(() => onTagChange(theTagId),[theTagId])
   return (
     <Card>
       <CardBody className='flex flex-row flex-wrap p-3'>

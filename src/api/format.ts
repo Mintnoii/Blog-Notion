@@ -30,6 +30,7 @@ export const formatPageInfo = (page: IPageObject): IPost => {
     id: page.id,
     name: (R.pathOr(page, ['properties', 'Page', 'title'], []) as IRichTextItem[])?.[0]?.text?.content || '',
     cover: R.pathOr(page, ['cover', 'file', 'url'], '') as string,
+    created_time: formatDate(page.created_time),
     last_edited_time: formatDate(page.last_edited_time),
     tags
   }

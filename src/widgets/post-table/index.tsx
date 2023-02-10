@@ -43,9 +43,9 @@ export default function PostTable({ posts }: IPostTable) {
     //     </div>
     //   )
     // }
-    // if (columnKey === "last_edited_time") {
-    //   return <div className="text-sm text-gray-500">{cellValue}</div>;
-    // }
+    if (columnKey === "created_time") {
+      return <div className="text-sm text-gray-500">{cellValue}</div>;
+    }
     return null;
   }
     , []);
@@ -87,7 +87,7 @@ export default function PostTable({ posts }: IPostTable) {
       <TableHeader>
         <TableColumn key="name">名称</TableColumn>
         {/* <TableColumn key="tags">标签</TableColumn> */}
-        <TableColumn key="last_edited_time">最后更新</TableColumn>
+        <TableColumn key="created_time">创建时间</TableColumn>
       </TableHeader>
       <TableBody items={items}>
         {(item) => (
