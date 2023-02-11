@@ -4,10 +4,6 @@ export const NAV_DATA = [
     label: 'home',
   },
   {
-    path: '/blog',
-    label: 'blog',
-  },
-  {
     path: '/notes',
     label: 'notes',
   },

@@ -43,10 +43,6 @@ export const collectAllTags = (posts: IPost[]) => {
 /**
  * 获取开源项目数据
  */
-export const getThinking = async () => (getBlogs(process.env.NOTION_THINKING_PAGE_ID || ''))
-/**
- * 获取开源项目数据
- */
 export const getProjects = async (): Promise<IProject[]> => {
   const dbRes = await queryDatabase({
     database_id: process.env.NOTION_PROJECTS_PAGE_ID || '',
