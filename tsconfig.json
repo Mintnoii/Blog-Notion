@@ -20,6 +20,6 @@
     "typeRoots": ["./node_modules/@types"],
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx","site.config.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx","site.config.ts", "lib/server.ts"],
   "exclude": ["node_modules"]
 }
