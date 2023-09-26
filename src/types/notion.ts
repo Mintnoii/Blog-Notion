@@ -22,6 +22,7 @@ export type IBlockType = BlockObjectResponse['type']
 // }
 
 export interface IListBlock {
+  id: string
   type: IList
   has_children: boolean
   children: IBlockObject[]

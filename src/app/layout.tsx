@@ -1,6 +1,6 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import Navbar from '@/components/Navbar'
+import Navbar from '@/modules/navbar'
 import { Providers } from '@/app/providers'
 // import Footer from '~/components/ui/Footer'
 // import { ScrollToTop } from '../features/scroll'
@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className='scroll-pt-16'>
       <body className="bg-white text-black dark:bg-black dark:text-white">
         <Providers>
           <div className="flex relative flex-col">

@@ -6,7 +6,7 @@ const BlogPage = async () => {
   const blogs = await getPublishedBlogs()
 
   return (
-    <section className='max-w-2xl break-all md:max-w-lg lg:max-w-xl xl:max-w-2xl'>
+    <section className='max-w-xs md:max-w-lg lg:max-w-xl xl:max-w-2xl '>
       <header>
         <Title>Blog</Title>
         <Description
@@ -19,8 +19,7 @@ const BlogPage = async () => {
         {blogs.map((article) => (
           <BlogCard key={article.id} article={article}></BlogCard>
         ))}
-        {/* <ArticleList articles={blogs} /> */}
-          {/* <Image src={result.cover?.external?.url} width={300} height={200} alt="Picture of the author" /> */}
+        {/* <Image src={result.cover?.external?.url} width={300} height={200} alt="Picture of the author" /> */}
       </div>
   </section>
   )

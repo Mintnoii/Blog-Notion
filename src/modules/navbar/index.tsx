@@ -4,20 +4,20 @@ import { usePathname } from 'next/navigation'
 import * as React from 'react'
 import { navData } from '@/constants/nav'
 import { motion } from 'framer-motion'
-import ThemeSwitch from '@/features/ThemeSwitch'
+import ThemeSwitch from '@/modules/navbar/components/ThemeSwitch'
 import classnames from 'classnames'
+import Menu from '@/modules/navbar/components/Menu'
 // import CommandPalette from '~/components/features/command-palette/CommandPalette'
-// import DropMenu from './DropMenu'
 // import AuthButton from '../auth/AuthButton'
 // import { TBoxIcon } from '../icons/t-box'
 
-export default function Navbar() {
+const Navbar = () => {
   const pathname = usePathname()
   const [activeIndex, setActiveIndex] = React.useState<number|null>(null)
   // const [isOpen, setisOpen] = React.useState()
   return (
-    <nav className="flex w-full z-40 h-16 sticky top-0 inset-x-0 backdrop-blur-lg backdrop-saturate-150 bg-background/70">
-      <div className="flex flex-row justify-between w-full mx-auto  items-center md:max-w-3xl sm:max-w-2xl">
+    <nav className="flex z-40 h-16 sticky top-0 inset-x-0 backdrop-blur-lg backdrop-saturate-150 bg-background/70">
+      <div className="flex justify-between w-full mx-auto max-w-xs md:max-w-lg lg:max-w-xl xl:max-w-2xl items-center">
         <motion.button whileHover={{ scale: 1.2, transition: { duration: 0.2 }}}>
           <span className='font-bold'>Mintnoii</span>
         </motion.button>
@@ -50,9 +50,7 @@ export default function Navbar() {
                       {isActive && (
                         <motion.span
                           layoutId="shadow"
-                          transition={{
-                            duration: 0.2,
-                          }}
+                          transition={{ duration: 0.2 }}
                           className={classnames(
                             'pointer-events-none absolute inset-0 z-0 rounded-md',
                             ['bg-zinc-300'],
@@ -68,9 +66,10 @@ export default function Navbar() {
         <div className="flex ">
           {/* <CommandPalette navigation={navigation} /> */}
           <ThemeSwitch />
-          {/* <DropMenu /> */}
+          {/* <Menu /> */}
         </div>
       </div>
     </nav>
   )
 }
+export default Navbar

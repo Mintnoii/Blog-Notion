@@ -51,7 +51,7 @@ export default function Hero() {
           Qing
         </motion.div>
       </div>
-      <div className="font-serif mt-8 text-md text-gray-800 dark:text-neutral-400  ">
+      <div className="font-serif mt-8 text-md text-neutral-800 dark:text-gray-300">
         <motion.div
           initial="hidden"
           animate="visible"
