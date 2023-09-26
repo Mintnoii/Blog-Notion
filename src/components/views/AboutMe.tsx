@@ -19,11 +19,10 @@ export const AboutMe = () => {
               y: 0
             },
           }}
-          className="mt-4 mr-4 ml-2 h-16 w-16 "
         >
-          <Avatar src="./mintnoii.jpg" className='w-20 h-20 rounded-md'/>
+          <Avatar src="./mintnoii.jpg" className='w-20 h-20 rounded-md mr-4 ml-2'/>
         </motion.div>
-        <div className="ml-2 mt-4">
+        <div>
           <motion.div
             initial="hidden"
             animate="visible"
