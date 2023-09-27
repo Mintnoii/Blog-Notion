@@ -1,9 +1,9 @@
 import {formatPageInfo, formatContent} from '@/lib/transformer'
 import {queryDatabase, retrievePage, listBlocks} from '@/lib/notion'
-import { IArticle } from '@/types/data'
+import { IBlog, ITag } from '@/types/data'
 import { IPageObject,IBlock,IBlockObject, IBlockObjectResp, IList } from '@/types/notion'
 
-export const getBlogs = async (database_id:string):Promise<IArticle[]> => {
+export const getBlogs = async (database_id:string):Promise<IBlog[]> => {
   const dbRes = await queryDatabase({
     database_id,
     filter: {
@@ -15,12 +15,22 @@ export const getBlogs = async (database_id:string):Promise<IArticle[]> => {
   })
   return dbRes.results.map((page) => formatPageInfo(page as IPageObject))
 }
-
+export const collectAllTags = (blogs:IBlog[]) => {
+  return blogs.reduce((allTags, item) => {
+    item.tags?.forEach(tag => {
+      const isTagAlreadyAdded = allTags.some(existingTag => existingTag.name === tag.name);
+      if (!isTagAlreadyAdded) {
+        allTags.push(tag)
+      }
+    })
+    return allTags
+  }, [] as ITag[])
+}
 export const getPublishedBlogs = async () => {
   const blogsIds:string[] = JSON.parse(process.env.NOTION_BLOGS_IDS || '[]')
   const promiseArr = blogsIds.map((id:string) => getBlogs(id))
   const results = await Promise.allSettled(promiseArr)
-  const blogs = results.map((result:PromiseSettledResult<IArticle[]>) => result.status === 'fulfilled' ? result.value : []).flat()
+  const blogs = results.map((result:PromiseSettledResult<IBlog[]>) => result.status === 'fulfilled' ? result.value : []).flat()
   return blogs
 }
 // 获取指定页面 (page_id) 下的所有块，并将这些块内容以数组形式返回

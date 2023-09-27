@@ -25,7 +25,7 @@ export default function RootLayout({
         <Providers>
           <div className="flex relative flex-col">
             <Navbar />
-            <main className="relative flex mx-auto min-h-[calc(100vh_-_64px)]">
+            <main className="relative flex justify-center w-full min-h-[calc(100vh_-_64px)]">
               {children}
             </main>
               {/* <Footer /> */}

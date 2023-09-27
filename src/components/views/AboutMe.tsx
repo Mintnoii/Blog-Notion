@@ -75,7 +75,7 @@ export const AboutMe = () => {
             }}
             className="text-sm text-gray-500 dark:text-neutral-500"
           >
-            mintnoiiqing@gmail.me
+            mintnoiiqing@gmail.com
           </motion.div>
         </div>
       </div>

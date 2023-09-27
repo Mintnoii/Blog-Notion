@@ -1,4 +1,4 @@
-export interface IArticle {
+export interface IBlog {
   id: string
   name: string
   cover_image: string
@@ -15,4 +15,10 @@ export interface IContentBlock {
   text?: string
   color?: string
 
+}
+
+export interface ITag {
+  id: string
+  name: string
+  color: string
 }

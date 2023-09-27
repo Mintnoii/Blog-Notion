@@ -1,5 +1,5 @@
 import * as R from 'remeda'
-import { IArticle } from '@/types/data'
+import { IBlog } from '@/types/data'
 import { IPageObject,IRichTextItem,IBlockObject, IBlockObjectResp } from '@/types/notion'
 import { ChildPageBlockObjectResponse,TextRichTextItemResponse,ToDoBlockObjectResponse, CalloutBlockObjectResponse, ImageBlockObjectResponse, CodeBlockObjectResponse, BookmarkBlockObjectResponse, LinkPreviewBlockObjectResponse,ColumnListBlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 
@@ -18,7 +18,7 @@ export const formatDate = (timestamp: string): string => {
   return formattedDate
 }
 
-export const formatPageInfo = (page:IPageObject):IArticle => {
+export const formatPageInfo = (page:IPageObject):IBlog => {
   const cover_image =  R.pathOr(page, ['cover','external','url'],'') as string
   const tags = R.pathOr(page, ['properties','Tags','multi_select'],[]) as any[]
   return {
