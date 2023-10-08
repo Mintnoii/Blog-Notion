@@ -128,7 +128,7 @@ export const renderBlock = (block:any) => {
     case 'bookmark':
       const content = caption?.length ? caption[0].plain_text : url
       return (
-        <Link href={url} isExternal showAnchorIcon>
+        <Link href={url} isExternal className='block text-sm break-words'>
           {content}
         </Link>
       )

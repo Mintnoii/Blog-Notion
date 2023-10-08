@@ -7,7 +7,7 @@ const BlogPage = async () => {
   const allTags = await collectAllTags(blogs)
 
   return (
-    <section className='w-full max-w-xs md:max-w-lg lg:max-w-xl xl:max-w-2xl '>
+    <section className='w-full max-w-xs md:max-w-lg lg:max-w-xl xl:max-w-2xl pb-10'>
       <header>
         <Title>Blog</Title>
         <Description

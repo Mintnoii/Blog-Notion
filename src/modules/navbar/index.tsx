@@ -1,5 +1,6 @@
 'use client'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { usePathname } from 'next/navigation'
 import * as React from 'react'
 import { navData } from '@/constants/nav'
@@ -14,6 +15,8 @@ import Menu from '@/modules/navbar/Menu'
 
 const Navbar = () => {
   const pathname = usePathname()
+  const router = useRouter()
+
   // const [isOpen, setisOpen] = React.useState()
   return (
     <nav className="flex justify-center z-40 h-16 sticky top-0 inset-x-0 backdrop-blur-lg backdrop-saturate-150 bg-background/70">
@@ -31,12 +34,15 @@ const Navbar = () => {
                   'font-semibold text-gray-900 underline decoration-cyan-400 decoration-2 underline-offset-1 dark:text-gray-300 ': isCurrent,
                   'font-normal text-gray-700 dark:text-gray-400': !isCurrent
                 })
-              return (<ListboxItem className="w-fit mx-0.5 inline-block" key={item.path}>
-                <Link href={item.path} passHref className="text-gray-600 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white"
-                >
-                  <span className={linkSpanStyle}>
-                    {item.label}
-                  </span></Link></ListboxItem>)
+              return (
+                <ListboxItem className="w-fit mx-0.5 inline-block" key={item.path} onClick={() => router.push(item.path)}>
+                  <Link href={item.path} passHref className="text-gray-600 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white">
+                    <span className={linkSpanStyle}>
+                      {item.label}
+                    </span>
+                  </Link>
+                </ListboxItem>
+              )
             })
           }
         </Listbox>
