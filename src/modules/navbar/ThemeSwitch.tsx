@@ -2,6 +2,7 @@
 import { useTheme } from 'next-themes'
 import { SunIcon, MoonIcon } from '@heroicons/react/24/outline'
 import useHasMounted from '@/hooks/useHasMounted'
+import {Button} from "@nextui-org/react"
 
 export default function ThemeSwitch() {
   const { resolvedTheme, setTheme } = useTheme()
@@ -14,9 +15,10 @@ export default function ThemeSwitch() {
     setTheme(resolvedTheme === 'light' ? 'dark' : 'light')
 
   return (
-    <button
-      className="rounded-md cursor-pointer flex bg-zinc-300 h-8 mx-1 p-2 transition ease-in-out ring-neutral-400 w-8 duration-200 items-center justify-center dark:bg-zinc-700 hover:bg-zinc-300 hover:ring-2 dark:hover:bg-zinc-800 "
-      type="button"
+    <Button
+      isIconOnly
+      variant="light"
+      size="sm"
       aria-label={`switch to ${isDarkTheme ? 'light' : 'dark'} mode`}
       onClick={toggleTheme}
     >
@@ -29,6 +31,6 @@ export default function ThemeSwitch() {
           )}
         </>
       )}
-    </button>
+    </Button>
   )
 }
