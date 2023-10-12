@@ -1,4 +1,4 @@
-import {getPublishedBlogs, collectAllTags } from '@/api'
+import {getPublishedBlogs, collectAllTags } from '@/services/notion'
 import { Title, Description } from '@/components/typography'
 import BlogPanel from '@/app/blog/components/BlogPanel'
 

@@ -1,12 +1,12 @@
 import { Client } from '@notionhq/client'
-import { QueryDatabaseParameters,BlockObjectResponse,GetPageResponse } from '@notionhq/client/build/src/api-endpoints'
+import { QueryDatabaseParameters, BlockObjectResponse, GetPageResponse } from '@notionhq/client/build/src/api-endpoints'
 const notion = new Client({ auth: process.env.NOTION_TOKEN })
 
-export const queryDatabase = (params:QueryDatabaseParameters) => notion.databases.query(params)
+export const queryDatabase = (params: QueryDatabaseParameters) => notion.databases.query(params)
 
-export const retrievePage = (page_id:string) => notion.pages.retrieve({ page_id })
+export const retrievePage = (page_id: string) => notion.pages.retrieve({ page_id })
 
-export const listBlocks = async (block_id:string, start_cursor?:string|null) => {
+export const listBlocks = async (block_id: string, start_cursor?: string | null) => {
   const response = await notion.blocks.children.list({
     block_id,
     start_cursor: start_cursor || undefined,

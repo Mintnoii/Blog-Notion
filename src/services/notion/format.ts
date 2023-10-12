@@ -1,15 +1,9 @@
 import * as R from 'remeda'
-import { IBlog } from '@/types/data'
-import { IPageObject,IRichTextItem,IBlockObject, IBlockObjectResp } from '@/types/notion'
-import { ChildPageBlockObjectResponse,TextRichTextItemResponse,ToDoBlockObjectResponse, CalloutBlockObjectResponse, ImageBlockObjectResponse, CodeBlockObjectResponse, BookmarkBlockObjectResponse, LinkPreviewBlockObjectResponse,ColumnListBlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
+import { ChildPageBlockObjectResponse, TextRichTextItemResponse, ToDoBlockObjectResponse, CalloutBlockObjectResponse, ImageBlockObjectResponse, CodeBlockObjectResponse, BookmarkBlockObjectResponse, LinkPreviewBlockObjectResponse, PageObjectResponse } from '@notionhq/client/build/src/api-endpoints'
+import { IRichTextItem, ITextRichText, IBlog, IPageObject, IStatus, IStatusName, IProject, IBlockObject, IBlockObjectResp } from '@/services/notion/types'
 
-const getTextContent = (RichTextItems:IRichTextItem[]) => {
-  const theItem = RichTextItems[0] as TextRichTextItemResponse
-  return theItem?.text?.content || ''
-}
-
-export function formatHashLink(link_text: string) {
-  return link_text.toLowerCase().replace(/ /g, '-')
+const formatTextRichText = (text_rich_text: ITextRichText[]) => {
+  return text_rich_text.map(item => (item.text.content)).join('')
 }
 
 export const formatDate = (timestamp: string): string => {
@@ -18,19 +12,31 @@ export const formatDate = (timestamp: string): string => {
   return formattedDate
 }
 
-export const formatPageInfo = (page:IPageObject):IBlog => {
-  const cover_image =  R.pathOr(page, ['cover','external','url'],'') as string
-  const tags = R.pathOr(page, ['properties','Tags','multi_select'],[]) as any[]
+export const formatProject = (page: IPageObject): IProject => {
   return {
     id: page.id,
-    name: getTextContent(R.pathOr(page, ['properties','Page','title'],[]) as IRichTextItem[]),
-    cover_image,
+    name: formatTextRichText(R.pathOr(page, ['properties', 'Name', 'title'], []) as ITextRichText[]),
+    cover: R.pathOr(page, ['cover', 'file', 'url'], '') as string,
+    icon: R.pathOr(page, ['icon', 'file', 'url'], '') as string,
+    github: R.pathOr(page, ['properties', 'github', 'url'], '') as string,
+    status: (page.properties.Status as IStatus).status?.name as IStatusName,
+    intro: formatTextRichText(R.pathOr(page, ['properties', 'intro', 'rich_text'], []) as ITextRichText[]),
+    last_edited_time: formatDate(page.last_edited_time),
+  }
+}
+export const formatPageInfo = (page: IPageObject): IBlog => {
+  const tags = R.pathOr(page, ['properties', 'Tags', 'multi_select'], []) as any[]
+  return {
+    id: page.id,
+    name: (R.pathOr(page, ['properties', 'Page', 'title'], []) as ITextRichText[])?.[0]?.text?.content || '',
+    cover: R.pathOr(page, ['cover', 'file', 'url'], '') as string,
     last_edited_time: formatDate(page.last_edited_time),
     tags
   }
 }
-const calcRichText = (block:any) => {
-  const rich_text_items =  R.pathOr(block, [block.type,'rich_text'],[]) as TextRichTextItemResponse[]
+
+const calcRichText = (block: any) => {
+  const rich_text_items = R.pathOr(block, [block.type, 'rich_text'], []) as TextRichTextItemResponse[]
   const rich_text = rich_text_items.map(item => {
     return {
       type: item.type,
@@ -39,12 +45,12 @@ const calcRichText = (block:any) => {
       annotations: item.annotations
     }
   })
-  return {rich_text}
+  return { rich_text }
 }
 // https://developers.notion.com/reference/block
-export const formatContent = (block:IBlockObjectResp) => {
-  const {id,type,has_children,children} = block
-  const basicData = {id, type,has_children, children}
+export const formatContent = (block: IBlockObjectResp) => {
+  const { id, type, has_children, children } = block
+  const basicData = { id, type, has_children, children }
   switch (type) {
     case 'heading_1':
     case 'heading_2':
