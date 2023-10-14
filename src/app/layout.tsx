@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className='scroll-pt-16'>
+    <html lang="en" suppressHydrationWarning className='scroll-pt-16 scroll-smooth'>
       <body className="bg-white text-black dark:bg-black dark:text-white">
         <Providers>
           <div className="flex relative flex-col">

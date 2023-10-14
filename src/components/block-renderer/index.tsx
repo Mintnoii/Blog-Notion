@@ -10,7 +10,7 @@ export const renderBlock = (block:any) => {
     case 'heading_1':
       return (
         <h1 className="font-bold mb-2 text-3xl text-neutral-800 dark:text-neutral-300">
-          <Link href={`#${formatHashLink(rich_text[0].content)}`}>
+          <Link id={formatHashLink(rich_text[0].content)} href={`#${formatHashLink(rich_text[0].content)}`}>
             <Text rich_text={rich_text} />
           </Link>
         </h1>
@@ -18,7 +18,7 @@ export const renderBlock = (block:any) => {
     case 'heading_2':
       return (
         <h2 className="font-semibold mb-2 text-2xl text-neutral-800 dark:text-neutral-300">
-          <Link href={`#${formatHashLink(rich_text[0].content)}`}>
+          <Link id={formatHashLink(rich_text[0].content)}  href={`#${formatHashLink(rich_text[0].content)}`}>
             <Text rich_text={rich_text} />
           </Link>
         </h2>
@@ -26,7 +26,7 @@ export const renderBlock = (block:any) => {
     case 'heading_3':
       return (
         <h3 className="font-semibold text-xl mb-2 text-neutral-800 dark:text-neutral-300">
-          <Link href={`#${formatHashLink(rich_text[0].content)}`}>
+          <Link id={formatHashLink(rich_text[0].content)} href={`#${formatHashLink(rich_text[0].content)}`}>
             <Text rich_text={rich_text} />
           </Link>
         </h3>
