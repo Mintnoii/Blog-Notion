@@ -12,7 +12,7 @@ export default function Hero() {
            Mintnoii
           </div>
         </MotionDiv>
-        <MotionDiv delay={0.5} duration={0.8}>
+        <MotionDiv delay={0.5} duration={0.6}>
           <div className="text-sm text-gray-500 dark:text-neutral-400">
            Qing
           </div>
@@ -34,6 +34,8 @@ export default function Hero() {
           <div>
             I am a self-taught web developer.
             {` And I'm interested in the Jamstack & Serverless technology stack. `}
+          </div>
+          <div>
             Dreaming up ideas and making them come true is where my passion lies.
           </div>
         </MotionDiv>
@@ -48,7 +50,10 @@ export default function Hero() {
       <div className="mb-4">
         <MotionDiv delay={0.4} duration={0.8}>
           <div>
-            Get to know what I am all <Link href="/about">about</Link> and my creative output. Some of my work is open source and publicly available on <Link isExternal href="https://github.com/Mintnoii">github</Link>.
+            Get to know what I am all <Link href="/about">about</Link> and my creative <Link href="/creating">output</Link>.
+          </div>
+          <div>
+            Some of my work is open source and publicly available on <Link isExternal href="https://github.com/Mintnoii">github</Link>.
           </div>
         </MotionDiv>
       </div>
