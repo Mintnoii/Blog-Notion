@@ -23,7 +23,7 @@ const Navbar = () => {
         <motion.button whileHover={{ scale: 1.2, transition: { duration: 0.2 } }}>
           <span className='font-bold'>Mintnoii</span>
         </motion.button>
-        <Listbox variant='flat' aria-label="navbar" className='flex flex-row justify-center'>
+        <Listbox variant='flat' aria-label="navbar" data-focus-visible={false} className='flex flex-row justify-center'>
           {
             navData.map((item) => {
               const isCurrent = pathname === item.path

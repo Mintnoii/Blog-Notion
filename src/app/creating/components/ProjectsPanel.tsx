@@ -1,16 +1,17 @@
 'use client'
 import React from "react"
-import {Card, CardHeader, CardBody, Divider, Link, Image} from "@nextui-org/react"
+import {Card, CardHeader, CardBody, Divider, Image} from "@nextui-org/react"
 import { IProject } from "@/services/notion/types"
 import NextImage from "next/image"
+import {Link} from '@/components/ui'
 
 export default function ProjectsPanel({projects}:{projects:IProject[]}) {
   return (
     <div className="w-full flex flex-col">
       {projects.map((project) => (
-            <Card className="mb-4" key={project.id}>
+            <Card className="mb-4 w-full" key={project.id}>
               <CardHeader className="flex gap-3">
-                <Image
+                {/* <Image
                   height={40}
                   as={NextImage}
                   radius="sm"
@@ -18,12 +19,12 @@ export default function ProjectsPanel({projects}:{projects:IProject[]}) {
                   width={40}
                   className="object-cover w-10 h-10"
                   alt="project icon"
-                />
+                /> */}
                 <div className="flex flex-col">
-                  <p className="text-md">{project.name}</p>
+                  <p className="text-lg">{project.name}</p>
                   {project.github?
                   (<Link
-                      className="text-small "
+                      className="text-sm opacity-80"
                       isExternal
                       href={project.github}
                     >
