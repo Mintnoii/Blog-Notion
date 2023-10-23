@@ -19,7 +19,11 @@ export const getPublishedBlogs = async () => {
   const blogsIds: string[] = JSON.parse(process.env.NOTION_BLOGS_IDS || '[]')
   const promiseArr = blogsIds.map((id: string) => getBlogs(id))
   const results = await Promise.allSettled(promiseArr)
-  const blogs = results.map((result: PromiseSettledResult<IBlog[]>) => result.status === 'fulfilled' ? result.value : []).flat()
+  const blogs = results.map((result: PromiseSettledResult<IBlog[]>) => result.status === 'fulfilled' ? result.value : []).flat().sort((a, b) => {
+  const dateA = new Date(a.last_edited_time).getTime()
+  const dateB = new Date(b.last_edited_time).getTime()
+  return dateB - dateA
+})
   return blogs
 }
 export const collectAllTags = (blogs: IBlog[]) => {

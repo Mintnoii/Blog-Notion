@@ -1,4 +1,3 @@
-import './globals.css'
 import type { Metadata } from 'next'
 import Navbar from '@/modules/navbar'
 import { Providers } from '@/app/providers'
@@ -21,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning className='scroll-pt-16 scroll-smooth'>
-      <body className="bg-white text-black dark:bg-black dark:text-white">
+      <body>
         <Providers>
           <div className="flex relative flex-col">
             <Navbar />
