@@ -2,34 +2,24 @@ import React, {Fragment} from 'react'
 import {Text} from '@/components/typography'
 import {CodeBlock,Link} from '@/components/ui'
 import {formatHashLink} from '@/utils'
+import classnames from 'classnames'
 
 //TODO: improve types here, cleanup the code
 export const renderBlock = (block:any) => {
   const { id, type, rich_text, has_children, children,checked,image,caption,language,url} = block
   switch (type) {
     case 'heading_1':
-      return (
-        <h1 className="font-bold mb-2 text-3xl text-neutral-800 dark:text-neutral-300">
-          <Link id={formatHashLink(rich_text[0].content)} href={`#${formatHashLink(rich_text[0].content)}`}>
-            <Text rich_text={rich_text} />
-          </Link>
-        </h1>
-      )
     case 'heading_2':
-      return (
-        <h2 className="font-semibold mb-2 text-2xl text-neutral-800 dark:text-neutral-300">
-          <Link id={formatHashLink(rich_text[0].content)}  href={`#${formatHashLink(rich_text[0].content)}`}>
-            <Text rich_text={rich_text} />
-          </Link>
-        </h2>
-      )
     case 'heading_3':
+      const text = rich_text[0].content
       return (
-        <h3 className="font-semibold text-xl mb-2 text-neutral-800 dark:text-neutral-300">
-          <Link id={formatHashLink(rich_text[0].content)} href={`#${formatHashLink(rich_text[0].content)}`}>
-            <Text rich_text={rich_text} />
+          <Link {...{color:'foreground'}} className={classnames('font-bold text-neutral-800 dark:text-neutral-300',{
+            'text-3xl my-5': type === 'heading_1',
+            'text-2xl my-4': type === 'heading_2',
+            'text-xl my-3': type === 'heading_3',
+          })} id={formatHashLink(text)}  href={`#${formatHashLink(text)}`}>
+            {text}
           </Link>
-        </h3>
       )
     case 'paragraph':
       return (

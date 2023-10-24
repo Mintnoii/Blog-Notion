@@ -1,7 +1,7 @@
 import React from "react"
 import {Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button} from "@nextui-org/react"
 import { Bars3Icon } from '@heroicons/react/24/outline'
-import { navData } from '@/constants/nav'
+import { MENU_DATA } from '@/constants/nav'
 import { useRouter } from 'next/navigation'
 
 export default function App() {
@@ -15,7 +15,7 @@ export default function App() {
       </DropdownTrigger>
       <DropdownMenu aria-label="nav menu">
         {
-            navData.map((item) => {
+            MENU_DATA.map((item) => {
               return (
                 <DropdownItem key={item.path} onClick={() => router.push(item.path)}>
                    {item.label}
