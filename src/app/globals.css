@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  overflow-y: overlay;
+}
+*::-webkit-scrollbar {
+  width: 6px !important;
+  height: 6px !important;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(239, 239, 239, 0.2) !important;
+  border-radius: 10px !important;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(239, 239, 239, 0.4) !important;
+  border-radius: 10px !important;
+}
+*::-webkit-scrollbar-corner {
+  background: transparent !important;
+}
+
+
 :root {
   --background: theme('colors.white');
   --background-secondary: theme('colors.gray.50');
