@@ -8,7 +8,7 @@ export default function Hero() {
     <div className="flex flex-col h-full font-serif text-md text-neutral-800 dark:text-gray-300 lg:px-4">
       <div className='mb-8'>
         <MotionDiv delay={0.1} duration={1}>
-          <div className="font-bold text-3xl lg:text-4xl tracking-wider text-gray-900  dark:text-neutral-200">
+          <div className="font-bold text-3xl lg:text-4xl tracking-wider text-gray-900  dark:text-neutral-100">
            Mintnoii
           </div>
         </MotionDiv>

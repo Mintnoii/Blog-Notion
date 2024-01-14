@@ -20,7 +20,7 @@ const Navbar = () => {
   return (
     <nav className="flex bg-background/70 h-16 inset-x-0 top-0 z-40 justify-center sticky backdrop-blur-lg backdrop-saturate-150">
       <div className="flex max-w-xs w-full justify-between items-center md:max-w-lg lg:max-w-xl xl:max-w-2xl">
-        <motion.button whileHover={{ scale: 1.2, transition: { duration: 0.2 } }}>
+        <motion.button whileHover={{ scale: 1.2, transition: { duration: 0.1 } }}>
           <span className='font-bold'>Mintnoii</span>
         </motion.button>
         <div className='flex flex-row justify-center'>

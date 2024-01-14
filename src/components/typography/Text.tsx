@@ -25,7 +25,7 @@ export const Text = ({rich_text, showAnchorIcon=true}:TextProps) => {
         key={index}
         className={
           classnames(
-            'text-sm whitespace-pre-line leading-[26px]',
+            'text-sm md:text-base whitespace-pre-line leading-6 md:leading-7',
             {
               'font-bold': bold,
               'italic': italic,

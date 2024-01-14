@@ -11,7 +11,7 @@ const CreatingPage = async () => {
         <Title>Creating</Title>
         <Description
         >
-          These are things I have done or are developing for learning and fun.
+          {`Things I've made trying to put my dent in the universe.`}
         </Description>
       </header>
       <ProjectsPanel projects={projects}/>
