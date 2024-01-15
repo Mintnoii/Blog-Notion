@@ -2,23 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  overflow-y: overlay;
+* {
+  margin: 0;
+  padding: 0;
 }
+
+html {
+  overflow-y: scroll;
+}
+:root {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+:root body {
+  position: absolute;
+}
+
+body {
+  width: 100vw;
+  overflow: hidden;
+}
+
 *::-webkit-scrollbar {
   width: 6px !important;
   height: 6px !important;
 }
 *::-webkit-scrollbar-thumb {
-  background: rgba(239, 239, 239, 0.2) !important;
+  background: #c6c6c6 !important;
   border-radius: 10px !important;
 }
-*::-webkit-scrollbar-thumb:hover {
-  background: rgba(239, 239, 239, 0.4) !important;
+/* *::-webkit-scrollbar-thumb:hover {
+  background: rgba(198,198,198, 1) !important;
   border-radius: 10px !important;
-}
+} */
 *::-webkit-scrollbar-corner {
   background: transparent !important;
+}
+
+@layer components {
+  .content-wrapper {
+    @apply break-words max-w-xs md:max-w-lg lg:max-w-xl xl:max-w-2xl;
+  }
 }
 
 /* 覆盖 nextui 默认样式，更推荐在 tailwind.config.js 中覆盖 */
