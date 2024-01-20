@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
-import Navbar from '@/modules/navbar'
+import Nav from '@/modules/nav/index'
+
 import { Providers } from '@/app/providers'
 // import Footer from '~/components/ui/Footer'
 // import { ScrollToTop } from '../features/scroll'
@@ -19,12 +20,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className='scroll-pt-16 scroll-smooth'>
-      <body>
+    <html lang="en" suppressHydrationWarning className='scroll-smooth scroll-pt-16'>
+      <body className='min-w-mini min-h-screen pb-12'>
         <Providers>
-          <div className="flex relative flex-col">
-            <Navbar />
-            <main className="relative flex justify-center w-full min-h-[calc(100vh_-_64px)]">
+          <div className="flex flex-col ">
+            <Nav/>
+            <main className="flex w-full relative justify-center">
               {children}
             </main>
               {/* <Footer /> */}

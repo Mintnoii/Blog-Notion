@@ -11,16 +11,14 @@ export const NAV_DATA = [
     path: '/creating',
     label: 'creating',
   },
-  {
-    path: '/about',
-    label: 'about',
-  },
-
 ]
 export const MENU_DATA = [
-  ...NAV_DATA,
   {
     path: '/localhost',
     label: 'localhost',
+  },
+  {
+    path: '/about',
+    label: 'about',
   },
 ]
