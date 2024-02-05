@@ -3,12 +3,12 @@ import React from "react";
 import { Navbar, NavbarBrand, NavbarMenuToggle, NavbarMenuItem, NavbarMenu, NavbarContent, NavbarItem, Link, Button } from "@nextui-org/react";
 // import { useRouter } from 'next/navigation'
 import { usePathname } from 'next/navigation'
-import { NAV_DATA,MENU_DATA } from '@/constants/nav'
 import classnames from 'classnames'
 import ThemeSwitch from './ThemeSwitch'
 import Menu from './Menu'
+import { NAV_DATA,MENU_DATA } from './data'
 
-export default function App() {
+export default function Nav() {
   const pathname = usePathname()
   // const router = useRouter()
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);

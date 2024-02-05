@@ -1,13 +1,15 @@
-import {getPublishedBlogs, collectAllTags } from '@/services/notion'
+import {collectAllTags } from '@/services/notion'
+import {getPublishedBlogs } from '@/api'
 import { Title, Description } from '@/components/typography'
 import BlogPanel from '@/app/blog/components/BlogPanel'
-
+import BlogTable from '@/modules/blog/table'
 const BlogPage = async () => {
   const blogs = await getPublishedBlogs()
+  console.log(blogs,'blogs')
   const allTags = await collectAllTags(blogs)
 
   return (
-    <section className='w-full max-w-xs md:max-w-lg lg:max-w-xl xl:max-w-2xl pb-10'>
+    <section className='max-w-xs w-full md:max-w-lg lg:max-w-xl xl:max-w-2xl'>
       <header>
         <Title>Blog</Title>
         <Description
@@ -16,7 +18,8 @@ const BlogPage = async () => {
           between.
         </Description>
       </header>
-      <BlogPanel blogs={blogs} tags={allTags}/>
+      <BlogTable  blogs={blogs} />
+      {/* <BlogPanel blogs={blogs} tags={allTags}/> */}
   </section>
   )
 }

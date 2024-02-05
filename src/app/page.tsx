@@ -1,4 +1,4 @@
-import Hero from '@/modules/hero'
+import Hero from '@/themes/hero'
 
  export default async function Home() {
   return (
