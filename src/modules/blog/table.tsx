@@ -71,6 +71,11 @@ export default function BlogTable({ blogs }: IBlogTable) {
             color="default"
             page={page}
             total={pages}
+            classNames={{
+        // item: "w-8 h-8 text-small rounded-none bg-transparent",
+        cursor:
+          "bg-transparent text-primary font-bold",
+      }}
             onChange={(page: any) => setPage(page)}
           />
         </div>

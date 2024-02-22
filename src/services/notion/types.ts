@@ -26,6 +26,7 @@ export interface IProject extends IDataItem {
   status?: IStatusName
   intro?: string
   github?: string
+  cover_url?: string
 }
 export interface ITag {
   id: string

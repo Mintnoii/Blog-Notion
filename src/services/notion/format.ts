@@ -2,7 +2,7 @@ import * as R from 'remeda'
 import { IBlog,  IStatus, IStatusName, IProject, IBlock, IBlockObjectResp } from '@/services/notion/types'
 import {IPageObject,IRichTextItem, convertBlock} from "@tachikomas/notion-kit"
 
-const formatTextRichText = (text_rich_text: IRichTextItem[]) => {
+const formatTextRichText = (text_rich_text: IRichTextItem[]):string => {
   return text_rich_text.map(item => (item.text.content)).join('')
 }
 
@@ -22,6 +22,7 @@ export const formatProject = (page: IPageObject): IProject => {
     status: (page.properties.Status as IStatus).status?.name as IStatusName,
     intro: formatTextRichText(R.pathOr(page, ['properties', 'intro', 'rich_text'], []) as IRichTextItem[]),
     last_edited_time: formatDate(page.last_edited_time),
+    cover_url: R.pathOr(page, ['properties','cover_url', 'url'], '') as string,
   }
 }
 export const formatPageInfo = (page: IPageObject): IBlog => {

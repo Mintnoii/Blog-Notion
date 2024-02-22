@@ -49,12 +49,12 @@ export const getProjects = async (): Promise<IProject[]> => {
     database_id: process.env.NOTION_PROJECTS_PAGE_ID || '',
     filter: {
       'or': [
-        {
-          property: 'Status',
-          status: {
-            equals: 'In progress',
-          }
-        },
+        // {
+        //   property: 'Status',
+        //   status: {
+        //     equals: 'In progress',
+        //   }
+        // },
         {
           property: 'Status',
           status: {

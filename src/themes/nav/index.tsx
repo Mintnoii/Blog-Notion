@@ -34,7 +34,7 @@ export default function Nav() {
             const linkSpanStyle = classnames(
               'relative z-50 hidden md:block',
               {
-                'font-semibold text-gray-900 underline decoration-cyan-400 decoration-2 underline-offset-1 dark:text-gray-300 ': isActive,
+                'font-semibold text-gray-900 underline decoration-primary decoration-2 underline-offset-1 dark:text-gray-300 ': isActive,
                 'font-normal text-gray-700 dark:text-gray-400': !isActive
               })
             return (
