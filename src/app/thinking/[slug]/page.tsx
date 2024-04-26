@@ -1,7 +1,7 @@
 import {getPublishedBlogs,getPage } from '@/services/notion'
 import {renderBlocks} from '@/components/block-renderer'
 import { Title, Description } from '@/components/typography'
-import Outline from '@/app/blog/components/Outline'
+import Outline from '@/components/outline-list'
 interface Props {
   params: {
     slug: string
@@ -16,7 +16,7 @@ const BlogSlugPage = async ({ params }: Props) => {
   const page = await getPage(params.slug)
   return (
     <div className="flex relative">
-      <div className='break-words max-w-xs md:max-w-lg lg:max-w-xl xl:max-w-2xl'>
+      <div className='content-wrapper pb-10'>
       {/* {JSON.stringify(page.content)} */}
       <Title>{page.name}</Title>
        {renderBlocks(page.content)}

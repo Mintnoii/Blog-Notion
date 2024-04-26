@@ -40,7 +40,10 @@ export const collectAllTags = (blogs: IBlog[]) => {
   }, [] as ITag[])
 }
 
-
+/**
+ * 获取开源项目数据
+ */
+export const getThinking = async () => (getBlogs(process.env.NOTION_THINKING_PAGE_ID || ''))
 /**
  * 获取开源项目数据
  */

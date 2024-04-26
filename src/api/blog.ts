@@ -159,3 +159,8 @@ export const getPage = async (page_id: string) => {
     content
   }
 }
+
+/**
+ * 获取开源项目数据
+ */
+export const getThinking = async () => (getBlogs(process.env.NOTION_THINKING_PAGE_ID || ''))

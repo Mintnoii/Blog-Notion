@@ -37,7 +37,7 @@ export const renderBlock = (block: any, options?: any) => {
       }
     case 'paragraph':
       return (
-        <p className={classnames('my-0.5 text-neutral-800 dark:text-neutral-100',{
+        <p className={classnames('my-4 text-neutral-800 dark:text-neutral-100',{
           'pl-4': isToggleContent
         })}>
           <Text rich_text={rich_text} />

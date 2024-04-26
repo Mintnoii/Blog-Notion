@@ -18,14 +18,14 @@ export const Text = ({rich_text, showAnchorIcon=true}:TextProps) => {
       content,
     } = value
     if (code) {
-      return (<Code className='px-1.5 py-0.5' key={index}>{content}</Code>)
+      return (<Code className='px-1.5 py-0.5 whitespace-pre-line' key={index}>{content}</Code>)
     }
     return (
       <span
         key={index}
         className={
           classnames(
-            'text-sm md:text-base whitespace-pre-line leading-6 md:leading-7',
+            'text-sm md:text-[16.8px] whitespace-pre-line leading-7 md:leading-[27.3px]',
             {
               'font-bold': bold,
               'italic': italic,

@@ -1,6 +1,6 @@
 import { Title, Description } from '@/components/typography'
 import {getProjects} from '@/services/notion'
-import ProjectCards from '@/modules/project/cards'
+import ProjectCards from './components/project-cards'
 
 const CreatingPage = async () => {
   const projects = await getProjects()
