@@ -57,7 +57,7 @@ export const AboutMe = () => {
             }}
             className="text-sm text-gray-600 dark:text-neutral-400"
           >
-            Web Developer from Shanghai, China
+            Front-end Engineer from Shanghai, China
           </motion.div>
           <motion.div
             initial="hidden"

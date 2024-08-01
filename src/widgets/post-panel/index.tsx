@@ -3,10 +3,10 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import classnames from 'classnames'
 import { Card, CardBody, Button,Link } from "@nextui-org/react";
-import { ITag, IBlog } from '@/services/notion/types'
+import { ITag, IPost } from '@/services/notion/types'
 
 interface IBlogPanel {
-  blogs: IBlog[],
+  posts: IPost[],
   tags: ITag[],
 }
 interface ITagsCard {
@@ -30,20 +30,20 @@ const TagsCard = ({ tagName, tags, setTagName }: ITagsCard) => {
     </Card>
   )
 }
-const BlogPanel = ({ blogs, tags }: IBlogPanel) => {
+const BlogPanel = ({ posts, tags }: IBlogPanel) => {
   const [tagName, setTagName] = useState('All')
 
-  const tagFilter = (blogs: IBlog[]) => blogs.filter(i => tagName === 'All' || i.tags?.some(tag => tag.name === tagName))
-  const filteredBlogs = tagFilter(blogs)
+  const tagFilter = (posts: IPost[]) => posts.filter(i => tagName === 'All' || i.tags?.some(tag => tag.name === tagName))
+  const filteredBlogs = tagFilter(posts)
   // .sort((a, b) => Number(new Date(b.create_time)))
-  // .filter((blog) => {
+  // .filter((post) => {
   //   return (
-  //     blog.title.toLowerCase().includes(searchValue.toLowerCase())
+  //     post.title.toLowerCase().includes(searchValue.toLowerCase())
   //   )
   // })
   const router = useRouter()
 
-  const openBlog = (blogId: string) => router.push(`/blog/${blogId}`)
+  const openBlog = (blogId: string) => router.push(`/post/${blogId}`)
 
   return (
     <div className='w-full'>
@@ -51,14 +51,14 @@ const BlogPanel = ({ blogs, tags }: IBlogPanel) => {
         <TagsCard tagName={tagName} tags={tags} setTagName={setTagName} />
       </section>
       <section className='flex flex-col mt-4'>
-        {filteredBlogs.map((blog) => (
-          <Card key={blog.id} isHoverable={true} shadow={'sm'} className='my-2'>
+        {filteredBlogs.map((post) => (
+          <Card key={post.id} isHoverable={true} shadow={'sm'} className='my-2'>
             <CardBody className='flex-col flex'>
-                <Link {...{underline:'hover'}} className="flex font-semibold text-md text-left mb-2 justify-between cursor-pointer text-black dark:text-gray-300" onClick={() => openBlog(blog.id)}>
-                  {blog.name}
+                <Link {...{underline:'hover'}} className="flex font-semibold text-md text-left mb-2 justify-between cursor-pointer text-black dark:text-gray-300" onClick={() => openBlog(post.id)}>
+                  {post.name}
                 </Link>
               <div className="flex flex-row flex-wrap mb-1 gap-x-3 gap-y-1">
-                {blog.tags?.map(({ name }) => {
+                {post.tags?.map(({ name }) => {
                   return (
                     <div key={name} className="rounded-sm bg-zinc-200 mt-0.5 text-xs opacity-80 py-1 px-2 text-gray-700 dark:bg-zinc-700 dark:text-gray-300">
                       {name}
@@ -67,7 +67,7 @@ const BlogPanel = ({ blogs, tags }: IBlogPanel) => {
                 })}
               </div>
               <span className="flex space-x-4 text-xs text-gray-600 justify-end dark:text-gray-400 ">
-                <div>{blog.last_edited_time}</div>
+                <div>{post.last_edited_time}</div>
               </span>
             </CardBody>
           </Card>

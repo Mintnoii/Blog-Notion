@@ -8,8 +8,8 @@ export const NAV_DATA = [
     label: 'blog',
   },
   {
-    path: '/thinking',
-    label: 'thinking',
+    path: '/notes',
+    label: 'notes',
   },
   {
     path: '/creating',
@@ -21,8 +21,8 @@ export const MENU_DATA = [
     path: '/localhost',
     label: 'localhost',
   },
-  {
-    path: '/about',
-    label: 'about',
-  },
+  // {
+  //   path: '/about',
+  //   label: 'about',
+  // },
 ]

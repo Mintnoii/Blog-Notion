@@ -1,10 +1,10 @@
 import {NotionKit,IPageObject} from "@tachikomas/notion-kit"
-import { IBlock, IBlog, IProject, ITag, IBlockObjectResp } from '@/services/notion/types'
+import { IBlock, IPost, IProject, ITag, IBlockObjectResp } from '@/services/notion/types'
 import { formatProject, formatPageInfo, formatContent } from './format'
 const {notion, queryDatabase, retrievePage, retrieveBlockChildren }  = new NotionKit({ token: process.env.NOTION_TOKEN })
 export { notion, queryDatabase, retrieveBlockChildren, retrievePage }
 
-export const getBlogs = async (database_id: string): Promise<IBlog[]> => {
+export const getBlogs = async (database_id: string): Promise<IPost[]> => {
   const dbRes = await queryDatabase({
     database_id,
     filter: {
@@ -17,19 +17,19 @@ export const getBlogs = async (database_id: string): Promise<IBlog[]> => {
   return dbRes.results.map((page) => formatPageInfo(page as IPageObject))
 }
 
-export const getPublishedBlogs = async () => {
+export const getPublishedPosts = async () => {
   const blogsIds: string[] = JSON.parse(process.env.NOTION_BLOGS_IDS || '[]')
   const promiseArr = blogsIds.map((id: string) => getBlogs(id))
   const results = await Promise.allSettled(promiseArr)
-  const blogs = results.map((result: PromiseSettledResult<IBlog[]>) => result.status === 'fulfilled' ? result.value : []).flat().sort((a, b) => {
+  const posts = results.map((result: PromiseSettledResult<IPost[]>) => result.status === 'fulfilled' ? result.value : []).flat().sort((a, b) => {
     const dateA = new Date(a.last_edited_time).getTime()
     const dateB = new Date(b.last_edited_time).getTime()
     return dateB - dateA
   })
-  return blogs
+  return posts
 }
-export const collectAllTags = (blogs: IBlog[]) => {
-  return blogs.reduce((allTags, item) => {
+export const collectAllTags = (posts: IPost[]) => {
+  return posts.reduce((allTags, item) => {
     item.tags?.forEach(tag => {
       const isTagAlreadyAdded = allTags.some(existingTag => existingTag.name === tag.name);
       if (!isTagAlreadyAdded) {

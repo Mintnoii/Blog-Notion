@@ -1,24 +1,25 @@
 'use client';
 import React, { Key } from "react";
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Pagination, getKeyValue } from "@nextui-org/react";
-import { ITag, IBlog } from '@/services/notion/types'
-interface IBlogTable {
-  blogs: IBlog[],
+import { IPost } from '@/services/notion/types'
+interface IPostTable {
+  posts: IPost[],
 }
-export default function BlogTable({ blogs }: IBlogTable) {
+export default function PostTable({ posts }: IPostTable) {
   const [page, setPage] = React.useState(1);
   const rowsPerPage = 10;
-    const router = useRouter()
+  const router = useRouter()
+  const pathName = usePathname()
 
-  const pages = Math.ceil(blogs.length / rowsPerPage);
+  const pages = Math.ceil(posts.length / rowsPerPage);
 
   const items = React.useMemo(() => {
     const start = (page - 1) * rowsPerPage;
     const end = start + rowsPerPage;
 
-    return blogs.slice(start, end);
-  }, [page, blogs]);
+    return posts.slice(start, end);
+  }, [page, posts]);
 
   const renderCell = React.useCallback((item: any, columnKey: string | number) => {
     const cellValue = item[columnKey]
@@ -42,9 +43,9 @@ export default function BlogTable({ blogs }: IBlogTable) {
     //     </div>
     //   )
     // }
-    // if (columnKey === "last_edited_time") {
-    //   return <div className="text-sm text-gray-500">{cellValue}</div>;
-    // }
+    if (columnKey === "created_time") {
+      return <div className="text-sm text-gray-500">{cellValue}</div>;
+    }
     return null;
   }
     , []);
@@ -56,7 +57,9 @@ export default function BlogTable({ blogs }: IBlogTable) {
     }),
     [],
   );
-  const openBlog = (blogId: string) => router.push(`/blog/${blogId}`)
+  const openBlog = (blogId: string) => {
+    router.push(`${pathName}/${blogId}`)
+  }
   return (
     <Table
       classNames={classNames}
@@ -64,18 +67,17 @@ export default function BlogTable({ blogs }: IBlogTable) {
       removeWrapper
       selectionMode="single"
       bottomContent={
+        pages > 1 &&
         <div className="flex w-full">
           <Pagination
             variant="light"
-            showControls
-            color="default"
             page={page}
             total={pages}
             classNames={{
-        // item: "w-8 h-8 text-small rounded-none bg-transparent",
-        cursor:
-          "bg-transparent text-primary font-bold",
-      }}
+              prev: "bg-transparent text-default font-bold",
+              // item: "w-8 h-8 text-small rounded-none bg-transparent",
+              cursor: "bg-transparent font-bold",
+            }}
             onChange={(page: any) => setPage(page)}
           />
         </div>
@@ -85,7 +87,7 @@ export default function BlogTable({ blogs }: IBlogTable) {
       <TableHeader>
         <TableColumn key="name">名称</TableColumn>
         {/* <TableColumn key="tags">标签</TableColumn> */}
-        <TableColumn key="last_edited_time">最后更新</TableColumn>
+        <TableColumn key="created_time">创建时间</TableColumn>
       </TableHeader>
       <TableBody items={items}>
         {(item) => (

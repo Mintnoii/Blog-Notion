@@ -1,4 +1,4 @@
-import {getPublishedBlogs,getPage } from '@/services/notion'
+import {getPublishedPosts,getPage } from '@/services/notion'
 import {renderBlocks} from '@/components/block-renderer'
 import { Title, Description } from '@/components/typography'
 import Outline from '@/components/outline-list'
@@ -8,11 +8,11 @@ interface Props {
   }
 }
 export async function generateStaticParams() {
-  const blogs = await getPublishedBlogs()
-  return blogs.map((blog) => ({ slug: blog.id}))
+  const posts = await getPublishedPosts()
+  return posts.map((note) => ({ slug: note.id}))
 }
 
-const BlogSlugPage = async ({ params }: Props) => {
+const NoteSlugPage = async ({ params }: Props) => {
   const page = await getPage(params.slug)
   return (
     <div className="flex relative">
@@ -26,4 +26,4 @@ const BlogSlugPage = async ({ params }: Props) => {
   )
 }
 
-export default BlogSlugPage
+export default NoteSlugPage
